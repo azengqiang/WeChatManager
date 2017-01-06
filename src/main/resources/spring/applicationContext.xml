@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <import resource="classpath:/spring/applicationContext-activiti.xml"/>
+       <import resource="classpath:/spring/applicationContext-db.xml"/>
+       <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+              <property name="dataSource" ref="dataSource"/>
+              <property name="mapperLocations" value="classpath:/**/*Mapper.xml"/>
+              <property name="configLocation" value="classpath:mybatis-configuration.xml"/>
+       </bean>
+
+
+       <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+              <constructor-arg index="0" name="sqlSessionFactory" ref="sqlSessionFactory"/>
+       </bean>
+</beans>
