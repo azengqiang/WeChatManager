@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="m1483598334896" name="" targetNamespace="http://www.activiti.org/testm1483598334896" typeLanguage="http://www.w3.org/2001/XMLSchema">
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/testm1483598334896" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="m1483598334896" name="" targetNamespace="http://www.activiti.org/testm1483598334896" typeLanguage="http://www.w3.org/2001/XMLSchema">
   <collaboration id="COLLABORATION_1" isClosed="false">
-    <participant id="_2" name="请假流程" processRef="myProcess_1">
+    <participant id="_2" name="leave process" processRef="myProcess_1">
       <participantMultiplicity maximum="1" minimum="0"/>
     </participant>
   </collaboration>
   <process id="myProcess_1" isClosed="false" isExecutable="true" processType="None">
     <laneSet>
-      <lane id="_3" name="员工">
+      <lane id="_3" name="employee">
         <flowNodeRef>leaveApply</flowNodeRef>
         <flowNodeRef>_15</flowNodeRef>
         <flowNodeRef>_29</flowNodeRef>
         <flowNodeRef>_30</flowNodeRef>
       </lane>
-      <lane id="_4" name="领导">
+      <lane id="_4" name="manager">
         <flowNodeRef>leaderApprove</flowNodeRef>
         <flowNodeRef>_11</flowNodeRef>
       </lane>
-      <lane id="_5" name="人事">
+      <lane id="_5" name="personnel">
         <flowNodeRef>personnelApprove</flowNodeRef>
         <flowNodeRef>_22</flowNodeRef>
       </lane>
     </laneSet>
-    <startEvent id="leaveApply" name="员工申请"/>
-    <userTask activiti:exclusive="true" id="leaderApprove" name="部门领导审批">
+    <startEvent id="leaveApply" name="leave apply"/>
+    <userTask activiti:exclusive="true" id="leaderApprove" name="manager approve">
       <extensionElements>
         <activiti:formProperty id="applyUser"/>
         <activiti:formProperty id="days">
@@ -31,7 +31,7 @@
         </activiti:formProperty>
       </extensionElements>
     </userTask>
-    <userTask activiti:exclusive="true" id="personnelApprove" name="人事审批">
+    <userTask activiti:exclusive="true" id="personnelApprove" name="personnel approve">
       <extensionElements>
         <activiti:formProperty id="applyUser"/>
         <activiti:formProperty id="days">
@@ -39,8 +39,8 @@
         </activiti:formProperty>
       </extensionElements>
     </userTask>
-    <exclusiveGateway gatewayDirection="Unspecified" id="_11" name="是否同意"/>
-    <userTask activiti:exclusive="true" id="_15" name="调整">
+    <exclusiveGateway gatewayDirection="Unspecified" id="_11" name="is agree�?"/>
+    <userTask activiti:exclusive="true" id="_15" name="adjust">
       <extensionElements>
         <activiti:formProperty id="applyUser"/>
         <activiti:formProperty id="days">
@@ -49,15 +49,15 @@
       </extensionElements>
     </userTask>
     <sequenceFlow id="_19" sourceRef="leaveApply" targetRef="leaderApprove"/>
-    <sequenceFlow id="_20" name="继续申请" sourceRef="_15" targetRef="leaderApprove"/>
+    <sequenceFlow id="_20" name="continue apply" sourceRef="_15" targetRef="leaderApprove"/>
     <sequenceFlow id="_21" sourceRef="leaderApprove" targetRef="_11"/>
-    <exclusiveGateway gatewayDirection="Unspecified" id="_22" name="是否同意"/>
-    <sequenceFlow id="_25" name="不同�?" sourceRef="_11" targetRef="_15"/>
-    <sequenceFlow id="_26" name="同意" sourceRef="_11" targetRef="personnelApprove"/>
+    <exclusiveGateway gatewayDirection="Unspecified" id="_22" name="is agree�?"/>
+    <sequenceFlow id="_25" name="disagree" sourceRef="_11" targetRef="_15"/>
+    <sequenceFlow id="_26" name="agree" sourceRef="_11" targetRef="personnelApprove"/>
     <sequenceFlow id="_27" sourceRef="personnelApprove" targetRef="_22"/>
-    <sequenceFlow id="_28" name="不同�?" sourceRef="_22" targetRef="_15"/>
-    <endEvent id="_29" name="流程结束"/>
-    <userTask activiti:exclusive="true" id="_30" name="�?�?">
+    <sequenceFlow id="_28" name="disagree" sourceRef="_22" targetRef="_15"/>
+    <endEvent id="_29" name="process end"/>
+    <userTask activiti:exclusive="true" id="_30" name="report back">
       <extensionElements>
         <activiti:formProperty id="applyUser"/>
         <activiti:formProperty id="days">
@@ -65,8 +65,8 @@
         </activiti:formProperty>
       </extensionElements>
     </userTask>
-    <sequenceFlow id="_31" name="取消申请" sourceRef="_15" targetRef="_29"/>
-    <sequenceFlow id="_32" name="同意" sourceRef="_22" targetRef="_30"/>
+    <sequenceFlow id="_31" name="cancel apply" sourceRef="_15" targetRef="_29"/>
+    <sequenceFlow id="_32" name="agree" sourceRef="_22" targetRef="_30"/>
     <sequenceFlow id="_33" sourceRef="_30" targetRef="_29"/>
   </process>
   <bpmndi:BPMNDiagram documentation="background=#FFFFFF;count=1;horizontalcount=1;orientation=0;width=842.4;height=1195.2;imageableWidth=832.4;imageableHeight=1185.2;imageableX=5.0;imageableY=5.0" id="Diagram-_1" name="New Diagram">
@@ -143,34 +143,12 @@
           <dc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge bpmnElement="_19" id="BPMNEdge__19" sourceElement="_6" targetElement="_7">
-        <di:waypoint x="158.5" y="145.13329402510257"/>
-        <di:waypoint x="158.5" y="360.0"/>
+      <bpmndi:BPMNEdge bpmnElement="_26" id="BPMNEdge__26" sourceElement="_11" targetElement="personnelApprove">
+        <di:waypoint x="380.0" y="401.0"/>
+        <di:waypoint x="380.0" y="480.0"/>
+        <di:waypoint x="380.0" y="540.0"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_20" id="BPMNEdge__20" sourceElement="_15" targetElement="_7">
-        <di:waypoint x="381.0" y="172.5"/>
-        <di:waypoint x="220.0" y="215.0"/>
-        <di:waypoint x="220.0" y="360.0"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_21" id="BPMNEdge__21" sourceElement="_7" targetElement="_11">
-        <di:waypoint x="235.0" y="387.5"/>
-        <di:waypoint x="370.0" y="391.0"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_26" id="BPMNEdge__26" sourceElement="_11" targetElement="_8">
-        <di:waypoint x="385.0" y="376.0"/>
-        <di:waypoint x="385.0" y="370.0"/>
-        <di:waypoint x="385.0" y="540.0"/>
-        <bpmndi:BPMNLabel>
-          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+          <dc:Bounds height="10.0" width="0.0" x="0.0" y="25.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_25" id="BPMNEdge__25" sourceElement="_11" targetElement="_15">
@@ -189,10 +167,18 @@
           <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_27" id="BPMNEdge__27" sourceElement="_8" targetElement="_22">
+      <bpmndi:BPMNEdge bpmnElement="_27" id="BPMNEdge__27" sourceElement="personnelApprove" targetElement="_22">
         <di:waypoint x="385.0" y="570.0"/>
         <di:waypoint x="545.0" y="570.0"/>
         <di:waypoint x="545.0" y="531.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_19" id="BPMNEdge__19" sourceElement="leaveApply" targetElement="leaderApprove">
+        <di:waypoint x="167.0" y="131.0"/>
+        <di:waypoint x="175.0" y="280.0"/>
+        <di:waypoint x="175.0" y="360.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
@@ -205,10 +191,26 @@
           <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_20" id="BPMNEdge__20" sourceElement="_15" targetElement="leaderApprove">
+        <di:waypoint x="381.0" y="172.5"/>
+        <di:waypoint x="220.0" y="215.0"/>
+        <di:waypoint x="220.0" y="360.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_33" id="BPMNEdge__33" sourceElement="_30" targetElement="_29">
         <di:waypoint x="705.0" y="150.0"/>
         <di:waypoint x="790.0" y="150.0"/>
         <di:waypoint x="790.0" y="109.22875655532295"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_21" id="BPMNEdge__21" sourceElement="leaderApprove" targetElement="_11">
+        <di:waypoint x="235.0" y="385.0"/>
+        <di:waypoint x="305.0" y="385.0"/>
+        <di:waypoint x="376.0" y="385.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>

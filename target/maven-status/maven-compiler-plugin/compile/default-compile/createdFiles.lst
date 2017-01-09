@@ -1,4 +1,9 @@
+pre\my\test\activiti\controller\DeploymentController.class
+pre\my\test\demo\controller\AccountController.class
 pre\my\test\demo\dto\Function.class
+pre\my\test\demo\service\IAccountService.class
+pre\my\test\job\SimpleJob.class
 pre\my\test\demo\dto\Role.class
 pre\my\test\demo\dto\User.class
+pre\my\test\demo\service\impl\AccountServiceImpl.class
 pre\my\test\demo\mapper\UserMapper.class

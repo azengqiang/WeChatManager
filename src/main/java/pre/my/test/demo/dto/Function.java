@@ -1,25 +1,26 @@
 package pre.my.test.demo.dto;
 
 public class Function {
-    private Integer id;
-    private String functionname;
+    private Long functionId;
+
+    private String name;
 
     private String description;
 
-    public Integer getId() {
-        return id;
+    public Long getFunctionId() {
+        return functionId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setFunctionId(Long functionId) {
+        this.functionId = functionId;
     }
 
-    public String getFunctionname() {
-        return functionname;
+    public String getName() {
+        return name;
     }
 
-    public void setFunctionname(String functionname) {
-        this.functionname = functionname == null ? null : functionname.trim();
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -27,6 +28,7 @@ public class Function {
     }
 
     public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
+        this.description = description;
     }
+
 }

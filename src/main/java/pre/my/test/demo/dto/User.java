@@ -1,34 +1,43 @@
 package pre.my.test.demo.dto;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Created by win on 2016/11/16.
  */
+
 public class User {
-    private Long id;
-    private String name;
-    private String pwd;
+    @Id
+    @GeneratedValue()
+    private Long userId;
 
-    public Long getId() {
-        return id;
+    private String userName;
+
+    private String password;
+
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getPwd() {
-        return pwd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setPassword(String password) {
+        this.password = password;
     }
+
 }

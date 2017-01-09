@@ -1,11 +1,13 @@
-import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.ProcessEngineConfiguration;
-import org.activiti.engine.RepositoryService;
-import org.activiti.engine.RuntimeService;
+import org.activiti.engine.*;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
-import org.junit.Test;
+import org.activiti.engine.task.Task;
 import org.junit.Assert;
+import org.junit.Test;
+
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -13,24 +15,55 @@ import org.junit.Assert;
  */
 public class LeaveProcessTest {
     @Test
-    public void test() {
-        //创建流程引擎，使用内存数据库
+    public void test() throws UnsupportedEncodingException, FileNotFoundException {
+        //鑾峰彇娴佺▼寮曟搸
         ProcessEngine processEngine = ProcessEngineConfiguration
-                .createStandaloneInMemProcessEngineConfiguration()
+                .createProcessEngineConfigurationFromResource("activiti.cfg.xml")
                 .buildProcessEngine();
-        //部署流程定义文件
+      /*  ProcessEngine processEngine = ProcessEngineConfiguration
+                .createStandaloneInMemProcessEngineConfiguration()
+                .buildProcessEngine();*/
+        Assert.assertNotNull(processEngine);
+        //閮ㄧ讲娴佺▼
         RepositoryService repositoryService = processEngine.getRepositoryService();
         repositoryService.createDeployment()
-                .addClasspathResource("leave.bpmn20.xml").deploy();
-        //验证已部署的流程定义
+                .addClasspathResource("leave2.bpmn20.xml").deploy();
+        //鏌ヨ娴佺▼瀹氫箟
         ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
                 .singleResult();
-        Assert.assertEquals("leave" , processDefinition.getKey());
-        //启动流程并返回流程实例
+        Assert.assertEquals("leave2", processDefinition.getKey());
+
+        //鑾峰彇娴佺▼杩愯淇℃伅
         RuntimeService runtimeService = processEngine.getRuntimeService();
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("leave");
+        Map<String, Object> param = new HashMap<String, Object>();
+        param.put("applyUser", "employee");
+        param.put("days", 3);
+
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("leave2",param);
         Assert.assertNotNull(processInstance);
-        System.out.println("pid="+processInstance.getId()+",pdid="+processInstance.getProcessDefinitionId());
+        System.out.println("pid=" + processInstance.getId() + ",pdid=" + processInstance.getProcessDefinitionId());
+
+        TaskService taskService = processEngine.getTaskService();
+        Task taskOfLeader = taskService.createTaskQuery().taskCandidateGroup("leader").singleResult();
+        Assert.assertNotNull(taskOfLeader);
+        Assert.assertEquals("leader approve", taskOfLeader.getName());
+        taskService.claim(taskOfLeader.getId(), "leaderUser");
+
+        param = new HashMap<String, Object>();
+        param.put("approved", true);
+        taskService.complete(taskOfLeader.getId(), param);
+        taskOfLeader = taskService.createTaskQuery().taskCandidateGroup("leader").singleResult();
+      //  Assert.assertNotNull(taskOfLeader);
+
+        HistoryService historyService = processEngine.getHistoryService();
+        long count = historyService.createHistoricProcessInstanceQuery().finished().count();
+        Assert.assertEquals(1,count);
+
+
+
+
+
+
 
     }
 }
