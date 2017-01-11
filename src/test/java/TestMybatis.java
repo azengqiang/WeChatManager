@@ -20,7 +20,7 @@ public class TestMybatis {
     @Autowired
     private IAccountService accountService = null;
 
-   /* private ApplicationContext ac = null;
+  /*  private ApplicationContext ac = null;
     @Before
     public void before() {
         ac = new ClassPathXmlApplicationContext("applicationContext.xml");

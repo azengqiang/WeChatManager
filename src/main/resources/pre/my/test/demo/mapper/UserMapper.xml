@@ -3,7 +3,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="pre.my.test.demo.mapper.UserMapper">
-       <select id="selectUserById" parameterType="long" resultType="pre.my.test.demo.dto.User">
-              select * from `bs_user` where USER_ID = #{userId}
+    <resultMap id="BaseResultMap" type="pre.my.test.demo.dto.User">
+        <id column="USER_ID" property="userId"/>
+        <result column="USER_NAME" property="userName"/>
+        <result column="PASSWORD" property="password"/>
+    </resultMap>
+    <select id="selectUserById" parameterType="long" resultMap="BaseResultMap">
+              select u.USER_ID,u.USER_NAME,u.PASSWORD from bs_user u where USER_ID = #{userId}
        </select>
 </mapper>

@@ -6,6 +6,7 @@
 </head>
 
 <body>
-${user.userName}
+${user}
+xx
 </body>
 </html>  
