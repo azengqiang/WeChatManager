@@ -26,6 +26,11 @@
     </properties>
     <!--设置版本号结束-->
     <dependencies>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.2</version>
+        </dependency>
         <!--将文本类型转换为xml文件-->
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>

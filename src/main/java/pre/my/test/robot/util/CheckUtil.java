@@ -1,4 +1,4 @@
-package pre.my.robot.core.util;
+package pre.my.test.robot.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -9,7 +9,7 @@ import java.util.Arrays;
  * Author:qiang.zeng@hand-china.com on 2017/1/12.
  */
 public class CheckUtil {
-    private static String TOKEN = "swpu911";
+    private static String TOKEN = "911";
 
     public static boolean checkSignature(String signature, String timestamp, String nonce) throws NoSuchAlgorithmException {
         String[] str = new String[]{TOKEN, timestamp, nonce};

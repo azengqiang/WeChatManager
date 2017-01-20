@@ -1,7 +1,7 @@
-package pre.my.robot.core.dto;
+package pre.my.test.robot.dto.menu;
 
 /**
- * 网页按钮
+ * view类型菜单
  * Author:qiang.zeng on 2017/1/19.
  */
 public class ViewButton extends Button {

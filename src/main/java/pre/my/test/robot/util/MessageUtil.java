@@ -1,4 +1,4 @@
-package pre.my.robot.core.util;
+package pre.my.test.robot.util;
 
 import com.thoughtworks.xstream.XStream;
 import org.apache.commons.io.IOUtils;
@@ -6,7 +6,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import pre.my.robot.core.dto.TextMessage;
+import pre.my.test.robot.dto.message.TextMessage;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -91,23 +91,23 @@ public class MessageUtil {
      */
     public static String menuHint(){
         StringBuilder builder  = new StringBuilder();
-        builder.append("swpu911公众号欢迎您的关注,请按以下菜单进行操作：\n");
-        builder.append("1.公众号介绍\n");
-        builder.append("2.swpu911成员介绍\n");
+        builder.append("西南右油911公众号欢迎您的关注,请按以下菜单进行操作：\n");
+        builder.append("1.西南右油911公众号介绍\n");
+        builder.append("2.西南右油911成员介绍\n");
         builder.append("3.內江一中陪聊机器人\n");
-
-        builder.append("恢复？调出主菜单");
+        builder.append("4.其他，调出主菜单\n");
+        builder.append("请回复对应序号，进行相应操作\n");
         return builder.toString();
     }
     public static String firstMenu(){
         StringBuilder builder  = new StringBuilder();
         builder.append("请输入要查看的成员编号：\n");
-        builder.append("1.无敌我q：李钊\n");
-        builder.append("2.土豪我越：任越\n");
-        builder.append("3.骚浪我弟：梁浪\n");
-        builder.append("4.学神我翼：张翼\n");
-        builder.append("5.大佬我哥：陈强\n");
-        builder.append("6.渣渣如我：曾强\n");
+        builder.append("1. 无敌我q：李钊\n");
+        builder.append("2. 土豪我越：任越\n");
+        builder.append("3. 骚浪我弟：梁浪\n");
+        builder.append("4. 学神我翼：张翼\n");
+        builder.append("5. 大佬我哥：陈强\n");
+        builder.append("6. 渣渣如我：曾强\n");
         return builder.toString();
     }
 

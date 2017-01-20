@@ -1,7 +1,7 @@
-package pre.my.robot.core.dto;
+package pre.my.test.robot.dto.menu;
 
 /**
- * 菜单
+ * 总菜单
  * Author:qiang.zeng on 2017/1/20.
  */
 public class Menu {

@@ -1,4 +1,4 @@
-package pre.my.robot.core.dto;
+package pre.my.test.robot.dto.message;
 
 /**
  * 消息基类
@@ -13,6 +13,9 @@ public class Message {
     private long CreateTime;
     //消息类型
     private String MsgType;
+    //消息id，64位整型
+    private long MsgId;
+
     public String getToUserName() {
         return ToUserName;
     }
@@ -43,5 +46,13 @@ public class Message {
 
     public void setMsgType(String msgType) {
         MsgType = msgType;
+    }
+
+    public long getMsgId() {
+        return MsgId;
+    }
+
+    public void setMsgId(long msgId) {
+        MsgId = msgId;
     }
 }

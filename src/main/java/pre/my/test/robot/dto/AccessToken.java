@@ -1,7 +1,10 @@
-package pre.my.robot.core.dto;
+package pre.my.test.robot.dto;
 
 public class AccessToken {
     private String token;
+    /**
+     * token有效时间
+     */
     private int expiresIn;
 
     public String getToken() {

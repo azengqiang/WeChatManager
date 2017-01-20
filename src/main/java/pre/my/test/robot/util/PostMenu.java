@@ -1,4 +1,4 @@
-package pre.my.robot.core.util;
+package pre.my.test.robot.util;
 
 import java.io.IOException;
 import java.io.InputStream;

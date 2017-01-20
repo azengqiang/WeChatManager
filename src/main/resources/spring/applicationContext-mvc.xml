@@ -9,7 +9,7 @@
                         http://www.springframework.org/schema/context/spring-context-3.1.xsd
                         http://www.springframework.org/schema/mvc
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
-    <context:component-scan base-package="pre.my.test.*.controller"/>
+    <context:component-scan base-package="pre.my.test.robot.controller"/>
     <mvc:annotation-driven />
     <!--处理静态资源方式一-->
     <mvc:default-servlet-handler/>
