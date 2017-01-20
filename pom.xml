@@ -26,6 +26,18 @@
     </properties>
     <!--设置版本号结束-->
     <dependencies>
+        <!--将文本类型转换为xml文件-->
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.9</version>
+        </dependency>
+        <!-- dom4解析xml文件为Map-->
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
         <!-- 导入java ee jar 包 -->
         <dependency>
             <groupId>javax</groupId>
