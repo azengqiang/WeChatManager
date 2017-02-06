@@ -9,7 +9,7 @@ import java.util.Arrays;
  * Author:qiang.zeng@hand-china.com on 2017/1/12.
  */
 public class CheckUtil {
-    private static String TOKEN = "911";
+    private static String TOKEN = "SWPU911";
 
     public static boolean checkSignature(String signature, String timestamp, String nonce) throws NoSuchAlgorithmException {
         String[] str = new String[]{TOKEN, timestamp, nonce};

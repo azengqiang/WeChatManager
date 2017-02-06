@@ -24,7 +24,7 @@ public class Constants {
     /**
      * 消息类型：小视频
      */
-    //  public static final String MSG_TYPE_SHORT_VIDEO = "shortvideo";
+    public static final String MSG_TYPE_SHORT_VIDEO = "shortvideo";
     /**
      * 消息类型：推送
      */
@@ -68,7 +68,7 @@ public class Constants {
     /**
      * 查询菜单接口url
      */
-    public static final String MENU_QUERY_URL = "  https://api.weixin.qq.com/cgi-bin/menu/get?access_token=ACCESS_TOKEN";
+    public static final String MENU_QUERY_URL = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=ACCESS_TOKEN";
     /**
      * 删除菜单接口url
      */
@@ -114,4 +114,8 @@ public class Constants {
      * view_limited：跳转图文消息URL
      */
     public static final String MENU_TYPE_VIEW_LIMITED = "click";
+    /**
+     * 获取单个用户信息的url
+     */
+    public static final String USER_INFO_URL = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
 }

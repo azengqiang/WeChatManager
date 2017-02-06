@@ -10,5 +10,5 @@
     </resultMap>
     <select id="selectUserById" parameterType="long" resultMap="BaseResultMap">
               select u.USER_ID,u.USER_NAME,u.PASSWORD from bs_user u where USER_ID = #{userId}
-       </select>
+    </select>
 </mapper>

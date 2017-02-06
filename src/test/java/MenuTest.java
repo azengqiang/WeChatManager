@@ -1,6 +1,7 @@
 import com.alibaba.fastjson.JSONObject;
 import pre.my.test.robot.dto.AccessToken;
 import pre.my.test.robot.util.HttpConnectUtil;
+import pre.my.test.robot.util.MenuUtil;
 
 import java.io.IOException;
 
@@ -14,8 +15,8 @@ public class MenuTest {
         AccessToken token = HttpConnectUtil.getAccessToken();
         System.out.println("票据：" + token.getToken());
         System.out.println("有效时间：" + token.getExpiresIn());
-        String menu = JSONObject.toJSON(HttpConnectUtil.initMenu()).toString();
-        int result = HttpConnectUtil.createMenu(token.getToken(), menu);
+        String menu = JSONObject.toJSON(MenuUtil.initMenu()).toString();
+        int result = MenuUtil.createMenu(token.getToken(), menu);
         if (result != 0) {
             System.out.println("错误码:" + result);
         } else {

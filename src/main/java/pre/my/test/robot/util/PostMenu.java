@@ -9,6 +9,7 @@ import java.net.URL;
 /**
  * Author:qiang.zeng on 2017/1/19.
  */
+@Deprecated
 public class PostMenu {
     public void postMenu(String urlPath, String menuJson) throws IOException {
         URL url = new URL(urlPath);
