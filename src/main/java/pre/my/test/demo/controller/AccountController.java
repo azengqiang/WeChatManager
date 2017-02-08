@@ -29,7 +29,7 @@ public class AccountController {
         int userId = Integer.parseInt(request.getParameter("id"));
         User user = accountService.login((long) userId);
         request.setAttribute("user", JSON.toJSONString(user));
-        return "hello";
+        return "/page/login";
     /*    ModelAndView modelAndView = new ModelAndView();
         User user = accountService.login((long) 1);
         modelAndView.setViewName("hello");

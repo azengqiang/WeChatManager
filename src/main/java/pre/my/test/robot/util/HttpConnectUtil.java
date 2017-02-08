@@ -9,11 +9,11 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import pre.my.test.robot.dto.AccessToken;
 
 import java.io.IOException;
 
 /**
+ * http链接工具类
  * Author:qiang.zeng on 2017/1/20.
  */
 public class HttpConnectUtil {
@@ -78,21 +78,4 @@ public class HttpConnectUtil {
         }
         return jsonObject;
     }
-
-    /**
-     * 获取accessToken
-     * @return
-     * @throws IOException
-     */
-    public static AccessToken getAccessToken() throws IOException {
-        AccessToken accessToken = new AccessToken();
-        String url = Constants.ACCESS_TOKEN_URL.replace("APPID", Constants.APP_ID).replace("APPSECRET", Constants.APP_SECRET);
-        JSONObject jsonObject = doGetStr(url);
-        if (jsonObject != null) {
-            accessToken.setToken(jsonObject.getString("access_token"));
-            accessToken.setExpiresIn(jsonObject.getInteger("expires_in"));
-        }
-        return accessToken;
-    }
-
 }

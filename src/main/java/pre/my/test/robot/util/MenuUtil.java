@@ -9,6 +9,7 @@ import pre.my.test.robot.dto.menu.ViewButton;
 import java.io.IOException;
 
 /**
+ * 菜单工具类
  * Author:qiang.zeng on 2017/2/6.
  */
 public class MenuUtil {
@@ -47,6 +48,7 @@ public class MenuUtil {
         button32.setType(Constants.MENU_TYPE_LOCATION_SELECT);
         button32.setKey("32");
         Button button3 = new Button();
+
         button3.setName("日常");
         button3.setSub_button(new Button[]{button31, button32});
 

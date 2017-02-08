@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 微信接收普通消息工具类
+ * 接收普通消息工具类
  * Author:qiang.zeng@hand-china.com on 2017/1/12.
  */
 public class MessageUtil {
@@ -70,12 +70,13 @@ public class MessageUtil {
 
     /**
      * 组装文本信息
+     *
      * @param fromUserName 发起用户
-     * @param toUserName 接收用户
-     * @param content 文本内容
+     * @param toUserName   接收用户
+     * @param content      文本内容
      * @return xml string
      */
-    public static  String initTextMessage(String fromUserName, String toUserName, String content){
+    public static String initTextMessage(String fromUserName, String toUserName, String content) {
         TextMessage textMessage = new TextMessage();
         textMessage.setCreateTime((int) new Date().getTime());
         textMessage.setFromUserName(toUserName);
@@ -87,20 +88,23 @@ public class MessageUtil {
 
     /**
      * 菜单提示
-     * @return  菜单提示内容
+     *
+     * @return 菜单提示内容
      */
-    public static String menuHint(){
-        StringBuilder builder  = new StringBuilder();
-        builder.append("西南右油911公众号欢迎您的关注,请按以下菜单进行操作：\n");
+    public static String menuHint() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("欢迎您关注西南右油911公众号!\n");
+      /*  builder.append("请按以下菜单进行操作：\n");
         builder.append("1.西南右油911公众号介绍\n");
         builder.append("2.西南右油911成员介绍\n");
         builder.append("3.內江一中陪聊机器人\n");
         builder.append("4.其他，调出主菜单\n");
-        builder.append("请回复对应序号，进行相应操作\n");
+        builder.append("请回复对应序号，进行相应操作\n");*/
         return builder.toString();
     }
-    public static String firstMenu(){
-        StringBuilder builder  = new StringBuilder();
+
+    public static String firstMenu() {
+        StringBuilder builder = new StringBuilder();
         builder.append("请输入要查看的成员编号：\n");
         builder.append("1. 无敌我q：李钊\n");
         builder.append("2. 土豪我越：任越\n");

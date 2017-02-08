@@ -118,4 +118,42 @@ public class Constants {
      * 获取单个用户信息的url
      */
     public static final String USER_INFO_URL = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
+    /**
+     * 获取关注用户列表
+     */
+    public static final String USER_INFO_LIST_URL = "https://api.weixin.qq.com/cgi-bin/user/get?access_token=ACCESS_TOKEN&next_openid=NEXT_OPENID";
+    /**
+     * 修改关注用户备注名
+     */
+    public static final String REMARK_URL = "https://api.weixin.qq.com/cgi-bin/user/info/updateremark?access_token=ACCESS_TOKEN";
+    /**
+     * 创建分组 post
+     */
+    public static final String GROUP_CREATE_URL="https://api.weixin.qq.com/cgi-bin/groups/create?access_token=ACCESS_TOKEN";
+    /**
+     * 查询所有分组 get
+     */
+    public static final String GROUP_QUERY_ALL_URL="https://api.weixin.qq.com/cgi-bin/groups/get?access_token=ACCESS_TOKEN";
+    /**
+     * 查询用户所在分组 post
+     */
+    public static final String GROUP_QUERY_USER_URL="https://api.weixin.qq.com/cgi-bin/groups/getid?access_token=ACCESS_TOKEN";
+    /**
+     * 修改分组名 post
+     */
+    public static final String GROUP_UPDATE_NAME_URL="https://api.weixin.qq.com/cgi-bin/groups/update?access_token=ACCESS_TOKEN";
+    /**
+     * 移动用户分组 post
+     */
+    public static final String GROUP_MOVE_USER_URL="https://api.weixin.qq.com/cgi-bin/groups/members/update?access_token=ACCESS_TOKEN";
+    /**
+     * 批量移动用户分组 post
+     */
+    public static final String GROUP_BATCH_MOVE_USER_URL="https://api.weixin.qq.com/cgi-bin/groups/members/batchupdate?access_token=ACCESS_TOKEN";
+    /**
+     * 删除分组 post
+     */
+    public static final String GROUP_DELETE_URL="https://api.weixin.qq.com/cgi-bin/groups/delete?access_token=ACCESS_TOKEN";
 }
+
+

@@ -1,60 +1,63 @@
 package pre.my.test.robot.dto.user;
 
-import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
  * Author:qiang.zeng on 2017/2/6.
  */
 @Table(name = "rb_user")
-public class UserInfo{
+public class UserInfo {
+    @Id
+    @GeneratedValue()
+    private Long userid;
     /**
      * 用户是否订阅该公众号标识，值为0时，
      * 代表此用户没有关注该公众号，拉取不到其余信息。
      */
-    @Column
     private String subscribe;
-    @Column
+
     private String openid;
-    @Column
+
     private String nickname;
-    @Column
+
     private String sex;
-    @Column
-    private String city;
-    @Column
-    private String country;
-    @Column
-    private String province;
-    @Column
-    private String language;
+
+    private String address;
+
+    private String lang;
     /**
      * 用户头像,最后一个数值代表正方形头像大小
      * （有0、46、64、96、132数值可选，0代表640*640正方形头像）
      * 用户没有头像时该项为空。若用户更换头像，原有头像URL将失效。
      */
-    @Column
+
     private String headimgurl;
     /**
      * 用户关注时间，为时间戳。如果用户曾多次关注，则取最后关注时间
      */
-    @Column
     private String subscribe_time;
     /**
      * 只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。
      */
-    @Column
     private String unionid;
     /**
      * 公众号运营者对粉丝的备注
      */
-    @Column
     private String remark;
     /**
      * 用户所在分组
      */
-    @Column
     private String groupid;
+
+    public Long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
+    }
 
     public String getSubscribe() {
         return subscribe;
@@ -88,36 +91,20 @@ public class UserInfo{
         this.sex = sex;
     }
 
-    public String getCity() {
-        return city;
+    public String getAddress() {
+        return address;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getCountry() {
-        return country;
+    public String getLang() {
+        return lang;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setLang(String lang) {
+        this.lang = lang;
     }
 
     public String getHeadimgurl() {

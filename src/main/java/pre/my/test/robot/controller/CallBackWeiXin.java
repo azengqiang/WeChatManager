@@ -2,11 +2,13 @@ package pre.my.test.robot.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pre.my.test.robot.dto.AccessToken;
 import pre.my.test.robot.dto.user.UserInfo;
+import pre.my.test.robot.service.IUserInfoService;
 import pre.my.test.robot.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -81,38 +83,53 @@ public class CallBackWeiXin {
     //文本消息处理
     private String textMessageHandle(String fromUserName, String toUserName, String content) throws IOException {
         if (content.equals("1")) {
-
+            /*AccessToken token = AccessTokenUtil.getValidAccessToken();
+            List<String> list= UserManagerUtil.getUserInfoList(token.getToken());
+            for(int i=0;i<list.size();i++){
+                UserInfo userInfo = UserManagerUtil.getUserInfo(token.getToken(), list.get(i));
+                service.save(userInfo);
+            }*/
         } else if (content.equals("2")) {
             return MessageUtil.initTextMessage(fromUserName, toUserName, MessageUtil.firstMenu());
-        } else if (content.equals("?") || content.equals("？")) {
+        }else if (content.equals("3")){
+           /* AccessToken token = AccessTokenUtil.getValidAccessToken();
+            Map<String,String> map = new HashMap<>();
+            map.put("o9eW3w5m36mEn4uH2QLvJQjZ-nxI","前端全栈wuli浪");
+            map.put("o9eW3w8Dh3W0ba-FIehQEJ6d_Bq8", "沉迷学习无敌Q");
+            map.put("o9eW3wzB_aULaLH0xOMOYlOJ0ETg", "生而知之大空翼");
+            RemarkUtil.setRemark(token.getToken(),map);
+            return MessageUtil.initTextMessage(fromUserName, toUserName, "修改备注成功");*/
+        }
+        else if (content.equals("?") || content.equals("？")) {
             return MessageUtil.initTextMessage(fromUserName, toUserName, MessageUtil.menuHint());
         }else{
             return MessageUtil.initTextMessage(fromUserName, toUserName, TuringAPIUtil.getTuringResult(content));
         }
+
         return MessageUtil.initTextMessage(fromUserName, toUserName, "您发送的内容是：" + content);
     }
 
     private String mediaHandle() {
         return null;
     }
-
+    @Autowired
+    private IUserInfoService service;
     //事件处理
     private String eventMessageHandle(String fromUserName, String toUserName, String content, String eventType, String eventKey) throws IOException {
         String respEventMessage = "";
         if (eventType.equals(Constants.EVENT_TYPE_SUBSCRIBE)) {// 订阅
             respEventMessage = MessageUtil.initTextMessage(fromUserName, toUserName, MessageUtil.menuHint());
-            AccessToken token = HttpConnectUtil.getAccessToken();
-            System.out.println("票据：" + token.getToken());
-            System.out.println("有效时间：" + token.getExpiresIn());
-            UserInfo userInfo = UserInfoUtil.setUserInfo(token.getToken(), fromUserName);
-            System.out.print("user:"+userInfo);
+            //每次订阅 将关注用户的信息存入数据库当中
+            AccessToken token = AccessTokenUtil.getValidAccessToken();
+            UserInfo userInfo = UserManagerUtil.getUserInfo(token.getToken(), fromUserName);
+            service.save(userInfo);
         } else if (eventType.equals(Constants.EVENT_TYPE_UNSUBSCRIBE)) {// 取消订阅
 
         } else if (eventType.equals(Constants.EVENT_TYPE_CLICK)) {// 自定义菜单点击事件
             if (eventKey.equals("11")) {
                 return MessageUtil.initTextMessage(fromUserName, toUserName, MessageUtil.firstMenu());
             } if (eventKey.equals("12")){
-                return TuringAPIUtil.getTuringResult("你好");
+                return MessageUtil.initTextMessage(fromUserName, toUserName, TuringAPIUtil.getTuringResult("你好"));
             }
         }
         return respEventMessage;

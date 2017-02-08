@@ -46,7 +46,7 @@ public class TuringAPIUtil {
             response = HttpClients.createDefault().execute(request);
             /**
              * 特别注意  这一步一定要加commons-logging 这个jar包  否则会没反应，调试了好久！！
-             * 似乎这个jar包是打印信息的
+             *
              */
             int code = response.getStatusLine().getStatusCode();
             if (code == 200) {
@@ -90,11 +90,11 @@ public class TuringAPIUtil {
                 bf.append(s);
             } else if (302000 == json.getInteger("code")) {
                 //s = json.getString("text");
-                s = "待开发有点麻烦！\n";
+                s = "待开发，敬请期待！\n";
                 bf.append(s);
             } else if (308000 == json.getInteger("code")) {
                 //s = json.getString("text");
-                s = "待开发有点麻烦！\n";
+                s = "待开发,敬请期待！\n";
                 bf.append(s);
             }
             result = bf.toString();
