@@ -2,11 +2,13 @@ package pre.my.test.robot.util;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import pre.my.test.robot.dto.user.Remark;
 import pre.my.test.robot.dto.user.UserInfo;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Author:qiang.zeng on 2017/2/6.
@@ -54,17 +56,29 @@ public class UserManagerUtil {
     /**
      * 设置关注用户的备注名
      * @param token
-     * @param remarkName 新的备注名
+     * @param remark 新的备注名实体
      * @return
      * @throws IOException
      */
-    public static int setRemark(String token,String remarkName) throws IOException {
+    public static int setRemark(String token,Remark remark) throws IOException {
         int result = 0;
-        String url = Constants.REMARK_URL.replace("ACCESS_TOKEN", token);
-        JSONObject jsonObject = HttpConnectUtil.doPostStr(url,remarkName);
+        String url = Constants.USER_REMARK_URL.replace("ACCESS_TOKEN", token);
+        String remarkJson = JSONObject.toJSON(remark).toString();
+        JSONObject jsonObject = HttpConnectUtil.doPostStr(url, remarkJson);
         if (jsonObject != null) {
             result = jsonObject.getInteger("errcode");
         }
         return result;
+    }
+    public static void setBatchRemark(String token,Map<String,String> map) throws IOException {
+        Remark remark = new Remark();
+        //post的新备注名json数据
+        String remarkName = "";
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            remark.setOpenid(entry.getKey());
+            remark.setRemark(entry.getValue());
+            setRemark(token, remark);
+        }
+
     }
 }

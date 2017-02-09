@@ -64,11 +64,12 @@ public class MenuUtil {
      * @return 微信返回的json数据 errcode 0表示成功
      * @throws IOException
      */
-    public static int createMenu(String token, String menu) throws IOException {
+    public static int createMenu(String token, Menu menu) throws IOException {
         int result = 0;
         String url = Constants.MENU_CREATE_URL.replace("ACCESS_TOKEN", token);
+        String menuJson = JSONObject.toJSON(menu).toString();
         //post请求创建菜单
-        JSONObject jsonObject = HttpConnectUtil.doPostStr(url, menu);
+        JSONObject jsonObject = HttpConnectUtil.doPostStr(url, menuJson);
         if (jsonObject != null) {
             result = jsonObject.getInteger("errcode");
         }

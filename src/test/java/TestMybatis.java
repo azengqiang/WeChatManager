@@ -1,7 +1,8 @@
 import com.alibaba.fastjson.JSON;
-import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -16,9 +17,10 @@ import pre.my.test.demo.service.IAccountService;
 @ContextConfiguration(locations = {"classpath:spring/applicationContext.xml"})
 
 public class TestMybatis {
-    private static Logger logger = Logger.getLogger(TestMybatis.class);
+    private static final Logger logger= LoggerFactory.getLogger(TestMybatis.class);
+
     @Autowired
-    private IAccountService accountService = null;
+    private IAccountService accountService;
 
   /*  private ApplicationContext ac = null;
     @Before

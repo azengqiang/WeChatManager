@@ -1,6 +1,9 @@
 package pre.my.test.robot.util;
 
 import com.alibaba.fastjson.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import pre.my.test.robot.controller.CallBackWeiXin;
 import pre.my.test.robot.dto.AccessToken;
 
 import java.io.IOException;
@@ -11,7 +14,7 @@ import java.io.IOException;
  */
 public class AccessTokenUtil {
     private static AccessToken accessToken = null;
-
+    private static final Logger logger = LoggerFactory.getLogger(CallBackWeiXin.class);
     /**
      * 使用缓存，使accessToken始终有效
      * @return 有效的accessToken
@@ -20,7 +23,7 @@ public class AccessTokenUtil {
     public static AccessToken getValidAccessToken() throws IOException {
         if(null==accessToken){
             accessToken = getAccessToken();
-            System.out.println("第一次获取accessToken:" + accessToken.getToken());
+            logger.debug("第一次获取accessToken:" + accessToken.getToken());
             Cache cache = new Cache();
             cache.setValue(accessToken.getToken());
             CacheManager.putCacheInfo("accessToken", cache,  7200*1000);
@@ -29,13 +32,12 @@ public class AccessTokenUtil {
             if(cache.isExpired()){
                 CacheManager.clearOnly("accessToken");
                 accessToken = getAccessToken();
-                System.out.println("accessToken失效重获取:" + accessToken.getToken());
+                logger.debug("accessToken失效重获取:" + accessToken.getToken());
                 cache.setValue(accessToken.getToken());
                 CacheManager.putCacheInfo("accessToken", cache, 7200*1000);
             }
         }
-        System.out.println("获取的缓存accessToken:" + accessToken.getToken());
-        System.out.println();
+        logger.debug("获取的缓存accessToken:" +accessToken.getToken());
         return accessToken;
     }
     /**

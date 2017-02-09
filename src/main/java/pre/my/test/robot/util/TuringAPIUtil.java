@@ -26,7 +26,7 @@ public class TuringAPIUtil {
 
     public static String getTuringResult(String content) throws IOException {
 
-        logger.debug("用户输入的内容是：", content);
+        logger.debug("用户输入的内容是："+ content);
 
         /** 此处为图灵api接口，参数key需要自己去注册申请 */
         String apiUrl = "http://www.tuling123.com/openapi/api?key=" + TURING_KEY + "&info=";
@@ -101,7 +101,7 @@ public class TuringAPIUtil {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        logger.debug("机器人返回结果：",request);
+        logger.debug("机器人返回结果："+result);
         return result;
     }
 }

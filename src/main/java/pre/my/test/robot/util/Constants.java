@@ -38,17 +38,21 @@ public class Constants {
      */
     public static final String MSG_TYPE_LOCATION = "location";
     /**
-     * 消息类型：订阅
+     * 事件类型：订阅
      */
     public static final String EVENT_TYPE_SUBSCRIBE = "subscribe";
     /**
-     * 消息类型：取消订阅
+     * 事件类型：取消订阅
      */
     public static final String EVENT_TYPE_UNSUBSCRIBE = "unsubscribe";
     /**
-     * 消息类型：自定义菜单点击事件
+     * 事件类型：自定义菜单点击事件
      */
     public static final String EVENT_TYPE_CLICK = "CLICK";
+    /**
+     * 事件类型：用户位置
+     */
+    public static final String EVENT_TYPE_LOCATION = "LOCATION";
     /**
      * 公众号id
      */
@@ -125,7 +129,7 @@ public class Constants {
     /**
      * 修改关注用户备注名
      */
-    public static final String REMARK_URL = "https://api.weixin.qq.com/cgi-bin/user/info/updateremark?access_token=ACCESS_TOKEN";
+    public static final String USER_REMARK_URL = "https://api.weixin.qq.com/cgi-bin/user/info/updateremark?access_token=ACCESS_TOKEN";
     /**
      * 创建分组 post
      */
