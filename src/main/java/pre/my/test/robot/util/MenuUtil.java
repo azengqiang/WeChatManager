@@ -15,7 +15,7 @@ import java.io.IOException;
 public class MenuUtil {
     /**
      * 组装菜单
-     * @return
+     * @return Menu对象
      */
     public static Menu initMenu() {
         Menu menu = new Menu();
@@ -59,9 +59,9 @@ public class MenuUtil {
     /**
      * 创建菜单
      *
-     * @param token access_token
-     * @param menu  需要创建的菜单json数据 String
-     * @return 微信返回的json数据 errcode 0表示成功
+     * @param token
+     * @param menu  Menu对象
+     * @return  返回码errcode 成功；0 失败：其他
      * @throws IOException
      */
     public static int createMenu(String token, Menu menu) throws IOException {
@@ -78,8 +78,8 @@ public class MenuUtil {
 
     /**
      * 查询菜单
-     * @param token ACCESS_TOKEN
-     * @return
+     * @param token
+     * @return 菜单json数据
      * @throws IOException
      */
     public static  JSONObject queryMenu(String token) throws IOException {
@@ -90,7 +90,7 @@ public class MenuUtil {
     /**
      * 删除菜单
      * @param token
-     * @return
+     * @return 返回码errcode 成功：0 失败：其他
      * @throws IOException
      */
     public static  int deleteMenu(String token) throws IOException {

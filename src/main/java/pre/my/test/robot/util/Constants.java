@@ -42,6 +42,10 @@ public class Constants {
      */
     public static final String MSG_TYPE_LOCATION = "location";
     /**
+     * 消息类型：音乐
+     */
+    public static final String MSG_TYPE_MUSIC = "music";
+    /**
      * 事件类型：订阅
      */
     public static final String EVENT_TYPE_SUBSCRIBE = "subscribe";
@@ -53,6 +57,10 @@ public class Constants {
      * 事件类型：自定义菜单点击事件
      */
     public static final String EVENT_TYPE_CLICK = "CLICK";
+    /**
+     * 事件类型：自定义菜单点击事件
+     */
+    public static final String EVENT_TYPE_VIEW = "VIEW";
     /**
      * 事件类型：用户位置
      */
@@ -117,11 +125,11 @@ public class Constants {
     /**
      * media_id：下发消息（除文本消息）
      */
-    public static final String MENU_TYPE_MEDIA_ID = "click";
+    public static final String MENU_TYPE_MEDIA_ID = "media_id";
     /**
      * view_limited：跳转图文消息URL
      */
-    public static final String MENU_TYPE_VIEW_LIMITED = "click";
+    public static final String MENU_TYPE_VIEW_LIMITED = "view_limited";
     /**
      * 获取单个用户信息的url
      */
@@ -137,31 +145,55 @@ public class Constants {
     /**
      * 创建分组 post
      */
-    public static final String GROUP_CREATE_URL="https://api.weixin.qq.com/cgi-bin/groups/create?access_token=ACCESS_TOKEN";
+    public static final String GROUP_CREATE_URL = "https://api.weixin.qq.com/cgi-bin/groups/create?access_token=ACCESS_TOKEN";
     /**
      * 查询所有分组 get
      */
-    public static final String GROUP_QUERY_ALL_URL="https://api.weixin.qq.com/cgi-bin/groups/get?access_token=ACCESS_TOKEN";
+    public static final String GROUP_QUERY_ALL_URL = "https://api.weixin.qq.com/cgi-bin/groups/get?access_token=ACCESS_TOKEN";
     /**
      * 查询用户所在分组 post
      */
-    public static final String GROUP_QUERY_USER_URL="https://api.weixin.qq.com/cgi-bin/groups/getid?access_token=ACCESS_TOKEN";
+    public static final String GROUP_QUERY_USER_URL = "https://api.weixin.qq.com/cgi-bin/groups/getid?access_token=ACCESS_TOKEN";
     /**
      * 修改分组名 post
      */
-    public static final String GROUP_UPDATE_NAME_URL="https://api.weixin.qq.com/cgi-bin/groups/update?access_token=ACCESS_TOKEN";
+    public static final String GROUP_UPDATE_NAME_URL = "https://api.weixin.qq.com/cgi-bin/groups/update?access_token=ACCESS_TOKEN";
     /**
      * 移动用户分组 post
      */
-    public static final String GROUP_MOVE_USER_URL="https://api.weixin.qq.com/cgi-bin/groups/members/update?access_token=ACCESS_TOKEN";
+    public static final String GROUP_MOVE_USER_URL = "https://api.weixin.qq.com/cgi-bin/groups/members/update?access_token=ACCESS_TOKEN";
     /**
      * 批量移动用户分组 post
      */
-    public static final String GROUP_BATCH_MOVE_USER_URL="https://api.weixin.qq.com/cgi-bin/groups/members/batchupdate?access_token=ACCESS_TOKEN";
+    public static final String GROUP_BATCH_MOVE_USER_URL = "https://api.weixin.qq.com/cgi-bin/groups/members/batchupdate?access_token=ACCESS_TOKEN";
     /**
      * 删除分组 post
      */
-    public static final String GROUP_DELETE_URL="https://api.weixin.qq.com/cgi-bin/groups/delete?access_token=ACCESS_TOKEN";
+    public static final String GROUP_DELETE_URL = "https://api.weixin.qq.com/cgi-bin/groups/delete?access_token=ACCESS_TOKEN";
+    /**
+     * 新增临时素材
+     */
+    public static final String MATERIAL_UPLOAD_URL = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
+    /**
+     * 媒体类型：图片
+     */
+    public static final String MEDIA_TYPE_IMAGE = "image";
+    /**
+     * 媒体类型：语音
+     */
+    public static final String MEDIA_TYPE_VOICE = "voice";
+    /**
+     * 媒体类型：用于视频与音乐格式的缩略图
+     */
+    public static final String MEDIA_TYPE_THUMB = "thumb";
+    /**
+     * 媒体类型：视频
+     */
+    public static final String MEDIA_TYPE_VIDEO = "video";
+    /**
+     * 项目地址，暂时为本地localhost:8080的映射地址
+     */
+    public static final String PROJECT_URL = "http://53e784ce.tunnel.qydev.com";
 }
 
 

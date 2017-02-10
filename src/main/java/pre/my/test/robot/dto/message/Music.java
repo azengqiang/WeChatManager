@@ -1,10 +1,25 @@
 package pre.my.test.robot.dto.message;
 
 public class Music {
+	/**
+	 * 音乐标题
+	 */
 	private String Title;
+	/**
+	 * 音乐描述
+	 */
 	private String Description;
+	/**
+	 * 音乐链接
+	 */
 	private String MusicUrl;
+	/**
+	 * 高质量音乐链接
+	 */
 	private String HQMusicUrl;
+	/**
+	 * 缩略图id
+	 */
 	private String ThumbMediaId;
 	public String getTitle() {
 		return Title;

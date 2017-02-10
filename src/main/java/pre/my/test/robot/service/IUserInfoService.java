@@ -7,4 +7,5 @@ import pre.my.test.robot.dto.user.UserInfo;
  */
 public interface IUserInfoService {
     void save(UserInfo userInfo);
+    UserInfo selectUserInfoByOpenid(String openid);
 }

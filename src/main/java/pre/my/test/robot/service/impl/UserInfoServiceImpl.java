@@ -18,4 +18,9 @@ public class UserInfoServiceImpl implements IUserInfoService {
     public void save(UserInfo userInfo) {
         mapper.save(userInfo);
     }
+
+    @Override
+    public UserInfo selectUserInfoByOpenid(String openid) {
+        return mapper.selectUserInfoByOpenid(openid);
+    }
 }

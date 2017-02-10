@@ -87,7 +87,7 @@ public class GroupUtil {
      *
      * @param token
      * @param group 如：{"group":{"id":108,"name":"test2_modify2"}}
-     * @return 执行结果，成功：0，失败：40013 不允许修改：45016
+     * @return 执行结果，成功：0，失败：其他
      */
     public static int updateName(String token, String group) {
         int result = 0;
@@ -109,7 +109,7 @@ public class GroupUtil {
      *
      * @param token
      * @param User  如：{"openid":"oDF3iYx0ro3_7jD4HFRDfrjdCM58","to_groupid":108}
-     * @return 执行结果，成功：0，失败：40013
+     * @return 执行结果，成功：0，失败：其他
      */
     public static int moveUser(String token, String User) {
         int result = 0;
@@ -131,7 +131,7 @@ public class GroupUtil {
      *
      * @param token
      * @param batchUser 如：{"openid_list":["oDF3iYx0ro3_7jD4HFRDfrjdCM58","oDF3iY9FGSSRHom3B-0w5j4jlEyY"],"to_groupid":108}
-     * @return 执行结果，成功：0，失败：40013
+     * @return 执行结果，成功：0，失败：其他
      */
     public static int batchMoveUser(String token, String batchUser) {
         int result = 0;
@@ -153,7 +153,7 @@ public class GroupUtil {
      *
      * @param token
      * @param id    分组id 如：{"group":{"id":108}}
-     * @return 执行结果，成功：0，失败：40013
+     * @return 执行结果，成功：0，失败：其他
      */
     public static int deleteGroup(String token, String id) {
         int result = 0;
