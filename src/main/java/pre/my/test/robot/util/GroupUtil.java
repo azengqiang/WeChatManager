@@ -2,7 +2,9 @@ package pre.my.test.robot.util;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import pre.my.test.robot.dto.user.Group;
+import pre.my.test.robot.service.IUserInfoService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,6 +15,8 @@ import java.util.List;
  * Author:qiang.zeng on 2017/2/8.
  */
 public class GroupUtil {
+    @Autowired
+    private IUserInfoService service;
     /**
      * 创建分组
      *
@@ -48,9 +52,9 @@ public class GroupUtil {
         }
         if (jsonObject != null) {
             JSONArray openidList = jsonObject.getJSONArray("groups");
-            Group group = new Group();
             for (int i = 0; i < openidList.size(); i++) {
                 JSONObject object = (JSONObject) openidList.get(i);
+                Group group = new Group();
                 group.setId(object.getString("id"));
                 group.setName(object.getString("name"));
                 group.setCount(object.getString("count"));
@@ -64,7 +68,7 @@ public class GroupUtil {
      * 查询用户所在分组
      *
      * @param token
-     * @param openid 用户的openid
+     * @param openid 用户的openid 如：{"openid":"od8XIjsmk6QdVTETa9jLtGWA6KBc"}
      * @return 用户所在分组id
      */
     public static String queryUser(String token, String openid) {
@@ -83,7 +87,7 @@ public class GroupUtil {
      *
      * @param token
      * @param group 如：{"group":{"id":108,"name":"test2_modify2"}}
-     * @return 执行结果，成功：0，失败：40013
+     * @return 执行结果，成功：0，失败：40013 不允许修改：45016
      */
     public static int updateName(String token, String group) {
         int result = 0;

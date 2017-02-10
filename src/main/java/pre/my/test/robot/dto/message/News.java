@@ -1,9 +1,16 @@
 package pre.my.test.robot.dto.message;
 
+/**
+ * 图文信息实体
+ */
 public class News {
+	//图文消息标题
 	private String Title;
+	//图文消息描述
 	private String Description;
+	//图片链接
 	private String PicUrl;
+	//点击图文消息跳转链接
 	private String Url;
 	public String getTitle() {
 		return Title;

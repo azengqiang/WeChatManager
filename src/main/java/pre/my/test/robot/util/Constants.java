@@ -14,6 +14,10 @@ public class Constants {
      */
     public static final String MSG_TYPE_IMAGE = "image";
     /**
+     * 消息类型：图片
+     */
+    public static final String MSG_TYPE_NEWS = "news";
+    /**
      * 消息类型：音频
      */
     public static final String MSG_TYPE_VOICE = "voice";

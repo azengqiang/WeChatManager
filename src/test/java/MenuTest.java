@@ -1,6 +1,5 @@
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pre.my.test.robot.dto.AccessToken;
 import pre.my.test.robot.util.AccessTokenUtil;
 import pre.my.test.robot.util.MenuUtil;
 
@@ -14,8 +13,7 @@ public class MenuTest {
     //创建菜单
     @org.junit.Test
     public void test() throws IOException {
-        AccessToken token = AccessTokenUtil.getValidAccessToken();
-        int result = MenuUtil.createMenu(token.getToken(), MenuUtil.initMenu());
+        int result = MenuUtil.createMenu(AccessTokenUtil.getValidAccessToken().getToken(), MenuUtil.initMenu());
         if (result != 0) {
             logger.debug("错误码:" + result);
         } else {
