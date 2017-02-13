@@ -171,9 +171,13 @@ public class Constants {
      */
     public static final String GROUP_DELETE_URL = "https://api.weixin.qq.com/cgi-bin/groups/delete?access_token=ACCESS_TOKEN";
     /**
-     * 新增临时素材
+     * 新增临时素材 temporary
      */
-    public static final String MATERIAL_UPLOAD_URL = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
+    public static final String MATERIAL_TEMPORARY_UPLOAD_URL = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
+    /**
+     * 获取临时素材
+     */
+    public static final String MATERIAL_TEMPORARY_DOWNLOAD_URL = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=ACCESS_TOKEN&media_id=MEDIA_ID";
     /**
      * 媒体类型：图片
      */

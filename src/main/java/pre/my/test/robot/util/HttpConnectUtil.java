@@ -93,7 +93,7 @@ public class HttpConnectUtil {
             throw new IOException("文件不存在");
         }
 
-        String url = Constants.MATERIAL_UPLOAD_URL.replace("ACCESS_TOKEN", accessToken).replace("TYPE",type);
+        String url = Constants.MATERIAL_TEMPORARY_UPLOAD_URL.replace("ACCESS_TOKEN", accessToken).replace("TYPE",type);
 
         URL urlObj = new URL(url);
         //连接
