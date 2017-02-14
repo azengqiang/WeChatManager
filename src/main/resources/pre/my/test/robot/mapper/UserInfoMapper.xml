@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pre.my.test.robot.mapper.UserInfoMapper">
+    <resultMap id="BaseResultMap" type="pre.my.test.robot.dto.user.UserInfo">
+        <id column="userid" property="userid"/>
+        <result column="subscribe" property="subscribe"/>
+        <result column="openid" property="openid"/>
+        <result column="nickname" property="nickname"/>
+        <result column="nickname" property="nickname"/>
+        <result column="nickname" property="nickname"/>
+        <result column="sex" property="sex"/>
+        <result column="address" property="address"/>
+        <result column="lang" property="lang"/>
+        <result column="headimgurl" property="headimgurl"/>
+        <result column="subscribe_time" property="subscribe_time"/>
+        <result column="unionid" property="unionid"/>
+        <result column="remark" property="remark"/>
+        <result column="groupid" property="groupid"/>
+    </resultMap>
+
+    <select id="selectUserInfoByOpenid" parameterType="String" resultMap="BaseResultMap">
+              select * from rb_user u where openid = #{openid}
+    </select>
+    <!--执行增加操作的SQL语句。id和parameterType分别与IUserInfoService接口中的save方法的名字和参数类型一致。
+  useGeneratedKeys设置为"true"表明要MyBatis获取由数据库自动生成的主键；keyProperty="id"指定把获取到的主键值注入到User的id属性-->
+    <insert id="save" parameterType="pre.my.test.robot.dto.user.UserInfo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into rb_user(subscribe,openid,nickname,sex,address,lang,headimgurl,subscribe_time,unionid,remark,groupid)
+        values(#{subscribe},#{openid},#{nickname},#{sex},#{address},#{lang},#{headimgurl},#{subscribe_time},#{unionid},#{remark},#{groupid})
+    </insert>
+
+    <!--<update id="updateUserInfo" parameterType="User" >
+        update user set userName=#{userName},userAge=#{userAge},userAddress=#{userAddress} where id=#{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from user where id=#{id}
+    </delete>-->
+</mapper>

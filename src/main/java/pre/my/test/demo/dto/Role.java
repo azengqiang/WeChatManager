@@ -1,18 +1,18 @@
 package pre.my.test.demo.dto;
 
 public class Role {
-    private Integer id;
+    private Long roleId;
 
     private String rolename;
 
     private Integer functionid;
 
-    public Integer getId() {
-        return id;
+    public Long getRoleId() {
+        return roleId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
     public String getRolename() {
@@ -20,7 +20,7 @@ public class Role {
     }
 
     public void setRolename(String rolename) {
-        this.rolename = rolename == null ? null : rolename.trim();
+        this.rolename = rolename;
     }
 
     public Integer getFunctionid() {
@@ -30,4 +30,5 @@ public class Role {
     public void setFunctionid(Integer functionid) {
         this.functionid = functionid;
     }
+
 }
