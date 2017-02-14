@@ -198,6 +198,12 @@ public class Constants {
      * 项目地址，暂时为本地localhost:8080的映射地址
      */
     public static final String PROJECT_URL = "http://53e784ce.tunnel.qydev.com";
+    /**
+     * 网页授权，获取code
+     */
+    public static final String WEB_PAGE_CODE = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect";
+    public static final String WEB_PAGE_SCOPE_BASE  = "snsapi_base";
+    public static final String WEB_PAGE_SCOPE_USER_INFO  = "snsapi_userinfo";
+    public static final String WEB_PAGE_ACCESS_TOKEN  = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
+    public static final String WEB_PAGE_USER_INFO  = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
 }
-
-

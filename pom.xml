@@ -26,7 +26,18 @@
     </properties>
     <!--设置版本号结束-->
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.eclipse.equinox/org.apache.jasper -->
+        <!--<dependency>
+            <groupId>org.eclipse.equinox</groupId>
+            <artifactId>org.apache.jasper</artifactId>
+            <version>5.5.17.v200806031609</version>
+        </dependency>-->
 
+        <!-- <dependency>
+             <groupId>org.apache.jasper</groupId>
+             <artifactId>org.apache.jasper</artifactId>
+             <version>5.5.17</version>
+         </dependency>-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
@@ -45,11 +56,11 @@
             <version>1.6.1</version>
         </dependency>
         <!-- 导入java ee jar 包 -->
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
-        </dependency>
+         <dependency>
+             <groupId>javax</groupId>
+             <artifactId>javaee-api</artifactId>
+             <version>7.0</version>
+         </dependency>
         <!-- 日志文件管理包 -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -61,6 +72,7 @@
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
         </dependency>
+
         <!-- 格式化对象，方便输出日志 -->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -220,129 +232,129 @@
         </dependency>
         <!-- quartz结束 -->
         <!--工作流相关-->
-       <!-- <dependency>
-            <groupId>org.activiti</groupId>
-            <artifactId>activiti-engine</artifactId>
-            <version>${activiti.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-core</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-beans</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jcl-over-slf4j</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.activiti</groupId>
-            <artifactId>activiti-spring</artifactId>
-            <version>${activiti.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-core</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-beans</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-tx</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-orm</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jcl-over-slf4j</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.activiti</groupId>
-            <artifactId>activiti-bpmn-converter</artifactId>
-            <version>${activiti.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>jcl-over-slf4j</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.activiti</groupId>
-            <artifactId>activiti-json-converter</artifactId>
-            <version>${activiti.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>jcl-over-slf4j</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.activiti</groupId>
-            <artifactId>activiti-rest</artifactId>
-            <version>${activiti.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-core</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-security</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-security-core</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-web</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-cas</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-beans</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-tx</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-orm</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jcl-over-slf4j</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-security-config</artifactId>
-                    <groupId>org.springframework.security</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>spring-security-core</artifactId>
-                    <groupId>org.springframework.security</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>slf4j-log4j12</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>-->
+        <!-- <dependency>
+             <groupId>org.activiti</groupId>
+             <artifactId>activiti-engine</artifactId>
+             <version>${activiti.version}</version>
+             <exclusions>
+                 <exclusion>
+                     <artifactId>spring-core</artifactId>
+                     <groupId>org.springframework</groupId>
+                 </exclusion>
+                 <exclusion>
+                     <artifactId>spring-beans</artifactId>
+                     <groupId>org.springframework</groupId>
+                 </exclusion>
+                 <exclusion>
+                     <artifactId>jcl-over-slf4j</artifactId>
+                     <groupId>org.slf4j</groupId>
+                 </exclusion>
+             </exclusions>
+         </dependency>
+         <dependency>
+             <groupId>org.activiti</groupId>
+             <artifactId>activiti-spring</artifactId>
+             <version>${activiti.version}</version>
+             <exclusions>
+                 <exclusion>
+                     <artifactId>spring-core</artifactId>
+                     <groupId>org.springframework</groupId>
+                 </exclusion>
+                 <exclusion>
+                     <artifactId>spring-beans</artifactId>
+                     <groupId>org.springframework</groupId>
+                 </exclusion>
+                 <exclusion>
+                     <artifactId>spring-tx</artifactId>
+                     <groupId>org.springframework</groupId>
+                 </exclusion>
+                 <exclusion>
+                     <artifactId>spring-orm</artifactId>
+                     <groupId>org.springframework</groupId>
+                 </exclusion>
+                 <exclusion>
+                     <artifactId>jcl-over-slf4j</artifactId>
+                     <groupId>org.slf4j</groupId>
+                 </exclusion>
+             </exclusions>
+         </dependency>
+         <dependency>
+             <groupId>org.activiti</groupId>
+             <artifactId>activiti-bpmn-converter</artifactId>
+             <version>${activiti.version}</version>
+             <exclusions>
+                 <exclusion>
+                     <artifactId>jcl-over-slf4j</artifactId>
+                     <groupId>org.slf4j</groupId>
+                 </exclusion>
+             </exclusions>
+         </dependency>
+         <dependency>
+             <groupId>org.activiti</groupId>
+             <artifactId>activiti-json-converter</artifactId>
+             <version>${activiti.version}</version>
+             <exclusions>
+                 <exclusion>
+                     <artifactId>jcl-over-slf4j</artifactId>
+                     <groupId>org.slf4j</groupId>
+                 </exclusion>
+             </exclusions>
+         </dependency>
+         <dependency>
+             <groupId>org.activiti</groupId>
+             <artifactId>activiti-rest</artifactId>
+             <version>${activiti.version}</version>
+             <exclusions>
+                 <exclusion>
+                     <artifactId>spring-core</artifactId>
+                     <groupId>org.springframework</groupId>
+                 </exclusion>
+                 <exclusion>
+                     <artifactId>spring-security</artifactId>
+                     <groupId>org.springframework</groupId>
+                 </exclusion>
+                 <exclusion>
+                     <artifactId>spring-security-core</artifactId>
+                     <groupId>org.springframework</groupId>
+                 </exclusion>
+                 <exclusion>
+                     <artifactId>spring-web</artifactId>
+                     <groupId>org.springframework</groupId>
+                 </exclusion>
+                 <exclusion>
+                     <artifactId>spring-cas</artifactId>
+                     <groupId>org.springframework</groupId>
+                 </exclusion>
+                 <exclusion>
+                     <artifactId>spring-beans</artifactId>
+                     <groupId>org.springframework</groupId>
+                 </exclusion>
+                 <exclusion>
+                     <artifactId>spring-tx</artifactId>
+                     <groupId>org.springframework</groupId>
+                 </exclusion>
+                 <exclusion>
+                     <artifactId>spring-orm</artifactId>
+                     <groupId>org.springframework</groupId>
+                 </exclusion>
+                 <exclusion>
+                     <artifactId>jcl-over-slf4j</artifactId>
+                     <groupId>org.slf4j</groupId>
+                 </exclusion>
+                 <exclusion>
+                     <artifactId>spring-security-config</artifactId>
+                     <groupId>org.springframework.security</groupId>
+                 </exclusion>
+                 <exclusion>
+                     <artifactId>spring-security-core</artifactId>
+                     <groupId>org.springframework.security</groupId>
+                 </exclusion>
+                 <exclusion>
+                     <artifactId>slf4j-log4j12</artifactId>
+                     <groupId>org.slf4j</groupId>
+                 </exclusion>
+             </exclusions>
+         </dependency>-->
         <!--工作流相关结束-->
         <dependency>
             <groupId>junit</groupId>
@@ -357,27 +369,20 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>javax.servlet.jsp-api</artifactId>
-            <version>2.3.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>javax.servlet.jsp.jstl</groupId>
-            <artifactId>javax.servlet.jsp.jstl-api</artifactId>
-            <version>1.2.1</version>
+            <artifactId>jstl-api</artifactId>
+            <version>1.2</version>
             <exclusions>
                 <exclusion>
                     <groupId>javax.servlet</groupId>
-                    <artifactId>javax.servlet-api</artifactId>
+                    <artifactId>servlet-api</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>javax.servlet.jsp</groupId>
-                    <artifactId>javax.servlet.jsp-api</artifactId>
+                    <artifactId>jsp-api</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
-
         <dependency>
             <groupId>org.glassfish.web</groupId>
             <artifactId>jstl-impl</artifactId>

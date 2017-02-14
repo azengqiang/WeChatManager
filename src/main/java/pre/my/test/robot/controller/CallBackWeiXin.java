@@ -1,6 +1,5 @@
 package pre.my.test.robot.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -151,28 +150,28 @@ public class CallBackWeiXin {
             }
         }*/ else if (content.equals("?") || content.equals("？")) {
             return MessageUtil.initTextMessage(fromUserName, toUserName, MessageUtil.menuHint());
-        }else if (content.contains("911")) {
+        } else if (content.contains("911")) {
             String mediaId = "3lIPHNZnAliHoT6AO9ZJEGZo9nUCFZt8M6w-7ixY2kFok9UCHyP80RcJgG0VDUil";
-            return MessageUtil.initImageMessage(fromUserName,toUserName,mediaId);
-        }else if (content.contains("zhangyi") || content.contains("张翼")) {
+            return MessageUtil.initImageMessage(fromUserName, toUserName, mediaId);
+        } else if (content.contains("zhangyi") || content.contains("张翼")) {
             String mediaId = "a6-HYLjErfZ3-GNixg1v3K7rPeK5tNAhr0o7NjO_wpZCxBVioYvbsInZVTsq9Hn7";
-            return MessageUtil.initImageMessage(fromUserName,toUserName,mediaId);
-        }else if (content.contains("chenqiang") || content.contains("陈强")) {
+            return MessageUtil.initImageMessage(fromUserName, toUserName, mediaId);
+        } else if (content.contains("chenqiang") || content.contains("陈强")) {
             String mediaId = "Ns2rgKaWyCfDLgAHkzY3j3gWv_J66pbsjMg8m2wqCWEwJ4U85D66CxF7QnKIsqT2";
-            return MessageUtil.initImageMessage(fromUserName,toUserName,mediaId);
-        }else if (content.contains("lianglang") || content.contains("浪")) {
+            return MessageUtil.initImageMessage(fromUserName, toUserName, mediaId);
+        } else if (content.contains("lianglang") || content.contains("浪")) {
             String mediaId = "Rj-3Ou2hltM59BJHkrgzn4cQ-x2H0JN-PdUrOXPT2xs9zhyxCGWlD0GU32Nvx2zA";
-            return MessageUtil.initImageMessage(fromUserName,toUserName,mediaId);
-        }else if (content.contains("lizhao") || content.contains("李钊")) {
+            return MessageUtil.initImageMessage(fromUserName, toUserName, mediaId);
+        } else if (content.contains("lizhao") || content.contains("李钊")) {
             String mediaId = "x7eDbgfPVvck38SWXM-nfTy0KcXi8eczp-fZp0jEN6Q0KlXP1dk9C8IfnamMu_aA";
-            return MessageUtil.initImageMessage(fromUserName,toUserName,mediaId);
-        }else if (content.contains("renyue") || content.contains("任越")) {
+            return MessageUtil.initImageMessage(fromUserName, toUserName, mediaId);
+        } else if (content.contains("renyue") || content.contains("任越")) {
             String mediaId = "O6Q6iUYYiTBmKOsNsetY8gqxR8Otk4s6PwPg61XkMgcdHmz3yofxzP8Y0Df0FX_9";
-            return MessageUtil.initImageMessage(fromUserName,toUserName,mediaId);
-        }else if (content.contains("zengqiang") || content.contains("曾强")) {
+            return MessageUtil.initImageMessage(fromUserName, toUserName, mediaId);
+        } else if (content.contains("zengqiang") || content.contains("曾强")) {
             String mediaId = "hAkBvEF5t-qcIbhM9DeSsRsamw-UL-VNB4obNUPndI-0-Jtwg67DnOpA1ZGTlGq8";
-            return MessageUtil.initImageMessage(fromUserName,toUserName,mediaId);
-        }else {
+            return MessageUtil.initImageMessage(fromUserName, toUserName, mediaId);
+        } else {
             UserInfo userInfo = userInfoService.selectUserInfoByOpenid(fromUserName);
             String resultContent = TuringAPIUtil.getTuringResult(content);
             logger.debug(userInfo.getNickname() + "输入的内容是：" + content);
@@ -208,7 +207,9 @@ public class CallBackWeiXin {
 
         } else if (eventType.equals(Constants.EVENT_TYPE_CLICK)) {// 自定义菜单点击事件
             if (eventKey.equals("11")) {
-                return MessageUtil.initTextMessage(fromUserName, toUserName, MessageUtil.firstMenu());
+                String url = Constants.PROJECT_URL + "/demo/hello";
+                return MessageUtil.initTextMessage(fromUserName, toUserName, url);
+                // return MessageUtil.initTextMessage(fromUserName, toUserName, MessageUtil.firstMenu());
             } else if (eventKey.equals("12")) {
                 return MessageUtil.initTextMessage(fromUserName, toUserName, TuringAPIUtil.getTuringResult("你好"));
             }
@@ -221,7 +222,7 @@ public class CallBackWeiXin {
             location.setFromUserName(fromUserName);
             location.setCreateTime(createTime);
             location.setLocation("纬度 " + requestMap.get("Latitude") + " 经度 " + requestMap.get("Longitude") + " 精度 " + requestMap.get("Precision"));
-            logger.debug(JSONObject.toJSON(location).toString());
+            //logger.debug(JSONObject.toJSON(location).toString());
             // return MessageUtil.initTextMessage(fromUserName, toUserName, "您好：\n" + fromUserName + "\n您所在的位置是：" + "\n纬度 " + requestMap.get("Latitude") + "\n经度 " + requestMap.get("Longitude") + "\n精度 " + requestMap.get("Precision"));
         }
         return respEventMessage;

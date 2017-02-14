@@ -28,7 +28,7 @@ public class MenuUtil {
         button12.setType(Constants.MENU_TYPE_CLICK);
         button12.setKey("12");
         Button button1 = new Button();
-        button1.setName("走近911");
+        button1.setName("菜单");
         button1.setSub_button(new Button[]{button11,button12});
 
         ViewButton button21 = new ViewButton();
@@ -36,7 +36,7 @@ public class MenuUtil {
         button21.setType(Constants.MENU_TYPE_VIEW);
         button21.setUrl("http://www.baidu.com");
         Button button2 = new Button();
-        button2.setName("网页");
+        button2.setName("游戏");
         button2.setSub_button(new Button[]{button21});
 
         ClickButton button31 = new ClickButton();
@@ -49,7 +49,7 @@ public class MenuUtil {
         button32.setKey("32");
         Button button3 = new Button();
 
-        button3.setName("日常");
+        button3.setName("关于我");
         button3.setSub_button(new Button[]{button31, button32});
 
         menu.setButton(new Button[]{button1, button2, button3});

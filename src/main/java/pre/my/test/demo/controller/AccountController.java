@@ -7,14 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pre.my.test.demo.dto.User;
 import pre.my.test.demo.service.IAccountService;
-
 import javax.servlet.http.HttpServletRequest;
 
 /**
  * Author:qiang.zeng@hand-china.com on 2017/1/4.
  */
 @Controller
-@RequestMapping(value = "/demo")
+@RequestMapping(value = "/demo2")
 public class AccountController {
     /*  @RequestMapping("/hello")
       public ModelAndView processList() {
@@ -28,8 +27,8 @@ public class AccountController {
     public String toIndex(HttpServletRequest request) {
         int userId = Integer.parseInt(request.getParameter("id"));
         User user = accountService.login((long) userId);
-        request.setAttribute("user", JSON.toJSONString(user));
-        return "/page/login";
+        request.setAttribute("msg", JSON.toJSONString(user));
+        return "hello";
     /*    ModelAndView modelAndView = new ModelAndView();
         User user = accountService.login((long) 1);
         modelAndView.setViewName("hello");
