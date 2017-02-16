@@ -17,7 +17,12 @@
 ${user}
 
 <style>
-    table { table-layout:fixed; word-break: break-all; word-wrap: break-word; }
+    table {
+        table-layout: fixed;
+        word-break: break-all;
+        word-wrap: break-word;
+    }
+
 </style>
 <table class="table table-bordered">
     <caption> 用户信息列表</caption>
@@ -28,7 +33,7 @@ ${user}
         <th width="10%">昵称</th>
         <th width="10%">性别</th>
         <th width="10%">地址</th>
-        <th width="20%">头像</th>
+        <th width="10%">头像</th>
         <th width="10%">备注</th>
         <th width="10%">分组</th>
 
@@ -36,12 +41,12 @@ ${user}
     </thead>
     <tbody>
     <c:forEach items="${userInfos}" var="user">
-        <tr>
+        <tr style="height: 50px">
             <td>${user.openid}</td>
             <td>${user.nickname}</td>
             <td>${user.sex}</td>
             <td>${user.address}</td>
-            <td>${user.headimgurl}</td>
+            <td width="50px" height="50px" align="center"><img src="${user.headimgurl}" width="50px" height="50px"/></td>
             <td>${user.remark}</td>
             <td>${user.groupid}</td>
         </tr>

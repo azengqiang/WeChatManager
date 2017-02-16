@@ -51,7 +51,7 @@ function addIframe(cur){
 	}else{
 		$(".layout-side").hide();
 	}
-	
+	//如果点击的tab标签 在tab栏已经有了
 	$(".content-tab").each(function() {
 		if ($(this).data("id") == h) {
 			if (!$(this).hasClass("active")) {
@@ -391,33 +391,21 @@ function getMathColor(){
 */
 $(function(){
 	/*获取皮肤*/
-	//getSkinByCookie();
+	getSkinByCookie();
 
 	/*菜单json*/
 	var menu = [{"id":"1","name":"主菜单","parentId":"0","url":"","icon":"","order":"1","isHeader":"1","childMenus":[
-					{"id":"3","name":"商品管理","parentId":"1","url":"","icon":"&#xe604;","order":"1","isHeader":"0","childMenus":[
-						{"id":"4","name":"品牌管理","parentId":"3","url":"test1.html","icon":"","order":"1","isHeader":"0","childMenus":""},
-						{"id":"5","name":"分类管理","parentId":"3","url":"test2.html","icon":"","order":"1","isHeader":"0","childMenus":""}
+					{"id":"21","name":"用户管理","parentId":"1","url":"","icon":"&#xe604;","order":"1","isHeader":"0","childMenus":[
+						{"id":"211","name":"用户信息","parentId":"21","url":"selectAll","icon":"","order":"1","isHeader":"0","childMenus":""},
+						{"id":"212","name":"移动分组","parentId":"21","url":"test2","icon":"","order":"1","isHeader":"0","childMenus":""}
 					]},
-					{"id":"6","name":"订单管理","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
-						{"id":"7","name":"已付款","parentId":"6","url":"home3.html","icon":"","order":"1","isHeader":"0","childMenus":""},
-						{"id":"8","name":"未付款","parentId":"6","url":"home4.html","icon":"","order":"1","isHeader":"0","childMenus":""}
-					]}
-				]},
-				{"id":"2","name":"框架案例","parentId":"0","url":"","icon":"","order":"2","isHeader":"1","childMenus":[
-					{"id":"9","name":"新功能","parentId":"2","url":"","icon":"","order":"1","isHeader":"0","childMenus":""},
-					{"id":"10","name":"多级","parentId":"2","url":"","icon":"","order":"1","isHeader":"0","childMenus":[
-						{"id":"11","name":"一级","parentId":"10","url":"","icon":"","order":"1","isHeader":"0","childMenus":""},
-						{"id":"12","name":"一级","parentId":"10","url":"","icon":"","order":"1","isHeader":"0","childMenus":[
-							{"id":"13","name":"二级","parentId":"12","url":"","icon":"","order":"1","isHeader":"0","childMenus":""},
-							{"id":"14","name":"二级","parentId":"12","url":"","icon":"","order":"1","isHeader":"0","childMenus":[
-								{"id":"15","name":"三级","parentId":"14","url":"","icon":"","order":"1","isHeader":"0","childMenus":""},
-								{"id":"16","name":"三级","parentId":"14","url":"","icon":"","order":"1","isHeader":"0","childMenus":[
-									{"id":"17","name":"四级","parentId":"16","url":"","icon":"","order":"1","isHeader":"0","childMenus":""},
-									{"id":"18","name":"四级","parentId":"16","url":"","icon":"","order":"1","isHeader":"0","childMenus":""}
-								]}
-							]}
-						]}
+					{"id":"22","name":"菜单管理","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
+						{"id":"221","name":"创建菜单","parentId":"22","url":"selectAll","icon":"","order":"1","isHeader":"0","childMenus":""},
+						{"id":"222","name":"删除菜单","parentId":"22","url":"test2","icon":"","order":"1","isHeader":"0","childMenus":""}
+					]},
+					{"id":"23","name":"消息管理","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
+						{"id":"231","name":"接受文本消息","parentId":"23","url":"test3","icon":"","order":"1","isHeader":"0","childMenus":""},
+						{"id":"232","name":"回复图文消息","parentId":"23","url":"test4","icon":"","order":"1","isHeader":"0","childMenus":""}
 					]}
 				]}
 				];
@@ -425,5 +413,5 @@ $(function(){
 	$(".side-menu > li").addClass("menu-item");
 	
 	/*获取菜单icon随机色*/
-	//getMathColor();
+	getMathColor();
 }); 

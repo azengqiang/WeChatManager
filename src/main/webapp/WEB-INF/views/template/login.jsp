@@ -1,3 +1,4 @@
+<%@ page language="java" pageEncoding="utf-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,8 +11,8 @@
 	<meta name="description" content="scclui为轻量级的网站后台管理系统模版。">
     <title>首页</title>
 	
-	<link rel="stylesheet" href="../common/layui/css/layui.css">
-	<link rel="stylesheet" href="../common/css/sccl.css">
+	<link rel="stylesheet" href="${base.contextPath}/resources/common/layui/css/layui.css">
+	<link rel="stylesheet" href="${base.contextPath}/resources/common/css/sccl.css">
     
   </head>
   
@@ -21,7 +22,7 @@
             <h1>框架后台管理系统</h1>
         </header>
         <div class="login-main">
-			<form action="/manage/login" class="layui-form" method="post">
+			<form action="index" class="layui-form" method="post">
 				<input name="__RequestVerificationToken" type="hidden" value="">                
 				<div class="layui-form-item">
 					<label class="login-icon">
@@ -51,16 +52,16 @@
 			</form>        
 		</div>
         <footer>
-            <p>xuan © www.mycodes.net</p>
+            <p>neijaing © neijiangyizhong.cn</p>
         </footer>
     </div>
     <script type="text/html" id="code-temp">
         <div class="login-code-box">
             <input type="text" class="layui-input" id="code" />
-            <img id="valiCode" src="/manage/validatecode?v=636150612041789540" alt="验证码" />
+            <img id="valiCode" src="/maqnage/validatecode?v=636150612041789540" alt="验证码" />
         </div>
     </script>
-    <script src="../common/layui/layui.js"></script>
+    <script src="${base.contextPath}/resources/common/layui/layui.js"></script>
     <script>
         layui.use(['layer', 'form'], function () {
             var layer = layui.layer,
@@ -81,7 +82,7 @@
             var errorCount = 0;
 
             form.on('submit(login)', function (data) {
-				window.location.href = "..common/page/index.html";
+			/*	window.location.href = "${pageContext.request.contextPath}/resources/common/page/index.jsp";*/
                 /*if (errorCount > 5) {
                     layer.open({
                         title: '<img src="' + location.origin + '/Plugins/layui/images/face/7.gif" alt="[害羞]">输入验证码',

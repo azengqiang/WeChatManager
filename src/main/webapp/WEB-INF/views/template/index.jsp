@@ -1,3 +1,4 @@
+<%@ page language="java" pageEncoding="utf-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,8 +11,8 @@
 	<meta name="description" content="scclui为轻量级的网站后台管理系统模版。">
     <title>首页</title>
 	
-	<link rel="stylesheet" href="../common/css/sccl.css">
-	<link rel="stylesheet" type="text/css" href="../common/skin/qingxin/skin.css" id="layout-skin"/>
+	<link rel="stylesheet" href="${base.contextPath}/resources/common/css/sccl.css">
+	<link rel="stylesheet" type="text/css" href="${base.contextPath}/resources/common/skin/qingxin/skin.css" id="layout-skin"/>
     
   </head>
   
@@ -54,19 +55,19 @@
 				<button class="tab-btn btn-left"><i class="icon-font">&#xe60e;</i></button>
                 <nav class="tab-nav">
                     <div class="tab-nav-content">
-                        <a href="javascript:;" class="content-tab active" data-id="home.html">首页</a>
+                        <a href="javascript:;" class="content-tab active" data-id="home">首页</a>
                     </div>
                 </nav>
                 <button class="tab-btn btn-right"><i class="icon-font">&#xe60f;</i></button>
 			</div>
 			<div class="layout-main-body">
-				<iframe class="body-iframe" name="iframe0" width="100%" height="99%" src="home.html" frameborder="0" data-id="home.html" seamless></iframe>
+				<iframe class="body-iframe" name="iframe0" width="100%" height="99%" src="home" frameborder="0" data-id="home" seamless></iframe>
 			</div>
-		</section>
-		<div class="layout-footer">@2016 0.1 www.mycodes.net</div>
+			</section>
+		<div class="layout-footer">@2017 0.1 neijiangyizhong.cn</div>
 	</div>
-	<script type="text/javascript" src="../common/lib/jquery-1.9.0.min.js"></script>
-	<script type="text/javascript" src="../common/js/sccl.js"></script>
-	<script type="text/javascript" src="../common/js/sccl-util.js"></script>
+	<script type="text/javascript" src="${base.contextPath}/resources/common/lib/jquery-1.9.0.min.js"></script>
+	<script type="text/javascript" src="${base.contextPath}/resources/common/js/sccl.js"></script>
+	<script type="text/javascript" src="${base.contextPath}/resources/common/js/sccl-util.js"></script>
   </body>
 </html>

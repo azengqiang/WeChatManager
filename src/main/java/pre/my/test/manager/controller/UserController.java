@@ -18,7 +18,7 @@ import java.util.List;
  * Author:qiang.zeng on 2017/2/15.
  */
 @Controller
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/admin")
 public class UserController {
     @Autowired
     private IUserInfoService userInfoService;
@@ -30,5 +30,20 @@ public class UserController {
         HttpSession session= request.getSession();
         request.setAttribute("userInfos", userInfos);
         return "user/userinfo";
+    }
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public String toHome(HttpServletRequest request, HttpServletResponse response){
+
+        return "template/home";
+    }
+    @RequestMapping(value = "/test1", method = RequestMethod.GET)
+    public String toTest1(HttpServletRequest request, HttpServletResponse response){
+
+        return "template/test1";
+    }
+    @RequestMapping(value = "/test2", method = RequestMethod.GET)
+    public String toTest2(HttpServletRequest request, HttpServletResponse response){
+
+        return "template/test2";
     }
 }
