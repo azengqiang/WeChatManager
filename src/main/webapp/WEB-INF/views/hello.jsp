@@ -7,6 +7,6 @@
 </head>
 
 <body>
-${user}
+${user} 欢迎您光临911公众号网页授权test
 </body>
 </html>  

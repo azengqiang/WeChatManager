@@ -6,13 +6,15 @@ import pre.my.test.robot.dto.user.UserInfo;
 import pre.my.test.robot.mapper.UserInfoMapper;
 import pre.my.test.robot.service.IUserInfoService;
 
+import java.util.List;
+
 /**
  * Author:qiang.zeng on 2017/2/7.
  */
 @Service
 public class UserInfoServiceImpl implements IUserInfoService {
     @Autowired
-    private UserInfoMapper mapper;
+    protected UserInfoMapper mapper;
 
     @Override
     public void save(UserInfo userInfo) {
@@ -22,5 +24,10 @@ public class UserInfoServiceImpl implements IUserInfoService {
     @Override
     public UserInfo selectUserInfoByOpenid(String openid) {
         return mapper.selectUserInfoByOpenid(openid);
+    }
+
+    @Override
+    public List<UserInfo> selectAll() {
+        return mapper.selectAll();
     }
 }
