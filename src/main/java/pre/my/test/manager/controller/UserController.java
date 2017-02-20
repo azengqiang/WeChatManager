@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import pre.my.test.robot.dto.ResponseData;
 import pre.my.test.robot.dto.user.UserInfo;
 import pre.my.test.robot.service.IUserInfoService;
 
@@ -25,24 +27,34 @@ public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @RequestMapping(value = "/selectAll", method = RequestMethod.GET)
-    public String toIndex(HttpServletRequest request, HttpServletResponse response){
+    public String toIndex(HttpServletRequest request, HttpServletResponse response) {
         List<UserInfo> userInfos = userInfoService.selectAll();
-        HttpSession session= request.getSession();
+        HttpSession session = request.getSession();
         request.setAttribute("userInfos", userInfos);
-        return "user/userinfo";
+        return "user/userinfo3";
     }
+
+    @RequestMapping(value = "/userInfos", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseData selectAll(HttpServletRequest request, HttpServletResponse response) {
+        List<UserInfo> userInfos = userInfoService.selectAll();
+        return new ResponseData(userInfos);
+    }
+
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String toHome(HttpServletRequest request, HttpServletResponse response){
+    public String toHome(HttpServletRequest request, HttpServletResponse response) {
 
         return "template/home";
     }
+
     @RequestMapping(value = "/test1", method = RequestMethod.GET)
-    public String toTest1(HttpServletRequest request, HttpServletResponse response){
+    public String toTest1(HttpServletRequest request, HttpServletResponse response) {
 
         return "template/test1";
     }
+
     @RequestMapping(value = "/test2", method = RequestMethod.GET)
-    public String toTest2(HttpServletRequest request, HttpServletResponse response){
+    public String toTest2(HttpServletRequest request, HttpServletResponse response) {
 
         return "template/test2";
     }

@@ -400,7 +400,7 @@ $(function(){
 						{"id":"212","name":"移动分组","parentId":"21","url":"test2","icon":"","order":"1","isHeader":"0","childMenus":""}
 					]},
 					{"id":"22","name":"菜单管理","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
-						{"id":"221","name":"创建菜单","parentId":"22","url":"selectAll","icon":"","order":"1","isHeader":"0","childMenus":""},
+						{"id":"221","name":"创建菜单","parentId":"22","url":"createMenu","icon":"","order":"1","isHeader":"0","childMenus":""},
 						{"id":"222","name":"删除菜单","parentId":"22","url":"test2","icon":"","order":"1","isHeader":"0","childMenus":""}
 					]},
 					{"id":"23","name":"消息管理","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[

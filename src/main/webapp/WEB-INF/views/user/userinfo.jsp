@@ -5,12 +5,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>用户基本信息</title>
-    <link href="${pageContext.request.contextPath}/resources/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet"
-          type="text/css"/>
-    <script type="text/javascript"
-            src="${pageContext.request.contextPath}/resources/bootstrap-3.3.7/bootstrap.min.js"></script>
-    <script type="text/javascript"
-            src="${pageContext.request.contextPath}resources/bootstrap-3.3.7/jquery-3.1.1.min.js"></script>
+    <link type="text/css" href="../../resources/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../../resources/bootstrap-3.3.7/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="../../resources/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -24,7 +21,7 @@ ${user}
     }
 
 </style>
-<table class="table table-bordered">
+<table class="table table-striped">
     <caption> 用户信息列表</caption>
 
     <thead>
@@ -46,7 +43,8 @@ ${user}
             <td>${user.nickname}</td>
             <td>${user.sex}</td>
             <td>${user.address}</td>
-            <td width="50px" height="50px" align="center"><img src="${user.headimgurl}" width="50px" height="50px"/></td>
+            <td width="70px" height="70px"><img src="${user.headimgurl}" width="70px" height="70px"/>
+            </td>
             <td>${user.remark}</td>
             <td>${user.groupid}</td>
         </tr>
