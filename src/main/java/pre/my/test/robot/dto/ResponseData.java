@@ -8,7 +8,6 @@ import java.util.List;
 /**
  * 数据返回对象.
  *
- * @author njq.niu@hand-china.com
  */
 public class ResponseData {
 

@@ -4,6 +4,9 @@
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hello.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/menu/menu_create.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/menu/menu_delete.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/menu/menu_look.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/message/message_look.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/template" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/userinfo.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/user/userinfo2.jsp" charset="GBK" />
@@ -12,5 +15,6 @@
     <file url="file://$PROJECT_DIR$/src/main/webapp/resources/bootstrap-table-develop/bootstrap-table.css" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/resources/bootstrap-table-develop/bootstrap-table.js" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/resources/bootstrap-table-develop/locale" charset="GBK" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

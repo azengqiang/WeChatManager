@@ -3,7 +3,6 @@ package pre.my.test.robot.dto.user;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
 
 /**
  * Author:qiang.zeng on 2017/2/10.
@@ -29,7 +28,7 @@ public class MsgBack {
     /**
      * 创建时间
      */
-    private Date creationDate;
+    private String creationDate;
 
     public Long getMsgid() {
         return msgid;
@@ -63,11 +62,11 @@ public class MsgBack {
         this.robotContent = robotContent;
     }
 
-    public Date getCreationDate() {
+    public String getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pre.my.test.robot.dto.user.UserInfo;
-import pre.my.test.robot.service.IUserInfoService;
+import pre.my.test.robot.service.IMsgBackService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,21 +22,25 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "/admin")
-public class UserController {
+public class MessageController {
     @Autowired
-    private IUserInfoService userInfoService;
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    private IMsgBackService msgBackService;
+    private static final Logger logger = LoggerFactory.getLogger(MessageController.class);
 
+    @RequestMapping(value = "/toLookMessage", method = RequestMethod.GET)
+    public String toLookMessage(HttpServletRequest request, HttpServletResponse response) {
+       return "message/message_look";
+    }
 
-
-    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
+    @RequestMapping(value = "/lookMessage", method = RequestMethod.GET)
     @ResponseBody
-    public void userInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void lookMessage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
         //得到客户端传递的页码和每页记录数，并转换成int类型
         int pageSize = Integer.parseInt(request.getParameter("pageSize"));
         int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-        List<UserInfo> userInfos = userInfoService.selectAll(pageSize, pageNumber);
-        int total = userInfoService.selectAll().size();
+        List<UserInfo> userInfos = msgBackService.selectAllMsgBack(pageSize, pageNumber);
+        int total =msgBackService.selectCount();
         response.setCharacterEncoding("UTF-8"); //设置编码格式
         response.setContentType("text/html");   //设置数据格式
         PrintWriter out = response.getWriter(); //获取写入对象
@@ -46,16 +50,5 @@ public class UserController {
         out.flush();
     }
 
-    @RequestMapping(value = "/toUserInfo", method = RequestMethod.GET)
-    public String toUserInfo(HttpServletRequest request, HttpServletResponse response) {
-        return "user/userinfo2";
-    }
 
-    /*@RequestMapping(value = "/selectAll", method = RequestMethod.GET)
-    public String toIndex(HttpServletRequest request, HttpServletResponse response) {
-        List<UserInfo> userInfos = userInfoService.selectAll();
-        HttpSession session = request.getSession();
-        request.setAttribute("userInfos", userInfos);
-        return "user/userinfo";
-    }*/
 }

@@ -1,5 +1,8 @@
 package pre.my.test.robot.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pre.my.test.robot.dto.user.UserInfo;
@@ -29,5 +32,13 @@ public class UserInfoServiceImpl implements IUserInfoService {
     @Override
     public List<UserInfo> selectAll() {
         return mapper.selectAll();
+    }
+
+    @Override
+    public List<UserInfo> selectAll(Integer pageSize, Integer pageNumber) {
+        pageNumber = pageNumber == null ? 1 : pageNumber;
+        pageSize = pageSize == null ? 5 : pageSize;
+        PageHelper.startPage(pageNumber, pageSize);
+        return  mapper.selectAll();
     }
 }

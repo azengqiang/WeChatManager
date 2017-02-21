@@ -23,5 +23,10 @@ public class LoginController {
 
         return "template/index";
     }
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public String toHome(HttpServletRequest request, HttpServletResponse response){
+
+        return "template/home";
+    }
 
 }

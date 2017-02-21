@@ -8,8 +8,6 @@
         <result column="subscribe" property="subscribe"/>
         <result column="openid" property="openid"/>
         <result column="nickname" property="nickname"/>
-        <result column="nickname" property="nickname"/>
-        <result column="nickname" property="nickname"/>
         <result column="sex" property="sex"/>
         <result column="address" property="address"/>
         <result column="lang" property="lang"/>

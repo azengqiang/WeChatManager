@@ -11,11 +11,12 @@
         <result column="creation_date" property="creationDate"/>
     </resultMap>
 
-    <!--<select id="selectUserInfoByOpenid" parameterType="String" resultMap="BaseResultMap">
-              select * from rb_user u where openid = #{openid}
-    </select>-->
-    <!--执行增加操作的SQL语句。id和parameterType分别与IUserInfoService接口中的save方法的名字和参数类型一致。
-  useGeneratedKeys设置为"true"表明要MyBatis获取由数据库自动生成的主键；keyProperty="id"指定把获取到的主键值注入到User的id属性-->
+    <select id="selectCount"  resultMap="BaseResultMap">
+              SELECT COUNT(*) from rb_message
+    </select>
+    <select id="selectAllMsgBack"  resultMap="BaseResultMap">
+              SELECT * from rb_message
+    </select>
     <insert id="save" parameterType="pre.my.test.robot.dto.user.MsgBack"
             useGeneratedKeys="true" keyProperty="id">
         insert into rb_message(userid,user_content,robot_content,creation_date)

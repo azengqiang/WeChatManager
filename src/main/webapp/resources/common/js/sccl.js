@@ -395,18 +395,20 @@ $(function(){
 
 	/*菜单json*/
 	var menu = [{"id":"1","name":"主菜单","parentId":"0","url":"","icon":"","order":"1","isHeader":"1","childMenus":[
-					{"id":"21","name":"用户管理","parentId":"1","url":"","icon":"&#xe604;","order":"1","isHeader":"0","childMenus":[
-						{"id":"211","name":"用户信息","parentId":"21","url":"selectAll","icon":"","order":"1","isHeader":"0","childMenus":""},
-						{"id":"212","name":"移动分组","parentId":"21","url":"test2","icon":"","order":"1","isHeader":"0","childMenus":""}
+					{"id":"21","name":"粉丝管理","parentId":"1","url":"","icon":"&#xe604;","order":"1","isHeader":"0","childMenus":[
+						{"id":"211","name":"粉丝信息","parentId":"21","url":"toUserInfo","icon":"","order":"1","isHeader":"0","childMenus":""},
+						{"id":"212","name":"分组管理","parentId":"21","url":"test2","icon":"","order":"1","isHeader":"0","childMenus":""}
 					]},
 					{"id":"22","name":"菜单管理","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
-						{"id":"221","name":"创建菜单","parentId":"22","url":"createMenu","icon":"","order":"1","isHeader":"0","childMenus":""},
-						{"id":"222","name":"删除菜单","parentId":"22","url":"test2","icon":"","order":"1","isHeader":"0","childMenus":""}
+						{"id":"221","name":"创建菜单","parentId":"22","url":"toCreateMenu","icon":"","order":"1","isHeader":"0","childMenus":""},
+						{"id":"222","name":"查看菜单","parentId":"22","url":"toLookMenu","icon":"","order":"1","isHeader":"0","childMenus":""},
+						{"id":"223","name":"删除菜单","parentId":"22","url":"test2","icon":"","order":"1","isHeader":"0","childMenus":""}
 					]},
 					{"id":"23","name":"消息管理","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
 						{"id":"231","name":"接受文本消息","parentId":"23","url":"test3","icon":"","order":"1","isHeader":"0","childMenus":""},
 						{"id":"232","name":"回复图文消息","parentId":"23","url":"test4","icon":"","order":"1","isHeader":"0","childMenus":""}
-					]}
+					]},
+
 				]}
 				];
 	initMenu(menu,$(".side-menu"));

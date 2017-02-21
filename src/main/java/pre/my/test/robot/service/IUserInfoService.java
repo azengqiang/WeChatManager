@@ -11,4 +11,5 @@ public interface IUserInfoService {
     void save(UserInfo userInfo);
     UserInfo selectUserInfoByOpenid(String openid);
     List<UserInfo> selectAll();
+    List<UserInfo> selectAll(Integer  pageSize,Integer  pageNumber);
 }

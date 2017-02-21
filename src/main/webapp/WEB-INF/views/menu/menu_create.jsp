@@ -10,11 +10,12 @@
     <script type="text/javascript" src="../../resources/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form class="form-horizontal" role="form" action="menuSubmit" style="margin-top: 20px;width: 70%">
+<form class="form-horizontal" role="form" action="menuSubmit"  method="post" style="margin-top: 20px;width: 70%">
     <div class="form-group" >
         <label for="firstMenu" class="col-sm-2 control-label">父级菜单</label>
         <div class="col-sm-10">
             <select class="form-control" id="firstMenu" name="firstMenu">
+                <option></option>
             <c:forEach items="${firstMenus}" var="firstMenu">
                 <option>${firstMenu.name}</option>
             </c:forEach>
@@ -39,11 +40,12 @@
         </div>
     </div>
     <div class="form-group" >
-        <label for="menuPath" class="col-sm-2 control-label">键值或者url地址</label>
+        <label for="menuValue" class="col-sm-2 control-label">键值或者url地址</label>
         <div class="col-sm-5">
-            <input type="text" class="form-control" id="menuPath"
-                   placeholder="请输入菜单名称" name="menuName">
+            <input type="text" class="form-control" id="menuValue"
+                   placeholder="请输入菜单键值或url地址" name="menuValue">
         </div>
+        <span class="help-block col-sm-5" for="menuValue" style="color: red;">${hint_menuValue}</span>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
@@ -51,6 +53,17 @@
         </div>
     </div>
 </form>
-
+<form class="form-horizontal"  action="menuCreate" method="post" style="margin-top: 20px;width: 70%">
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">生成微信菜单</button>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <span class="help-block col-sm-5"  style="color: red;">${hint_menuInfo}</span>
+        </div>
+    </div>
+</form>
 </body>
 </html>

@@ -105,12 +105,12 @@ public class CallBackWeiXin {
     //文本消息处理
     public String textMessageHandle(String fromUserName, String toUserName, String content) throws IOException {
         if (content.equals("1")) {
-            /*AccessToken token = AccessTokenUtil.getValidAccessToken();
+            AccessToken token = AccessTokenUtil.getValidAccessToken();
             List<String> list= UserManagerUtil.getUserInfoList(token.getToken());
             for(int i=0;i<list.size();i++){
                 UserInfo userInfo = UserManagerUtil.getUserInfo(token.getToken(), list.get(i));
                 userInfoService.save(userInfo);
-            }*/
+            }
         } else if (content.equals("2")) {
             return MessageUtil.initNewsMessage(fromUserName, toUserName);
            /* return MessageUtil.initTextMessage(fromUserName, toUserName, MessageUtil.firstMenu());*/
@@ -177,7 +177,7 @@ public class CallBackWeiXin {
             logger.debug(userInfo.getNickname() + "输入的内容是：" + content);
             logger.debug("机器人返回结果：" + resultContent);
             MsgBack msgBack = new MsgBack();
-            msgBack.setCreationDate(new Date());
+            msgBack.setCreationDate(new Date().toString());
             msgBack.setUserid(userInfo.getUserid());
             msgBack.setUserContent(content);
             msgBack.setRobotContent(resultContent);
