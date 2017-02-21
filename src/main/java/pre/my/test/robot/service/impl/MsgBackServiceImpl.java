@@ -29,7 +29,7 @@ public class MsgBackServiceImpl implements IMsgBackService {
     }
 
     @Override
-    public List<UserInfo> selectAllMsgBack(Integer pageSize, Integer pageNumber) {
+    public List<MsgBack> selectAllMsgBack(Integer pageSize, Integer pageNumber) {
         pageNumber = pageNumber == null ? 1 : pageNumber;
         pageSize = pageSize == null ? 5 : pageSize;
         PageHelper.startPage(pageNumber, pageSize);

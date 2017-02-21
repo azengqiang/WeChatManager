@@ -6,16 +6,19 @@
     <resultMap id="BaseResultMap" type="pre.my.test.robot.dto.user.MsgBack">
         <id column="msgid" property="msgid"/>
         <result column="userid" property="userid"/>
+        <result column="nickname" property="nickname"/>
         <result column="user_content" property="userContent"/>
         <result column="robot_content" property="robotContent"/>
         <result column="creation_date" property="creationDate"/>
     </resultMap>
 
-    <select id="selectCount"  resultMap="BaseResultMap">
+    <select id="selectCount"  resultType="Integer">
               SELECT COUNT(*) from rb_message
     </select>
     <select id="selectAllMsgBack"  resultMap="BaseResultMap">
-              SELECT * from rb_message
+            select m.msgid,u.nickname,m.user_content,m.robot_content,m.creation_date
+            from rb_message m
+            join rb_user u on u.userid = m.userid
     </select>
     <insert id="save" parameterType="pre.my.test.robot.dto.user.MsgBack"
             useGeneratedKeys="true" keyProperty="id">

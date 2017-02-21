@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import pre.my.test.robot.dto.user.UserInfo;
+import pre.my.test.robot.dto.user.MsgBack;
 import pre.my.test.robot.service.IMsgBackService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,13 +39,13 @@ public class MessageController {
         //得到客户端传递的页码和每页记录数，并转换成int类型
         int pageSize = Integer.parseInt(request.getParameter("pageSize"));
         int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-        List<UserInfo> userInfos = msgBackService.selectAllMsgBack(pageSize, pageNumber);
+        List<MsgBack> msgBacks = msgBackService.selectAllMsgBack(pageSize, pageNumber);
         int total =msgBackService.selectCount();
         response.setCharacterEncoding("UTF-8"); //设置编码格式
         response.setContentType("text/html");   //设置数据格式
         PrintWriter out = response.getWriter(); //获取写入对象
     /*    out.print(JSON.toJSONString(new ResponseData(userInfos))); //将json数据写入流中*/
-        String json = "{\"total\":" + total + ",\"rows\":" + JSON.toJSON(userInfos) + "}";
+        String json = "{\"total\":" + total + ",\"rows\":" + JSON.toJSON(msgBacks) + "}";
         out.print(json);
         out.flush();
     }

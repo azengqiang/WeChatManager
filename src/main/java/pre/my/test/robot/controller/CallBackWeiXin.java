@@ -174,8 +174,8 @@ public class CallBackWeiXin {
         } else {
             UserInfo userInfo = userInfoService.selectUserInfoByOpenid(fromUserName);
             String resultContent = TuringAPIUtil.getTuringResult(content);
-            logger.debug(userInfo.getNickname() + "输入的内容是：" + content);
-            logger.debug("机器人返回结果：" + resultContent);
+            logger.debug(userInfo.getNickname() + " 输入内容：" + content);
+            logger.debug("机器人回复：" + resultContent);
             MsgBack msgBack = new MsgBack();
             msgBack.setCreationDate(new Date().toString());
             msgBack.setUserid(userInfo.getUserid());

@@ -1,7 +1,6 @@
 package pre.my.test.robot.service;
 
 import pre.my.test.robot.dto.user.MsgBack;
-import pre.my.test.robot.dto.user.UserInfo;
 
 import java.util.List;
 
@@ -11,5 +10,5 @@ import java.util.List;
 public interface IMsgBackService {
     void save(MsgBack msgBack);
     int selectCount();
-    List<UserInfo> selectAllMsgBack(Integer  pageSize,Integer  pageNumber);
+    List<MsgBack> selectAllMsgBack(Integer  pageSize,Integer  pageNumber);
 }

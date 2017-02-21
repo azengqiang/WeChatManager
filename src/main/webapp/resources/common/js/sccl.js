@@ -405,7 +405,7 @@ $(function(){
 						{"id":"223","name":"删除菜单","parentId":"22","url":"test2","icon":"","order":"1","isHeader":"0","childMenus":""}
 					]},
 					{"id":"23","name":"消息管理","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
-						{"id":"231","name":"接受文本消息","parentId":"23","url":"test3","icon":"","order":"1","isHeader":"0","childMenus":""},
+						{"id":"231","name":"消息列表","parentId":"23","url":"toLookMessage","icon":"","order":"1","isHeader":"0","childMenus":""},
 						{"id":"232","name":"回复图文消息","parentId":"23","url":"test4","icon":"","order":"1","isHeader":"0","childMenus":""}
 					]},
 

@@ -3,6 +3,7 @@ package pre.my.test.robot.dto.user;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * Author:qiang.zeng on 2017/2/10.
@@ -17,6 +18,8 @@ public class MsgBack {
      * 用户外键，方便查询用户信息
      */
     private Long userid;
+    @Transient
+    private String nickname;
     /**
      * 用户输入的内容
      */
@@ -68,5 +71,13 @@ public class MsgBack {
 
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }

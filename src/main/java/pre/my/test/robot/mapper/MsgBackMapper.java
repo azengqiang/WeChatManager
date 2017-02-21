@@ -1,7 +1,6 @@
 package pre.my.test.robot.mapper;
 
 import pre.my.test.robot.dto.user.MsgBack;
-import pre.my.test.robot.dto.user.UserInfo;
 
 import java.util.List;
 
@@ -11,5 +10,5 @@ import java.util.List;
 public interface MsgBackMapper {
     void save(MsgBack msgBack);
     int selectCount();
-    List<UserInfo> selectAllMsgBack();
+    List<MsgBack> selectAllMsgBack();
 }

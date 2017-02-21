@@ -16,11 +16,11 @@
         function initTable() {
             $('#table').bootstrapTable('destroy');
             $("#table").bootstrapTable({
-                method: "post",
+                method: "get",
                 url: "<c:url value='/admin/lookMessage'/>",
                 striped: true,
                 pagination: true,
-                pageSize: 5,
+                pageSize: 10,
                 pageNumber:1,
                 pageList: [5, 10, 15, 20, 25],
                 search: true,
@@ -59,11 +59,11 @@
 
 <body>
 <div class="panel-body" style="padding-bottom:0px;">
-    <table id="table" data-toggle="table"  data-method="get">
+    <table id="table" data-toggle="table">
         <thead>
         <tr>
             <th data-field="msgid">消息id</th>
-            <th data-field="userid">用户名</th>
+            <th data-field="nickname">用户名</th>
             <th data-field="userContent">用户发送内容</th>
             <th data-field="robotContent">机器人回复内容</th>
             <th data-field="creationDate">创建时间</th>
