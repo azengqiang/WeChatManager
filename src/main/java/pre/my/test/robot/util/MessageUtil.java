@@ -137,16 +137,16 @@ public class MessageUtil {
         NewsMessage newsMessage = new NewsMessage();
 
         News news = new News();
-        news.setTitle("西南右油大学简介");
-        news.setDescription("西南右油大学是一所石油院校");
+        news.setTitle("西南石油大学简介");
+        news.setDescription("swpu是石油界的黄埔军校");
         news.setPicUrl(Constants.PROJECT_URL+"/resources/img/swpu.png");
        /* news.setUrl("http://www.swpu.edu.cn/");*/
         news.setUrl(Constants.PROJECT_URL+"/demo/hello?id=1");
         newses.add(news);
 
         News news2 = new News();
-        news2.setTitle("19栋611惊魂");
-        news2.setDescription("详情请点击查看");
+        news2.setTitle("911惊魂");
+        news2.setDescription("点击查看");
         news2.setPicUrl(Constants.PROJECT_URL+"/resources/img/swpu911.jpg");
         news2.setUrl("http://www.ziyuanmao.com/#/home");
         newses.add(news2);
@@ -210,9 +210,10 @@ public class MessageUtil {
      *
      * @return 菜单提示内容
      */
-    public static String menuHint() {
+    public static String menuHint(String userName) {
         StringBuilder builder = new StringBuilder();
-        builder.append("欢迎您关注西南右油911公众号!\n");
+        builder.append("hi,");
+        builder.append(userName+",欢迎关注911公众号!\n");
       /*  builder.append("请按以下菜单进行操作：\n");
         builder.append("1.西南右油911公众号介绍\n");
         builder.append("2.西南右油911成员介绍\n");

@@ -66,7 +66,6 @@ public class CallBackWeiXin {
         String msgType = requestMap.get("MsgType");
         String content = requestMap.get("Content");
         String createTime = requestMap.get("CreateTime");
-        //String createTime = requestMap.get("CreateTime");
 
         PrintWriter out = response.getWriter();
         String respMessage = " ";
@@ -105,22 +104,10 @@ public class CallBackWeiXin {
     //文本消息处理
     public String textMessageHandle(String fromUserName, String toUserName, String content) throws IOException {
         if (content.equals("1")) {
-            AccessToken token = AccessTokenUtil.getValidAccessToken();
-            List<String> list= UserManagerUtil.getUserInfoList(token.getToken());
-            for(int i=0;i<list.size();i++){
-                UserInfo userInfo = UserManagerUtil.getUserInfo(token.getToken(), list.get(i));
-                userInfoService.save(userInfo);
-            }
+
         } else if (content.equals("2")) {
             return MessageUtil.initNewsMessage(fromUserName, toUserName);
-           /* return MessageUtil.initTextMessage(fromUserName, toUserName, MessageUtil.firstMenu());*/
         } else if (content.equals("3")) {
-         /*
-            Map<String,String> map = new HashMap<>();
-            map.put("o9eW3w5m36mEn4uH2QLvJQjZ-nxI","前端全栈wuli浪");
-            map.put("o9eW3w8Dh3W0ba-FIehQEJ6d_Bq8", "沉生而知之大空翼迷学习无敌Q");
-            map.put("o9eW3wzB_aULaLH0xOMOYlOJ0ETg", "");
-            UserManagerUtil.setBatchRemark(AccessTokenUtil.getValidAccessToken().getToken(),map);*/
             return MessageUtil.initTextMessage(fromUserName, toUserName, "修改备注成功");
         } else if (content.equals("4")) {
             AccessToken token = AccessTokenUtil.getValidAccessToken();
@@ -149,31 +136,14 @@ public class CallBackWeiXin {
                 message = MessageUtil.initText(toUserName, fromUserName, WeixinUtil.translate(word));
             }
         }*/ else if (content.equals("?") || content.equals("？")) {
-            return MessageUtil.initTextMessage(fromUserName, toUserName, MessageUtil.menuHint());
-        } else if (content.contains("911")) {
+            return MessageUtil.initTextMessage(fromUserName, toUserName, MessageUtil.firstMenu());
+        }/* else if (content.contains("911")) {
             String mediaId = "3lIPHNZnAliHoT6AO9ZJEGZo9nUCFZt8M6w-7ixY2kFok9UCHyP80RcJgG0VDUil";
             return MessageUtil.initImageMessage(fromUserName, toUserName, mediaId);
-        } else if (content.contains("zhangyi") || content.contains("张翼")) {
-            String mediaId = "a6-HYLjErfZ3-GNixg1v3K7rPeK5tNAhr0o7NjO_wpZCxBVioYvbsInZVTsq9Hn7";
-            return MessageUtil.initImageMessage(fromUserName, toUserName, mediaId);
-        } else if (content.contains("chenqiang") || content.contains("陈强")) {
-            String mediaId = "Ns2rgKaWyCfDLgAHkzY3j3gWv_J66pbsjMg8m2wqCWEwJ4U85D66CxF7QnKIsqT2";
-            return MessageUtil.initImageMessage(fromUserName, toUserName, mediaId);
-        } else if (content.contains("lianglang") || content.contains("浪")) {
-            String mediaId = "Rj-3Ou2hltM59BJHkrgzn4cQ-x2H0JN-PdUrOXPT2xs9zhyxCGWlD0GU32Nvx2zA";
-            return MessageUtil.initImageMessage(fromUserName, toUserName, mediaId);
-        } else if (content.contains("lizhao") || content.contains("李钊")) {
-            String mediaId = "x7eDbgfPVvck38SWXM-nfTy0KcXi8eczp-fZp0jEN6Q0KlXP1dk9C8IfnamMu_aA";
-            return MessageUtil.initImageMessage(fromUserName, toUserName, mediaId);
-        } else if (content.contains("renyue") || content.contains("任越")) {
-            String mediaId = "O6Q6iUYYiTBmKOsNsetY8gqxR8Otk4s6PwPg61XkMgcdHmz3yofxzP8Y0Df0FX_9";
-            return MessageUtil.initImageMessage(fromUserName, toUserName, mediaId);
-        } else if (content.contains("zengqiang") || content.contains("曾强")) {
-            String mediaId = "hAkBvEF5t-qcIbhM9DeSsRsamw-UL-VNB4obNUPndI-0-Jtwg67DnOpA1ZGTlGq8";
-            return MessageUtil.initImageMessage(fromUserName, toUserName, mediaId);
-        } else {
+        }*/ else {
             UserInfo userInfo = userInfoService.selectUserInfoByOpenid(fromUserName);
             String resultContent = TuringAPIUtil.getTuringResult(content);
+            logger.debug("回复内容字节："+String.valueOf(resultContent.getBytes("utf-8").length));
             logger.debug(userInfo.getNickname() + " 输入内容：" + content);
             logger.debug("机器人回复：" + resultContent);
             MsgBack msgBack = new MsgBack();
@@ -199,17 +169,19 @@ public class CallBackWeiXin {
         String eventKey = requestMap.get("EventKey");//自定义事件
         String respEventMessage = "";
         if (eventType.equals(Constants.EVENT_TYPE_SUBSCRIBE)) {// 订阅
-            respEventMessage = MessageUtil.initTextMessage(fromUserName, toUserName, MessageUtil.menuHint());
             //每次订阅 将关注用户的信息存入数据库当中
             UserInfo userInfo = UserManagerUtil.getUserInfo(AccessTokenUtil.getValidAccessToken().getToken(), fromUserName);
             userInfoService.save(userInfo);
+            respEventMessage = MessageUtil.initTextMessage(fromUserName, toUserName, MessageUtil.menuHint(userInfo.getNickname()));
+
         } else if (eventType.equals(Constants.EVENT_TYPE_UNSUBSCRIBE)) {// 取消订阅
 
         } else if (eventType.equals(Constants.EVENT_TYPE_CLICK)) {// 自定义菜单点击事件
             if (eventKey.equals("11")) {
-                String url = Constants.PROJECT_URL + "/demo/hello";
-                return MessageUtil.initTextMessage(fromUserName, toUserName, url);
-                // return MessageUtil.initTextMessage(fromUserName, toUserName, MessageUtil.firstMenu());
+                String csyb ="欢迎使用城市邮编功能！\n请编辑#城市名+天气发送至公众号\n即可查询相应城市邮编";
+                return MessageUtil.initTextMessage(fromUserName, toUserName, csyb);
+              /*  String url = Constants.PROJECT_URL + "/demo/hello";
+                return MessageUtil.initTextMessage(fromUserName, toUserName, url);*/
             } else if (eventKey.equals("12")) {
                 return MessageUtil.initTextMessage(fromUserName, toUserName, TuringAPIUtil.getTuringResult("你好"));
             }

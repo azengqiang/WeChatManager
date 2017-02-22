@@ -25,6 +25,13 @@ public class UserInfoServiceImpl implements IUserInfoService {
     }
 
     @Override
+    public void save(List<UserInfo> userInfos) {
+        for(UserInfo userInfo :userInfos){
+            mapper.save(userInfo);
+        }
+    }
+
+    @Override
     public UserInfo selectUserInfoByOpenid(String openid) {
         return mapper.selectUserInfoByOpenid(openid);
     }
