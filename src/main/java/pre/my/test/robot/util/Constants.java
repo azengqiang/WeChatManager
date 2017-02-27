@@ -210,4 +210,8 @@ public class Constants {
     public static final String WEB_PAGE_SCOPE_USER_INFO  = "snsapi_userinfo";
     public static final String WEB_PAGE_ACCESS_TOKEN  = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
     public static final String WEB_PAGE_USER_INFO  = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
+    /**
+     * 群发图文消息 图片上传地址
+     */
+    public static final String MASS_TEXT_IMAGE = "https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token=ACCESS_TOKEN";
 }

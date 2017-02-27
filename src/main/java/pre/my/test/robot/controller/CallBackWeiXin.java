@@ -81,8 +81,7 @@ public class CallBackWeiXin {
                 break;
             case Constants.MSG_TYPE_LOCATION:
                 //地理位置处理
-                String label = requestMap.get("Label");
-                respMessage = MessageUtil.initTextMessage(toUserName, fromUserName, label);
+                respMessage =locationMessageHandle(fromUserName,toUserName,requestMap);
                 break;
             case Constants.MSG_TYPE_IMAGE:
                 break;
@@ -99,6 +98,20 @@ public class CallBackWeiXin {
         }
         //返回数据
         out.print(respMessage);
+    }
+
+    public String locationMessageHandle(String fromUserName, String toUserName,Map<String, String> requestMap) {
+        String label = requestMap.get("Label");
+        String location_X = requestMap.get("Location_X");
+        String location_Y = requestMap.get("Location_Y");
+        String scale = requestMap.get("Scale");
+       /* LocationMessage locationMessage = new LocationMessage();
+        locationMessage.setLabel(label);
+        locationMessage.setLocation_X(location_X);
+        locationMessage.setLocation_Y(location_Y);
+        locationMessage.setScale(scale);*/
+
+        return  MessageUtil.initTextMessage(fromUserName, toUserName, label);
     }
 
     //文本消息处理
@@ -128,14 +141,7 @@ public class CallBackWeiXin {
             int result3 = GroupUtil.deleteGroup(token.getToken(), "{\"group\":{\"id\":104}}");*/
            /* //查询用户所在分组
            String groupid = GroupUtil.queryUser(token.getToken(),"{\"openid\":\"o9eW3w7nm2-cYoao_qiXrtrUeQ9w\"}");*/
-        } /*else if(content.startsWith("翻译")){
-            String word = content.replaceAll("^翻译", "").trim();
-            if("".equals(word)){
-                message = MessageUtil.initText(toUserName, fromUserName, MessageUtil.threeMenu());
-            }else{
-                message = MessageUtil.initText(toUserName, fromUserName, WeixinUtil.translate(word));
-            }
-        }*/ else if (content.equals("?") || content.equals("？")) {
+        } else if (content.equals("?") || content.equals("？")) {
             return MessageUtil.initTextMessage(fromUserName, toUserName, MessageUtil.firstMenu());
         }/* else if (content.contains("911")) {
             String mediaId = "3lIPHNZnAliHoT6AO9ZJEGZo9nUCFZt8M6w-7ixY2kFok9UCHyP80RcJgG0VDUil";
@@ -143,7 +149,7 @@ public class CallBackWeiXin {
         }*/ else {
             UserInfo userInfo = userInfoService.selectUserInfoByOpenid(fromUserName);
             String resultContent = TuringAPIUtil.getTuringResult(content);
-            logger.debug("回复内容字节："+String.valueOf(resultContent.getBytes("utf-8").length));
+            logger.debug("回复内容字节：" + String.valueOf(resultContent.getBytes("utf-8").length));
             logger.debug(userInfo.getNickname() + " 输入内容：" + content);
             logger.debug("机器人回复：" + resultContent);
             MsgBack msgBack = new MsgBack();
@@ -178,11 +184,17 @@ public class CallBackWeiXin {
 
         } else if (eventType.equals(Constants.EVENT_TYPE_CLICK)) {// 自定义菜单点击事件
             if (eventKey.equals("11")) {
-                String csyb ="欢迎使用城市邮编功能！\n请编辑#城市名+天气发送至公众号\n即可查询相应城市邮编";
+                String csyb = "欢迎使用城市邮编功能！\n请编辑城市名+邮编发送至公众号，即可查询相应城市邮编\n如：内江邮编";
                 return MessageUtil.initTextMessage(fromUserName, toUserName, csyb);
               /*  String url = Constants.PROJECT_URL + "/demo/hello";
                 return MessageUtil.initTextMessage(fromUserName, toUserName, url);*/
             } else if (eventKey.equals("12")) {
+                String tqcx = "欢迎使用天气查询功能！\n请编辑城市名+天气发送至公众号，即可查询相应城市天气\n如：内江天气";
+                return MessageUtil.initTextMessage(fromUserName, toUserName, tqcx);
+            } else if (eventKey.equals("13")) {
+                String zyhy = "欢迎使用中英互译功能！\n请编***单词发送至公众号，即可进行单词中英互译\n如：内江单词，friend翻译";
+                return MessageUtil.initTextMessage(fromUserName, toUserName, zyhy);
+            } else if (eventKey.equals("21")) {
                 return MessageUtil.initTextMessage(fromUserName, toUserName, TuringAPIUtil.getTuringResult("你好"));
             }
 
