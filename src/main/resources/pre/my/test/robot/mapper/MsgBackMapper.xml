@@ -23,7 +23,7 @@
     <insert id="save" parameterType="pre.my.test.robot.dto.user.MsgBack"
             useGeneratedKeys="true" keyProperty="id">
         insert into rb_message(userid,user_content,robot_content,creation_date)
-        values(#{userid},#{userContent},#{robotContent},#{creationDate})
+        values(#{userid},#{userContent},#{robotContent},CURRENT_TIMESTAMP )
     </insert>
 
     <!--<update id="updateUserInfo" parameterType="User" >

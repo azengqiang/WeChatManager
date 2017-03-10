@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -150,10 +149,9 @@ public class CallBackWeiXin {
             UserInfo userInfo = userInfoService.selectUserInfoByOpenid(fromUserName);
             String resultContent = TuringAPIUtil.getTuringResult(content);
             logger.debug("回复内容字节：" + String.valueOf(resultContent.getBytes("utf-8").length));
-            logger.debug(userInfo.getNickname() + " 输入内容：" + content);
+            logger.debug(userInfo.getNickname() + "输入内容：" + content);
             logger.debug("机器人回复：" + resultContent);
             MsgBack msgBack = new MsgBack();
-            msgBack.setCreationDate(new Date().toString());
             msgBack.setUserid(userInfo.getUserid());
             msgBack.setUserContent(content);
             msgBack.setRobotContent(resultContent);

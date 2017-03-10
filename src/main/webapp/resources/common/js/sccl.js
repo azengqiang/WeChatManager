@@ -44,7 +44,7 @@ function addIframe(cur){
 	if (h == "" || $.trim(h).length == 0) {
 		return false;
 	}
-	
+
 	var fullWidth = $(window).width();
 	if(fullWidth >= 750){
 		$(".layout-side").show();
@@ -269,7 +269,7 @@ function closePage() {
 
 /*循环菜单*/
 function initMenu(menu,parent){
-	for(var i=0; i<menu.length; i++){   
+	for(var i=0; i<menu.length; i++){
 		var item = menu[i];
 		var str = "";
 		try{
@@ -330,13 +330,13 @@ $(".header-menu-btn").click(function(){
 	$(".layout-footer").removeClass("full-page");
 	$(".layout-side-arrow").removeClass("close");
 	$(".layout-side-arrow-icon").removeClass("close");
-	
+
 	$(".layout-side").slideToggle();
 });
 
 /*左侧菜单响应式*/
-$(window).resize(function() {  
-	var width = $(this).width();  
+$(window).resize(function() {
+	var width = $(this).width();
 	if(width >= 750){
 		$(".layout-side").show();
 	}else{
@@ -350,7 +350,7 @@ $(".dropdown-skin li a").click(function(){
 	var hrefStr=$("#layout-skin").attr("href");
 	var hrefRes=hrefStr.substring(0,hrefStr.lastIndexOf('skin/'))+'skin/'+v+'/skin.css';
 	$(window.frames.document).contents().find("#layout-skin").attr("href",hrefRes);
-	
+
 	setCookie("scclui-skin", v);
 });
 
@@ -406,14 +406,19 @@ $(function(){
 					]},
 					{"id":"23","name":"消息管理","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
 						{"id":"231","name":"消息列表","parentId":"23","url":"toLookMessage","icon":"","order":"1","isHeader":"0","childMenus":""},
-						{"id":"232","name":"回复图文消息","parentId":"23","url":"test4","icon":"","order":"1","isHeader":"0","childMenus":""}
+						{"id":"232","name":"图文消息","parentId":"23","url":"test4","icon":"","order":"1","isHeader":"0","childMenus":""}
 					]},
-
-				]}
-				];
+                    {"id":"24","name":"数据分析","parentId":"1","url":"","icon":"&#xe604;","order":"1","isHeader":"0","childMenus":[
+                        {"id":"241","name":"用户分析","parentId":"24","url":"test1","icon":"","order":"1","isHeader":"0","childMenus":""},
+                        {"id":"242","name":"图文分析","parentId":"24","url":"test3","icon":"","order":"1","isHeader":"0","childMenus":""},
+                        {"id":"243","name":"菜单分析","parentId":"24","url":"test4","icon":"","order":"1","isHeader":"0","childMenus":""},
+                        {"id":"244","name":"消息分析","parentId":"24","url":"test5","icon":"","order":"1","isHeader":"0","childMenus":""}
+                    ]},
+                ]
+            }];
 	initMenu(menu,$(".side-menu"));
 	$(".side-menu > li").addClass("menu-item");
-	
+
 	/*获取菜单icon随机色*/
 	getMathColor();
 }); 

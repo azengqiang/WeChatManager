@@ -4,6 +4,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import java.util.Date;
 
 /**
  * Author:qiang.zeng on 2017/2/10.
@@ -31,7 +32,7 @@ public class MsgBack {
     /**
      * 创建时间
      */
-    private String creationDate;
+    private Date creationDate;
 
     public Long getMsgid() {
         return msgid;
@@ -65,11 +66,11 @@ public class MsgBack {
         this.robotContent = robotContent;
     }
 
-    public String getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(String creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
