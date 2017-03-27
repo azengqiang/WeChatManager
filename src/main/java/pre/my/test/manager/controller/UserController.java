@@ -28,7 +28,6 @@ public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 
-
     @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
     @ResponseBody
     public void userInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {

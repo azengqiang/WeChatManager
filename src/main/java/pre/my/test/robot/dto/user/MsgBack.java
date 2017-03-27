@@ -1,16 +1,19 @@
 package pre.my.test.robot.dto.user;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Author:qiang.zeng on 2017/2/10.
  */
 @Table(name = "rb_message")
-public class MsgBack {
+public class MsgBack implements Serializable{
 
     @Id
     @GeneratedValue()
@@ -32,6 +35,7 @@ public class MsgBack {
     /**
      * 创建时间
      */
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date creationDate;
 
     public Long getMsgid() {

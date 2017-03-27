@@ -15,37 +15,41 @@ import java.io.IOException;
 public class AccessTokenUtil {
     private static AccessToken accessToken = null;
     private static final Logger logger = LoggerFactory.getLogger(CallBackWeiXin.class);
+
     /**
      * 使用缓存，使accessToken始终有效
+     *
      * @return 有效的accessToken
      * @throws IOException
      */
     public static AccessToken getValidAccessToken() throws IOException {
-        if(null==accessToken){
+        if (null == accessToken) {
             accessToken = getAccessToken();
-            logger.debug("第一次获取accessToken:" + accessToken.getToken());
+            logger.debug("first time for accessToken:{}\n", accessToken.getToken());
             Cache cache = new Cache();
             cache.setValue(accessToken.getToken());
-            CacheManager.putCacheInfo("accessToken", cache,  7200*1000);
-        }else{
+            CacheManager.putCacheInfo("accessToken", cache, 7200 * 1000);
+        } else {
             Cache cache = CacheManager.getCacheInfo("accessToken");
-            if(cache.isExpired()){
+            if (cache.isExpired()) {
                 CacheManager.clearOnly("accessToken");
                 accessToken = getAccessToken();
-                logger.debug("accessToken失效重获取:" + accessToken.getToken());
+                logger.debug("accessToken failure to obtain:{}\n", accessToken.getToken());
                 cache.setValue(accessToken.getToken());
-                CacheManager.putCacheInfo("accessToken", cache, 7200*1000);
+                CacheManager.putCacheInfo("accessToken", cache, 7200 * 1000);
             }
         }
-        logger.debug("获取的缓存accessToken:" +accessToken.getToken());
+        logger.debug("access accessToken:{}\n", accessToken.getToken());
         return accessToken;
     }
+
     /**
      * 从微信获取accessToken
+     *
      * @return
      * @throws IOException
      */
-    private static AccessToken getAccessToken()  {
+    private static AccessToken getAccessToken() {
         AccessToken accessToken = new AccessToken();
         String url = Constants.ACCESS_TOKEN_URL.replace("APPID", Constants.APP_ID).replace("APPSECRET", Constants.APP_SECRET);
         JSONObject jsonObject = null;
