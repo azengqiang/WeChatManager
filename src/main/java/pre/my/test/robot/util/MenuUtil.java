@@ -66,9 +66,8 @@ public class MenuUtil {
     public static int createMenu(String token, Menu menu) throws IOException {
         int result = 0;
         String url = Constants.MENU_CREATE_URL.replace("ACCESS_TOKEN", token);
-        String menuJson = JSONObject.toJSON(menu).toString();
         //post请求创建菜单
-        JSONObject jsonObject = HttpConnectUtil.doPostStr(url, menuJson);
+        JSONObject jsonObject = HttpConnectUtil.doPostStr(url, JSONObject.toJSON(menu).toString());
         if (jsonObject != null) {
             result = jsonObject.getInteger("errcode");
         }

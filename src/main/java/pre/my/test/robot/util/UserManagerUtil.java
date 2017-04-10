@@ -79,8 +79,7 @@ public class UserManagerUtil {
     public static int setRemark(String token, Remark remark) throws IOException {
         int result = 0;
         String url = Constants.USER_REMARK_URL.replace("ACCESS_TOKEN", token);
-        String remarkJson = JSONObject.toJSON(remark).toString();
-        JSONObject jsonObject = HttpConnectUtil.doPostStr(url, remarkJson);
+        JSONObject jsonObject = HttpConnectUtil.doPostStr(url, JSONObject.toJSON(remark).toString());
         if (jsonObject != null) {
             result = jsonObject.getInteger("errcode");
         }

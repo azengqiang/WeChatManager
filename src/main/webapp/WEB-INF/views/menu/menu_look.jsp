@@ -10,7 +10,7 @@
 		param["roles"] = userViewModel.role.get("userRole");
 		$.ajax({
 			type: "post",
-			url: "${base.contextPath}/hr/employee/create_user",
+			url: "${base.contextPath}/admin/getMaterialCount",
 			data: kendo.stringify(param),
 			dataType: "json",
 			contentType: 'application/json',

@@ -28,9 +28,13 @@ public class MessageController {
 
     private static final Logger logger = LoggerFactory.getLogger(MessageController.class);
 
-    @RequestMapping(value = "/toLookMessage", method = RequestMethod.GET)
-    public String toLookMessage(HttpServletRequest request, HttpServletResponse response) {
-        return "message/message_look";
+    @RequestMapping(value = "/toTextMessage", method = RequestMethod.GET)
+    public String toTextMessage(HttpServletRequest request, HttpServletResponse response) {
+        return "message/message_text";
+    }
+    @RequestMapping(value = "/toGraphicMessage", method = RequestMethod.GET)
+    public String toGraphicMessage(HttpServletRequest request, HttpServletResponse response) {
+        return "message/message_graphic";
     }
 
     @RequestMapping(value = "/lookMessage", method = RequestMethod.GET)
@@ -45,7 +49,7 @@ public class MessageController {
         response.setCharacterEncoding("UTF-8"); //设置编码格式
         response.setContentType("text/html");   //设置数据格式
         PrintWriter out = response.getWriter(); //获取写入对象
-    /*    out.print(JSON.toJSONString(new ResponseData(userInfos))); //将json数据写入流中*/
+
         String json = "{\"total\":" + total + ",\"rows\":" + JSON.toJSONString(msgBacks) + "}";
         out.print(json);
         out.flush();

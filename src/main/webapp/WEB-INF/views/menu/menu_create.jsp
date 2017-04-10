@@ -10,7 +10,7 @@
     <script type="text/javascript" src="../../resources/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form class="form-horizontal" role="form" action="menuSubmit"  method="post" style="margin-top: 20px;width: 70%">
+<form class="form-horizontal" role="form" action="menuSubmit"  method="post" style="margin-top: 20px;width: 50%">
     <div class="form-group" >
         <label for="firstMenu" class="col-sm-2 control-label">父级菜单</label>
         <div class="col-sm-10">

@@ -171,7 +171,7 @@ public class Constants {
      */
     public static final String GROUP_DELETE_URL = "https://api.weixin.qq.com/cgi-bin/groups/delete?access_token=ACCESS_TOKEN";
     /**
-     * 新增临时素材 temporary
+     * 新增临时素材 temporary（临时）
      */
     public static final String MATERIAL_TEMPORARY_UPLOAD_URL = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
     /**
@@ -179,13 +179,45 @@ public class Constants {
      */
     public static final String MATERIAL_TEMPORARY_DOWNLOAD_URL = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=ACCESS_TOKEN&media_id=MEDIA_ID";
     /**
-     * 新增永久图文素材 permanent
+     * 新增永久图文素材 permanent（永久）
      */
-    public static final String MATERIAL_PERMANENT_NEWS_URL = "https://api.weixin.qq.com/cgi-bin/material/add_news?access_token=ACCESS_TOKEN";
+    public static final String MATERIAL_PERMANENT_NEWS_UPLOAD_URL = "https://api.weixin.qq.com/cgi-bin/material/add_news?access_token=ACCESS_TOKEN";
+    /**
+     * 群发图文消息或新增永久图文消息 图片上传地址
+     */
+    public static final String MATERIAL_PERMANENT_NEWS_IMAGE_UPLOAD_URL = "https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token=ACCESS_TOKEN";
+    /**
+     * 新增永久其他类型素材:如单独的图片
+     */
+    public static final String MATERIAL_PERMANENT_OTHER_UPLOAD_URL = "https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=ACCESS_TOKEN";
+    /**
+     * 永久素材下载
+     */
+    public static final String MATERIAL_PERMANENT_DOWNLOAD_URL = "https://api.weixin.qq.com/cgi-bin/material/get_material?access_token=ACCESS_TOKEN";
+    /**
+     * 永久图文素材修改
+     */
+    public static final String MATERIAL_PERMANENT_NEWS_UPDATE_URL = "https://api.weixin.qq.com/cgi-bin/material/update_news?access_token=ACCESS_TOKEN";
+    /**
+     * 删除永久素材
+     */
+    public static final String MATERIAL_DELETE_URL="https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=ACCESS_TOKEN";
+    /**
+     * 获取素材总数
+     */
+    public static final String  MATERIAL_COUNT_GET_URL =  "https://api.weixin.qq.com/cgi-bin/material/get_materialcount?access_token=ACCESS_TOKEN";
+    /**
+     * 获取素材详情列表
+     */
+    public static final String  MATERIAL_DETAIL_LIST_GET_URL = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=ACCESS_TOKEN";
     /**
      * 媒体类型：图片
      */
     public static final String MEDIA_TYPE_IMAGE = "image";
+    /**
+     * 媒体类型：图文
+     */
+    public static final String MEDIA_TYPE_NEWS = "news";
     /**
      * 媒体类型：语音
      */
@@ -201,17 +233,13 @@ public class Constants {
     /**
      * 项目地址，暂时为本地localhost:8080的映射地址
      */
-    public static final String PROJECT_URL = "http://599b34fb.tunnel.qydev.com";
+    public static final String PROJECT_URL = "http://6d38b0e1.tunnel.qydev.com";
     /**
      * 网页授权，获取code
      */
-    public static final String WEB_PAGE_CODE = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect";
-    public static final String WEB_PAGE_SCOPE_BASE  = "snsapi_base";
-    public static final String WEB_PAGE_SCOPE_USER_INFO  = "snsapi_userinfo";
-    public static final String WEB_PAGE_ACCESS_TOKEN  = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
-    public static final String WEB_PAGE_USER_INFO  = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
-    /**
-     * 群发图文消息 图片上传地址
-     */
-    public static final String MASS_TEXT_IMAGE = "https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token=ACCESS_TOKEN";
+    public static final String WEB_PAGE_CODE_RUL = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect";
+    public static final String WEB_PAGE_ACCESS_TOKEN_URL = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
+    public static final String WEB_PAGE_USER_INFO_URL = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
+    public static final String WEB_PAGE_SCOPE_BASE = "snsapi_base";
+    public static final String WEB_PAGE_SCOPE_USER_INFO = "snsapi_userinfo";
 }

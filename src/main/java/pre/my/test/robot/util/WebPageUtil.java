@@ -14,12 +14,12 @@ public class WebPageUtil {
     private static final Logger logger = LoggerFactory.getLogger(WebPageUtil.class);
 
     public static String getcode(String appid, String redirectUrl, String scope, String state) {
-        String url = Constants.WEB_PAGE_CODE.replace("APPID", appid).replace("REDIRECT_URI", redirectUrl).replace("SCOPE", scope).replace("STATE", state);
+        String url = Constants.WEB_PAGE_CODE_RUL.replace("APPID", appid).replace("REDIRECT_URI", redirectUrl).replace("SCOPE", scope).replace("STATE", state);
         return url;
     }
 
     public static JSONObject getAccessToken(String appid, String secret, String code) {
-        String url = Constants.WEB_PAGE_ACCESS_TOKEN.replace("APPID", appid).replace("SECRET", secret).replace("CODE", code);
+        String url = Constants.WEB_PAGE_ACCESS_TOKEN_URL.replace("APPID", appid).replace("SECRET", secret).replace("CODE", code);
         JSONObject jsonObject = null;
         try {
             jsonObject = HttpConnectUtil.doGetStr(url);
@@ -36,7 +36,7 @@ public class WebPageUtil {
     }
 
     public static WebPageUserInfo getUserInfo(String accessToken, String openid) {
-        String url = Constants.WEB_PAGE_USER_INFO.replace("ACCESS_TOKEN", accessToken).replace("SECRET", openid);
+        String url = Constants.WEB_PAGE_USER_INFO_URL.replace("ACCESS_TOKEN", accessToken).replace("SECRET", openid);
         WebPageUserInfo userInfo = null;
         JSONObject jsonObject = null;
         try {

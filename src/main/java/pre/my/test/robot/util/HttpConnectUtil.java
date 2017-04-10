@@ -9,6 +9,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import pre.my.test.robot.dto.material.Material;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -87,13 +88,14 @@ public class HttpConnectUtil {
      * @param type
      * @return
      */
-    public static String upload(String filePath, String accessToken,String type)throws IOException {
+    public static Material upload(String filePath, String accessToken,String type)throws IOException {
         File file = new File(filePath);
         if (!file.exists() || !file.isFile()) {
             throw new IOException("文件不存在");
         }
 
-        String url = Constants.MATERIAL_TEMPORARY_UPLOAD_URL.replace("ACCESS_TOKEN", accessToken).replace("TYPE",type);
+       /* String url = Constants.MATERIAL_TEMPORARY_UPLOAD_URL.replace("ACCESS_TOKEN", accessToken).replace("TYPE",type);*/
+        String url = Constants.MATERIAL_PERMANENT_OTHER_UPLOAD_URL.replace("ACCESS_TOKEN", accessToken);
 
         URL urlObj = new URL(url);
         //连接
@@ -116,7 +118,7 @@ public class HttpConnectUtil {
         sb.append("--");
         sb.append(BOUNDARY);
         sb.append("\r\n");
-        sb.append("Content-Disposition: form-data;name=\"file\";filename=\"" + file.getName() + "\"\r\n");
+        sb.append("Content-Disposition: form-data;name=\"media\";filename=\"" + file.getName() + "\"\r\n");
         sb.append("Content-Type:application/octet-stream\r\n\r\n");
 
         byte[] head = sb.toString().getBytes("utf-8");
@@ -171,7 +173,14 @@ public class HttpConnectUtil {
         if(!"image".equals(type)){
             typeName = type + "_media_id";
         }
-        String mediaId = jsonObj.getString(typeName);
-        return mediaId;
+        int errcode = jsonObj.getInteger("errcode");
+        Material material = null;
+        if(0==errcode){
+            material = new Material();
+            material.setMediaId(jsonObj.getString(typeName));
+            material.setMediaType(type);
+            material.setUrl(jsonObj.getString("url"));
+        }
+        return material;
     }
 }
