@@ -201,15 +201,15 @@ public class Constants {
     /**
      * 删除永久素材
      */
-    public static final String MATERIAL_DELETE_URL="https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=ACCESS_TOKEN";
+    public static final String MATERIAL_DELETE_URL = "https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=ACCESS_TOKEN";
     /**
      * 获取素材总数
      */
-    public static final String  MATERIAL_COUNT_GET_URL =  "https://api.weixin.qq.com/cgi-bin/material/get_materialcount?access_token=ACCESS_TOKEN";
+    public static final String MATERIAL_COUNT_GET_URL = "https://api.weixin.qq.com/cgi-bin/material/get_materialcount?access_token=ACCESS_TOKEN";
     /**
      * 获取素材详情列表
      */
-    public static final String  MATERIAL_DETAIL_LIST_GET_URL = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=ACCESS_TOKEN";
+    public static final String MATERIAL_DETAIL_LIST_GET_URL = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=ACCESS_TOKEN";
     /**
      * 媒体类型：图片
      */

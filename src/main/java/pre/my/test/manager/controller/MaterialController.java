@@ -43,15 +43,16 @@ public class MaterialController {
     @RequestMapping(value = "/getMaterialCount", method = RequestMethod.POST)
     public String getMaterialCount(HttpServletRequest request) throws IOException {
         MaterialCount materialCount = MaterialUtil.getMaterialCount(AccessTokenUtil.getValidAccessToken().getToken());
-        if(materialCount!=null){
+        if (materialCount != null) {
             logger.debug("image: {},news: {},video: {},voice: {}", materialCount.getImage_count(), materialCount.getNews_count(),
                     materialCount.getVideo_count(), materialCount.getVoice_count());
 
             request.setAttribute("materialCount", materialCount);
-            MaterialCount s= (MaterialCount) request.getSession().getAttribute("materialCount");
+            MaterialCount s = (MaterialCount) request.getSession().getAttribute("materialCount");
         }
         return "material/material";
     }
+
     @RequestMapping(value = "/getMaterials", method = RequestMethod.POST)
     @ResponseBody
     public void getMaterials(HttpServletRequest request) throws IOException {
@@ -59,7 +60,7 @@ public class MaterialController {
         param.setType(request.getParameter("type"));
         param.setOffset(request.getParameter("offset"));
         param.setCount(request.getParameter("count"));
-        Materials materials = MaterialUtil.getMaterialList(AccessTokenUtil.getValidAccessToken().getToken(),param);
+        Materials materials = MaterialUtil.getMaterialList(AccessTokenUtil.getValidAccessToken().getToken(), param);
         logger.debug(JSONObject.toJSONString(materials));
     }
 
@@ -84,7 +85,7 @@ public class MaterialController {
         request.setAttribute("imagesPath", path);
         logger.debug("local absolute path:{}", pathRoot + path);
         Material material = HttpConnectUtil.upload(pathRoot + path, AccessTokenUtil.getValidAccessToken().getToken(), "image");
-        if(material!=null){
+        if (material != null) {
             material.setName(fileName);
             material.setPath(pathRoot + path);
             materialService.save(material);

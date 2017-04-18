@@ -17,6 +17,7 @@ import java.util.List;
 public class GroupUtil {
     @Autowired
     private IUserInfoService service;
+
     /**
      * 创建分组
      *

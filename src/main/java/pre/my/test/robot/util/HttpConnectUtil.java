@@ -81,14 +81,16 @@ public class HttpConnectUtil {
         }
         return jsonObject;
     }
+
     /**
      * 文件上传
+     *
      * @param filePath
      * @param accessToken
      * @param type
      * @return
      */
-    public static Material upload(String filePath, String accessToken,String type)throws IOException {
+    public static Material upload(String filePath, String accessToken, String type) throws IOException {
         File file = new File(filePath);
         if (!file.exists() || !file.isFile()) {
             throw new IOException("文件不存在");
@@ -170,11 +172,11 @@ public class HttpConnectUtil {
         JSONObject jsonObj = JSONObject.parseObject(result);
         System.out.println(jsonObj);
         String typeName = "media_id";
-        if(!"image".equals(type)){
+        if (!"image".equals(type)) {
             typeName = type + "_media_id";
         }
         Material material = null;
-        if(null==jsonObj.getInteger("errcode")){
+        if (null == jsonObj.getInteger("errcode")) {
             material = new Material();
             material.setMediaId(jsonObj.getString(typeName));
             material.setMediaType(type);

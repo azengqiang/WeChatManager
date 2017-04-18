@@ -26,17 +26,24 @@
             </if>
         </where>
     </select>
+
     <select id="selectAll" resultMap="BaseResultMap">
-        select * from rb_user
+        select *
+        from rb_user
     </select>
-    <select id="selectByGroup" parameterType="pre.my.test.robot.dto.user.UserInfo" resultMap="BaseResultMap">
+
+    <select id="select" parameterType="pre.my.test.robot.dto.user.UserInfo" resultMap="BaseResultMap">
         select * from rb_user
         <where>
             <if test="groupid !=null ">
                 and groupid = #{groupid}
             </if>
+            <if test="nickname !=null ">
+                and nickname LIKE concat('%', concat(#{nickname,jdbcType=VARCHAR}, '%'))
+            </if>
         </where>
     </select>
+
     <!--执行增加操作的SQL语句。id和parameterType分别与IUserInfoService接口中的save方法的名字和参数类型一致。
   useGeneratedKeys设置为"true"表明要MyBatis获取由数据库自动生成的主键；keyProperty="id"指定把获取到的主键值注入到User的id属性-->
     <insert id="save" parameterType="pre.my.test.robot.dto.user.UserInfo"
@@ -46,10 +53,14 @@
     </insert>
 
     <update id="updateGroupByOpenId" parameterType="pre.my.test.robot.dto.user.UserInfo">
-        update rb_user set groupid=#{groupid} where openid=#{openid}
+        update rb_user
+        set groupid=#{groupid}
+        where openid=#{openid}
     </update>
     <update id="updateRemarkByOpenId" parameterType="pre.my.test.robot.dto.user.UserInfo">
-        update rb_user set remark=#{remark} where openid=#{openid}
+        update rb_user
+        set remark=#{remark}
+        where openid=#{openid}
     </update>
 
     <!--<delete id="deleteUser" parameterType="int">

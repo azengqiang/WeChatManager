@@ -9,7 +9,7 @@ public class MoveGroup {
      */
     private String[] openid_list;
     /**
-     *	用户唯一标识符
+     * 用户唯一标识符
      */
     private String openid;
     /**

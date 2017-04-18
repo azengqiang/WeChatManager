@@ -7,9 +7,10 @@ public class GroupOperate {
 
     private Group group;
 
-    public GroupOperate(){
+    public GroupOperate() {
 
     }
+
     public GroupOperate(Group group) {
         this.group = group;
     }

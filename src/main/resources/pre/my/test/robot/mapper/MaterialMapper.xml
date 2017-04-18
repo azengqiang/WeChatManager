@@ -14,11 +14,16 @@
     </resultMap>
 
     <select id="selectUserInfoByOpenid" parameterType="String" resultMap="BaseResultMap">
-              select * from rb_material  where media_id = #{mediaId}
+        select *
+        from rb_material
+        where media_id = #{mediaId}
     </select>
+
     <select id="selectAll" resultMap="BaseResultMap">
-        select * from rb_material
+        select *
+        from rb_material
     </select>
+
     <!-- useGeneratedKeys设置为"true"表明要MyBatis获取由数据库自动生成的主键；
      keyProperty="id"指定把获取到的主键值注入到User的id属性-->
     <insert id="save" parameterType="pre.my.test.robot.dto.material.Material"

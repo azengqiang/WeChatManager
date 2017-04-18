@@ -26,7 +26,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
 
     @Override
     public void save(List<UserInfo> userInfos) {
-        for(UserInfo userInfo :userInfos){
+        for (UserInfo userInfo : userInfos) {
             mapper.save(userInfo);
         }
     }
@@ -46,10 +46,11 @@ public class UserInfoServiceImpl implements IUserInfoService {
         pageNumber = pageNumber == null ? 1 : pageNumber;
         pageSize = pageSize == null ? 5 : pageSize;
         PageHelper.startPage(pageNumber, pageSize);
-        return  mapper.selectAll();
+        return mapper.selectAll();
     }
+
     @Override
-    public void updateGroupByOpenId(UserInfo userInfo){
+    public void updateGroupByOpenId(UserInfo userInfo) {
         mapper.updateGroupByOpenId(userInfo);
     }
 
@@ -59,16 +60,16 @@ public class UserInfoServiceImpl implements IUserInfoService {
     }
 
     @Override
-    public List<UserInfo> selectByGroup(Integer pageSize, Integer pageNumber, UserInfo userInfo) {
+    public List<UserInfo> select(Integer pageSize, Integer pageNumber, UserInfo userInfo) {
         pageNumber = pageNumber == null ? 1 : pageNumber;
         pageSize = pageSize == null ? 5 : pageSize;
         PageHelper.startPage(pageNumber, pageSize);
-        return mapper.selectByGroup(userInfo);
+        return mapper.select(userInfo);
     }
 
     @Override
-    public List<UserInfo> getSelectByGroupSize(UserInfo userInfo) {
-        List<UserInfo> userInfos= mapper.selectByGroup(userInfo);
+    public List<UserInfo> getSelectSize(UserInfo userInfo) {
+        List<UserInfo> userInfos = mapper.select(userInfo);
         return userInfos;
     }
 

@@ -44,22 +44,22 @@ public class MenuController {
         JSONObject jsonObject = MenuUtil.queryMenu(AccessTokenUtil.getValidAccessToken().getToken());
         JSONArray menu = jsonObject.getJSONObject("menu").getJSONArray("button");
         List<MenuDetail> menuDetails = new ArrayList<>();
-        getMenuDetails(menu,menuDetails);
-        request.setAttribute("menuDetails",menuDetails);
+        getMenuDetails(menu, menuDetails);
+        request.setAttribute("menuDetails", menuDetails);
         return "menu/menu_look";
     }
 
     private void getMenuDetails(JSONArray array, List<MenuDetail> menuDetails) {
         for (int btnIndex = 0; btnIndex < array.size(); btnIndex++) {
             JSONObject btn = (JSONObject) array.get(btnIndex);
-            menuDetails.add(setMenuDetail(btn,null));
+            menuDetails.add(setMenuDetail(btn, null));
             //获取二级菜单
             String name = btn.getString("name");
             JSONArray subButtons = btn.getJSONArray("sub_button");
-            if(subButtons!=null && subButtons.size()!=0){
-                for (int subBtnIndex = 0; subBtnIndex < subButtons.size(); subBtnIndex++){
+            if (subButtons != null && subButtons.size() != 0) {
+                for (int subBtnIndex = 0; subBtnIndex < subButtons.size(); subBtnIndex++) {
                     JSONObject subBtn = (JSONObject) subButtons.get(subBtnIndex);
-                    menuDetails.add(setMenuDetail(subBtn,name));
+                    menuDetails.add(setMenuDetail(subBtn, name));
                 }
             }
         }
@@ -72,11 +72,11 @@ public class MenuController {
         String key = jsonObject.getString("key");
         String url = jsonObject.getString("url");
         String mediaId = jsonObject.getString("media_id");
-        if (key!=null) {
+        if (key != null) {
             menuDetail.setValue(key);
-        } else if (url!=null) {
+        } else if (url != null) {
             menuDetail.setValue(url);
-        } else if (mediaId!=null) {
+        } else if (mediaId != null) {
             menuDetail.setValue(mediaId);
         }
         menuDetail.setSuperiorName(supName);

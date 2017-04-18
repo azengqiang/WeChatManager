@@ -139,15 +139,15 @@ public class MessageUtil {
         News news = new News();
         news.setTitle("西南石油大学简介");
         news.setDescription("swpu是石油界的黄埔军校");
-        news.setPicUrl(Constants.PROJECT_URL+"/resources/img/swpu.png");
+        news.setPicUrl(Constants.PROJECT_URL + "/resources/img/swpu.png");
        /* news.setUrl("http://www.swpu.edu.cn/");*/
-        news.setUrl(Constants.PROJECT_URL+"/demo/hello?id=1");
+        news.setUrl(Constants.PROJECT_URL + "/demo/hello?id=1");
         newses.add(news);
 
         News news2 = new News();
         news2.setTitle("911惊魂");
         news2.setDescription("点击查看");
-        news2.setPicUrl(Constants.PROJECT_URL+"/resources/img/swpu911.jpg");
+        news2.setPicUrl(Constants.PROJECT_URL + "/resources/img/swpu911.jpg");
         news2.setUrl("http://www.ziyuanmao.com/#/home");
         newses.add(news2);
 
@@ -160,13 +160,15 @@ public class MessageUtil {
         message = newsMessageToXml(newsMessage);
         return message;
     }
+
     /**
      * 组装图片消息
+     *
      * @param fromUserName
      * @param toUserName
      * @return
      */
-    public static String initImageMessage(String fromUserName,String toUserName,String mediaId){
+    public static String initImageMessage(String fromUserName, String toUserName, String mediaId) {
         String message = null;
         Image image = new Image();
         image.setMediaId(mediaId);
@@ -183,18 +185,19 @@ public class MessageUtil {
 
     /**
      * 组装音乐消息
+     *
      * @param fromUserName
      * @param toUserName
      * @return
      */
-    public static String initMusicMessage(String fromUserName ,String toUserName){
+    public static String initMusicMessage(String fromUserName, String toUserName) {
         String message = null;
         Music music = new Music();
         music.setThumbMediaId("WsHCQr1ftJQwmGUGhCP8gZ13a77XVg5Ah_uHPHVEAQuRE5FEjn-DsZJzFZqZFeFk");
         music.setTitle("薛之谦 - 丑八怪");
         music.setDescription("ugly monster");
-        music.setMusicUrl(Constants.PROJECT_URL+"/resource/薛之谦 - 丑八怪.mp3");
-        music.setHQMusicUrl(Constants.PROJECT_URL+"/resource/薛之谦 - 丑八怪.mp3");
+        music.setMusicUrl(Constants.PROJECT_URL + "/resource/薛之谦 - 丑八怪.mp3");
+        music.setHQMusicUrl(Constants.PROJECT_URL + "/resource/薛之谦 - 丑八怪.mp3");
 
         MusicMessage musicMessage = new MusicMessage();
         musicMessage.setFromUserName(toUserName);
@@ -205,6 +208,7 @@ public class MessageUtil {
         message = musicMessageToXml(musicMessage);
         return message;
     }
+
     /**
      * 菜单提示
      *
@@ -213,7 +217,7 @@ public class MessageUtil {
     public static String menuHint(String userName) {
         StringBuilder builder = new StringBuilder();
         builder.append("hi,");
-        builder.append(userName+",欢迎关注911公众号!\n");
+        builder.append(userName + ",欢迎关注911公众号!\n");
       /*  builder.append("请按以下菜单进行操作：\n");
         builder.append("1.西南右油911公众号介绍\n");
         builder.append("2.西南右油911成员介绍\n");

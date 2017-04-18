@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface MsgBackMapper {
     void save(MsgBack msgBack);
+
     int selectCount();
+
     List<MsgBack> selectAllMsgBack();
 }

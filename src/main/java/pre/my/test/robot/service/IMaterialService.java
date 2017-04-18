@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface IMaterialService {
     void save(Material material);
+
     Material selectMaterialByMediaId(String meidaId);
+
     List<Material> selectAll();
 }

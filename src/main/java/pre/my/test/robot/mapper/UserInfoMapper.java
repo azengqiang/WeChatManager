@@ -18,5 +18,5 @@ public interface UserInfoMapper {
 
     void updateRemarkByOpenId(UserInfo userInfo);
 
-    List<UserInfo> selectByGroup(UserInfo userInfo);
+    List<UserInfo> select(UserInfo userInfo);
 }

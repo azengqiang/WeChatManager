@@ -38,15 +38,16 @@ public class AccessController {
             String accessToken = jsonObject.getString("access_token");
             String openid = jsonObject.getString("openid");
             WebPageUserInfo userInfo = WebPageUtil.getUserInfo(accessToken, openid);
-            HttpSession session= request.getSession();
-            session.setAttribute("url",url);
+            HttpSession session = request.getSession();
+            session.setAttribute("url", url);
             request.setAttribute("user", userInfo.getNickname());
-        }else{
+        } else {
             return "forward:access";
         }
 
         return "user/userinfo";
     }
+
     @RequestMapping(value = "/access", method = RequestMethod.GET)
     public void getAccess(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String url = (String) request.getSession().getAttribute("url");

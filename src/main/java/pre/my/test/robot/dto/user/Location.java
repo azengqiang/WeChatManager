@@ -15,7 +15,7 @@ public class Location {
     private String CreateTime;
 
     /**
-     *地理位置
+     * 地理位置
      */
     private String Location;
 

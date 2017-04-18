@@ -43,7 +43,7 @@ public class GroupServiceImpl implements IGroupService {
 
     @Override
     public void updateName(Group group) {
-         mapper.updateName(group);
+        mapper.updateName(group);
     }
 
     @Override

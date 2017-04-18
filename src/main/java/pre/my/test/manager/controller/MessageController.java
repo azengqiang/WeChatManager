@@ -32,6 +32,7 @@ public class MessageController {
     public String toTextMessage(HttpServletRequest request, HttpServletResponse response) {
         return "message/message_text";
     }
+
     @RequestMapping(value = "/toGraphicMessage", method = RequestMethod.GET)
     public String toGraphicMessage(HttpServletRequest request, HttpServletResponse response) {
         return "message/message_graphic";

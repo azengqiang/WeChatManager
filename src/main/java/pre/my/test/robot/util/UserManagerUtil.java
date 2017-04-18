@@ -87,7 +87,7 @@ public class UserManagerUtil {
     }
 
     public static void setBatchRemark(String token, List<Remark> remarks) throws IOException {
-        for (Remark remark:remarks) {
+        for (Remark remark : remarks) {
             setRemark(token, remark);
         }
     }

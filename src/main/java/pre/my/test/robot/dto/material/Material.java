@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import java.util.Date;
 
 /**
- *
  * Author:qiang.zeng on 2017/3/27.
  */
 public class Material {

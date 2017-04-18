@@ -12,14 +12,17 @@
         <result column="creation_date" property="creationDate"/>
     </resultMap>
 
-    <select id="selectCount"  resultType="Integer">
-              SELECT COUNT(*) from rb_message
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT(*)
+        from rb_message
     </select>
-    <select id="selectAllMsgBack"  resultMap="BaseResultMap">
-            select m.msgid,u.nickname,m.user_content,m.robot_content,m.creation_date
-            from rb_message m
-            join rb_user u on u.userid = m.userid
+
+    <select id="selectAllMsgBack" resultMap="BaseResultMap">
+        select m.msgid,u.nickname,m.user_content,m.robot_content,m.creation_date
+        from rb_message m
+        join rb_user u on u.userid = m.userid
     </select>
+
     <insert id="save" parameterType="pre.my.test.robot.dto.user.MsgBack"
             useGeneratedKeys="true" keyProperty="id">
         insert into rb_message(userid,user_content,robot_content,creation_date)

@@ -15,6 +15,7 @@ import java.io.IOException;
 public class MenuUtil {
     /**
      * 组装菜单
+     *
      * @return Menu对象
      */
     public static Menu initMenu() {
@@ -29,7 +30,7 @@ public class MenuUtil {
         button12.setKey("12");
         Button button1 = new Button();
         button1.setName("菜单");
-        button1.setSub_button(new Button[]{button11,button12});
+        button1.setSub_button(new Button[]{button11, button12});
 
         ViewButton button21 = new ViewButton();
         button21.setName("百度一下");
@@ -60,7 +61,7 @@ public class MenuUtil {
      *
      * @param token
      * @param menu  Menu对象
-     * @return  返回码errcode 成功；0 失败：其他
+     * @return 返回码errcode 成功；0 失败：其他
      * @throws IOException
      */
     public static int createMenu(String token, Menu menu) throws IOException {
@@ -76,11 +77,12 @@ public class MenuUtil {
 
     /**
      * 查询菜单
+     *
      * @param token
      * @return 菜单json数据
      * @throws IOException
      */
-    public static  JSONObject queryMenu(String token) throws IOException {
+    public static JSONObject queryMenu(String token) throws IOException {
         String url = Constants.MENU_QUERY_URL.replace("ACCESS_TOKEN", token);
         JSONObject jsonObject = HttpConnectUtil.doGetStr(url);
         System.out.println(jsonObject.toJSONString());
@@ -89,11 +91,12 @@ public class MenuUtil {
 
     /**
      * 删除菜单
+     *
      * @param token
      * @return 返回码errcode 成功：0 失败：其他
      * @throws IOException
      */
-    public static  int deleteMenu(String token) throws IOException {
+    public static int deleteMenu(String token) throws IOException {
         int result = 0;
         String url = Constants.MENU_DELETE_URL.replace("ACCESS_TOKEN", token);
         JSONObject jsonObject = HttpConnectUtil.doGetStr(url);

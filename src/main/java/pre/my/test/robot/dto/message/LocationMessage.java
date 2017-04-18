@@ -4,21 +4,21 @@ package pre.my.test.robot.dto.message;
  * 接收地理位置消息
  * Author:qiang.zeng on 2017/2/24.
  */
-public class LocationMessage  extends Message{
+public class LocationMessage extends Message {
     /**
-     *	地理位置维度
+     * 地理位置维度
      */
     private String Location_X;
     /**
-     *地理位置经度
+     * 地理位置经度
      */
     private String Location_Y;
     /**
-     *	地图缩放大小
+     * 地图缩放大小
      */
     private String Scale;
     /**
-     *地理位置信息
+     * 地理位置信息
      */
     private String Label;
 

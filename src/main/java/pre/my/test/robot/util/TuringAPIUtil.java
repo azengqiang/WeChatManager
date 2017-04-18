@@ -54,7 +54,7 @@ public class TuringAPIUtil {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             if (response != null) {
                 response.close();
             }

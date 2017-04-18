@@ -5,7 +5,7 @@ package pre.my.test.robot.handle;
  */
 public class MediaHandle {
 
-    public  String mediaHandle() {
+    public String mediaHandle() {
         return null;
     }
 

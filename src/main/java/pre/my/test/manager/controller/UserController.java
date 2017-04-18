@@ -2,6 +2,7 @@ package pre.my.test.manager.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,18 +64,22 @@ public class UserController {
         //得到客户端传递的页码和每页记录数，并转换成int类型
         int pageSize = Integer.parseInt(request.getParameter("pageSize"));
         int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+        String searchText = request.getParameter("searchText");
         String groupid = request.getParameter("groupid");
 
         List<UserInfo> userInfos;
         int total;
         UserInfo userInfo = new UserInfo();
-        userInfo.setGroupid(groupid);
-        if (groupid != null && groupid.equals("-1")) {
-            total = userInfoService.getSelectByGroupSize(null).size();
-            userInfos = userInfoService.selectByGroup(pageSize, pageNumber, null);
+        if (StringUtils.isNotEmpty(searchText)) {
+            userInfo.setNickname(searchText);
+        }
+        if (StringUtils.isNotEmpty(groupid) && groupid.equals("-1")) {
+            total = userInfoService.getSelectSize(null).size();
+            userInfos = userInfoService.select(pageSize, pageNumber, userInfo);
         } else {
-            total = userInfoService.getSelectByGroupSize(userInfo).size();
-            userInfos = userInfoService.selectByGroup(pageSize, pageNumber, userInfo);
+            userInfo.setGroupid(groupid);
+            total = userInfoService.getSelectSize(userInfo).size();
+            userInfos = userInfoService.select(pageSize, pageNumber, userInfo);
         }
 
         response.setCharacterEncoding("UTF-8"); //设置编码格式

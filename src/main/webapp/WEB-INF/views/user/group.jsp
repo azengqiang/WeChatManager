@@ -78,7 +78,8 @@
                 queryParams: function queryParams(params) {
                     var param = {
                         pageNumber: params.pageNumber,
-                        pageSize: params.pageSize
+                        pageSize: params.pageSize,
+                        searchText:params.searchText,
                     };
                     return param;
                 },

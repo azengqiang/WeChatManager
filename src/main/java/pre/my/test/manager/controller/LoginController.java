@@ -14,17 +14,19 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(value = "/admin")
 public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String toLogin(){
+    public String toLogin() {
 
         return "template/login";
     }
+
     @RequestMapping(value = "/index", method = RequestMethod.POST)
-    public String toIndex(HttpServletRequest request, HttpServletResponse response){
+    public String toIndex(HttpServletRequest request, HttpServletResponse response) {
 
         return "template/index";
     }
+
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String toHome(HttpServletRequest request, HttpServletResponse response){
+    public String toHome(HttpServletRequest request, HttpServletResponse response) {
 
         return "template/home";
     }

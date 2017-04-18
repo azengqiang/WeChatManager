@@ -13,7 +13,7 @@ import java.util.Date;
  * Author:qiang.zeng on 2017/2/10.
  */
 @Table(name = "rb_message")
-public class MsgBack implements Serializable{
+public class MsgBack implements Serializable {
 
     @Id
     @GeneratedValue()

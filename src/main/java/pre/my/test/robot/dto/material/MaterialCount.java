@@ -4,10 +4,10 @@ package pre.my.test.robot.dto.material;
  * Author:qiang.zeng on 2017/3/28.
  */
 public class MaterialCount {
-  private String  voice_count;
-  private String  video_count;
-  private String  image_count;
-  private String  news_count;
+    private String voice_count;
+    private String video_count;
+    private String image_count;
+    private String news_count;
 
     public String getVoice_count() {
         return voice_count;

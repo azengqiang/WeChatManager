@@ -14,22 +14,25 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(value = "/admin")
 public class AnalysisController {
     @RequestMapping(value = "toGraphicAnalysis", method = RequestMethod.GET)
-    public String toGraphicAnalysis(){
+    public String toGraphicAnalysis() {
 
         return "analysis/graphic";
     }
+
     @RequestMapping(value = "toMenuAnalysis", method = RequestMethod.GET)
-    public String toMenuAnalysis(HttpServletRequest request, HttpServletResponse response){
+    public String toMenuAnalysis(HttpServletRequest request, HttpServletResponse response) {
 
         return "analysis/menu";
     }
+
     @RequestMapping(value = "toMessageAnalysis", method = RequestMethod.GET)
-    public String toMessageAnalysis(HttpServletRequest request, HttpServletResponse response){
+    public String toMessageAnalysis(HttpServletRequest request, HttpServletResponse response) {
 
         return "analysis/message";
     }
+
     @RequestMapping(value = "toUserAnalysis", method = RequestMethod.GET)
-    public String toUserAnalysis(HttpServletRequest request, HttpServletResponse response){
+    public String toUserAnalysis(HttpServletRequest request, HttpServletResponse response) {
 
         return "analysis/user";
     }

@@ -9,10 +9,16 @@ import java.util.List;
  */
 public interface GroupMapper {
     void save(Group group);
+
     void delete(Group group);
+
     List<Group> selectAll();
+
     Group selectByName(String name);
+
     Group select(Group group);
+
     void updateName(Group group);
+
     void updateCount(Group group);
 }

@@ -34,6 +34,7 @@ public class CallBackWeiXin {
     TextMessageHandle textMessageHandle;
     @Autowired
     LocationMessageHandle locationMessageHandle;
+
     //接口认证
     @RequestMapping(method = RequestMethod.GET)
     public void checkSignature(HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException {
@@ -78,7 +79,7 @@ public class CallBackWeiXin {
                 break;
             case Constants.MSG_TYPE_LOCATION:
                 //地理位置处理
-                respMessage =locationMessageHandle.locationMessageHandle(fromUserName,toUserName,requestMap);
+                respMessage = locationMessageHandle.locationMessageHandle(fromUserName, toUserName, requestMap);
                 break;
             case Constants.MSG_TYPE_IMAGE:
                 break;
