@@ -82,7 +82,9 @@ public class MenuUtil {
      */
     public static  JSONObject queryMenu(String token) throws IOException {
         String url = Constants.MENU_QUERY_URL.replace("ACCESS_TOKEN", token);
-        return HttpConnectUtil.doGetStr(url);
+        JSONObject jsonObject = HttpConnectUtil.doGetStr(url);
+        System.out.println(jsonObject.toJSONString());
+        return jsonObject;
     }
 
     /**

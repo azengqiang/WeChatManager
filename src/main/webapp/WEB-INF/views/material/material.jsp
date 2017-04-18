@@ -54,21 +54,27 @@
               <br><span>图文：${materialCount.news_count}</span>
           </div>
           <div class="tab-pane fade" id="list">
-              <div style="padding: 50px 50px 10px;width:50%">
+              <div style="padding: 50px 50px 10px;width:40%">
                   <form class="bs-example bs-example-form" role="form" method="post" action="getMaterials">
                       <div class="input-group">
                           <span class="input-group-addon">类型</span>
-                          <input required type="text" name="type" id="type"class="form-control" placeholder="请输入类型">
+                      <%--    <input required type="text" name="type" id="type"class="form-control" placeholder="请输入类型">--%>
+                          <select class="form-control" id="type" name="type">
+                              <option value="image">图片</option>
+                              <option value="news">图文</option>
+                              <option value="video">视频</option>
+                              <option value="voice">音频</option>
+                          </select>
                       </div>
                       <br>
                       <div class="input-group">
                           <span class="input-group-addon">起始</span>
-                          <input required type="text" name="offset" id="offset" class="form-control" placeholder="请输入起始位置">
+                          <input required type="number" name="offset" id="offset" class="form-control" placeholder="请输入起始位置">
                       </div>
                       <br>
                       <div class="input-group">
                           <span class="input-group-addon">数量</span>
-                          <input required type="text" name="count" id="count" class="form-control" placeholder="请输入素材数量">
+                          <input required type="number" name="count" id="count" class="form-control" placeholder="请输入素材数量">
                       </div>
                       <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top: 10px;">提交</button>
                   </form>

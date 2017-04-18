@@ -24,9 +24,21 @@ public class UserInfo extends BaseUser{
      */
     private String remark;
     /**
-     * 用户所在分组
+     * 用户所在分组Id
      */
     private String groupid;
+    /**
+     * 用户所在分组名称
+     */
+    private String groupName;
+
+    public UserInfo(){}
+
+    public UserInfo(String groupid, String remark,String openId) {
+        super.setOpenid(openId);
+        this.groupid = groupid;
+        this.remark = remark;
+    }
 
     public String getSubscribe() {
         return subscribe;
@@ -66,5 +78,13 @@ public class UserInfo extends BaseUser{
 
     public void setGroupid(String groupid) {
         this.groupid = groupid;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 }

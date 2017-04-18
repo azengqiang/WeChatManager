@@ -16,6 +16,7 @@ import java.util.List;
 public class MaterialServiceImpl implements IMaterialService {
     @Autowired
     private MaterialMapper materialMapper;
+
     @Override
     public void save(Material material) {
         materialMapper.save(material);

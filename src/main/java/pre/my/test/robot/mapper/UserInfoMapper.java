@@ -9,6 +9,14 @@ import java.util.List;
  */
 public interface UserInfoMapper {
     void save(UserInfo userInfo);
+
     UserInfo selectUserInfoByOpenid(String openid);
+
     List<UserInfo> selectAll();
+
+    void updateGroupByOpenId(UserInfo userInfo);
+
+    void updateRemarkByOpenId(UserInfo userInfo);
+
+    List<UserInfo> selectByGroup(UserInfo userInfo);
 }

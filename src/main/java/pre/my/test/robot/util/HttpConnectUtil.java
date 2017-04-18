@@ -173,9 +173,8 @@ public class HttpConnectUtil {
         if(!"image".equals(type)){
             typeName = type + "_media_id";
         }
-        int errcode = jsonObj.getInteger("errcode");
         Material material = null;
-        if(0==errcode){
+        if(null==jsonObj.getInteger("errcode")){
             material = new Material();
             material.setMediaId(jsonObj.getString(typeName));
             material.setMediaType(type);

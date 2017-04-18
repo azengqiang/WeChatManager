@@ -41,26 +41,26 @@ public class MaterialController {
     }
 
     @RequestMapping(value = "/getMaterialCount", method = RequestMethod.POST)
-    public void getMaterialCount(HttpServletRequest request) throws IOException {
+    public String getMaterialCount(HttpServletRequest request) throws IOException {
         MaterialCount materialCount = MaterialUtil.getMaterialCount(AccessTokenUtil.getValidAccessToken().getToken());
         if(materialCount!=null){
             logger.debug("image: {},news: {},video: {},voice: {}", materialCount.getImage_count(), materialCount.getNews_count(),
                     materialCount.getVideo_count(), materialCount.getVoice_count());
 
-            request.getSession().setAttribute("materialCount", materialCount);
+            request.setAttribute("materialCount", materialCount);
             MaterialCount s= (MaterialCount) request.getSession().getAttribute("materialCount");
         }
+        return "material/material";
     }
     @RequestMapping(value = "/getMaterials", method = RequestMethod.POST)
     @ResponseBody
-    public Materials getMaterials(HttpServletRequest request) throws IOException {
+    public void getMaterials(HttpServletRequest request) throws IOException {
         MaterialBatchGetParam param = new MaterialBatchGetParam();
         param.setType(request.getParameter("type"));
         param.setOffset(request.getParameter("offset"));
         param.setCount(request.getParameter("count"));
         Materials materials = MaterialUtil.getMaterialList(AccessTokenUtil.getValidAccessToken().getToken(),param);
         logger.debug(JSONObject.toJSONString(materials));
-        return materials;
     }
 
     @RequestMapping(value = "/fileUploadLocal", method = RequestMethod.POST)

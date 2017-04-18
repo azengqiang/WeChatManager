@@ -40,4 +40,12 @@ public interface IUserInfoService {
      * @return 用户信息列表
      */
     List<UserInfo> selectAll(Integer  pageSize,Integer  pageNumber);
+
+    void updateGroupByOpenId(UserInfo userInfo);
+
+    void updateRemarkByOpenId(UserInfo userInfo);
+
+    List<UserInfo> selectByGroup(Integer  pageSize,Integer  pageNumber,UserInfo userInfo);
+
+    List<UserInfo> getSelectByGroupSize(UserInfo userInfo);
 }

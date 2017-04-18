@@ -10,7 +10,13 @@
                         http://www.springframework.org/schema/mvc
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
     <context:component-scan base-package="pre.my.test.*.controller"/>
-    <mvc:annotation-driven />
+    <mvc:annotation-driven >
+       <!-- <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes" value="text/html;charset=utf-8"></property>
+            </bean>
+        </mvc:message-converters>-->
+    </mvc:annotation-driven>
     <!--处理静态资源方式一-->
     <mvc:default-servlet-handler/>
     <mvc:resources mapping="/resources/**" location="/resources/" />

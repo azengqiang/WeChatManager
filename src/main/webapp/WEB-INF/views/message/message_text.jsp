@@ -89,7 +89,7 @@
 <body>
 <div class="panel-body" style="padding-bottom:0px;">
     <table id="table" data-toggle="table">
-        <thead>
+       <%-- <thead>
         <tr>
             <th data-field="msgid">消息id</th>
             <th data-field="nickname">用户名</th>
@@ -97,7 +97,7 @@
             <th data-field="robotContent">机器人回复内容</th>
             <th data-field="creationDate">创建时间</th>
         </tr>
-        </thead>
+        </thead>--%>
     </table>
 </div>
 </body>

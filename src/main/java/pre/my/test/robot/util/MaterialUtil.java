@@ -34,8 +34,7 @@ public class MaterialUtil {
         MaterialCount materialCount = null;
         String url = Constants.MATERIAL_COUNT_GET_URL.replace("ACCESS_TOKEN", token);
         JSONObject jsonObject = HttpConnectUtil.doGetStr(url);
-        int result = jsonObject.getInteger("errcode");
-        if (0 == result) {
+        if (null == jsonObject.getInteger("errcode")) {
             materialCount = new MaterialCount();
             materialCount.setImage_count(jsonObject.getString("image_count"));
             materialCount.setNews_count(jsonObject.getString("news_count"));

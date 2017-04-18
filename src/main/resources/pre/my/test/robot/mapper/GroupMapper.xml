@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pre.my.test.robot.mapper.GroupMapper">
+    <resultMap id="BaseResultMap" type="pre.my.test.robot.dto.user.Group">
+        <id column="group_id" property="groupId"/>
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="count" property="count"/>
+        <result column="creation_date" property="creationDate"/>
+    </resultMap>
+
+     <select id="selectAll"  resultMap="BaseResultMap">
+               select * from rb_group
+     </select>
+     <select id="selectByName" parameterType="String" resultMap="BaseResultMap">
+               select id from rb_group where name = #{name}
+     </select>
+    <select id="select" parameterType="pre.my.test.robot.dto.user.Group" resultMap="BaseResultMap">
+        select * from rb_group
+        <where>
+            <if test="id !=null ">
+                and id = #{id}
+            </if>
+            <if test="name !=null ">
+                and name = #{name}
+            </if>
+        </where>
+
+    </select>
+    <!-- useGeneratedKeys设置为"true"表明要MyBatis获取由数据库自动生成的主键；
+     keyProperty="id"指定把获取到的主键值注入到User的id属性-->
+    <insert id="save" parameterType="pre.my.test.robot.dto.user.Group"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into rb_group(id,name,count,creation_date)
+        values(#{id},#{name},#{count},CURRENT_TIMESTAMP)
+    </insert>
+
+     <update id="updateName" parameterType="pre.my.test.robot.dto.user.Group">
+         update rb_group set name=#{name} where id=#{id}
+     </update>
+     <update id="updateCount" parameterType="pre.my.test.robot.dto.user.Group">
+         update rb_group set count=#{count} where id=#{id}
+     </update>
+
+    <delete id="delete" parameterType="pre.my.test.robot.dto.user.Group">
+        delete from rb_group where id=#{id}
+    </delete>
+</mapper>

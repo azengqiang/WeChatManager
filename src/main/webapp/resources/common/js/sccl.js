@@ -397,7 +397,7 @@ $(function(){
 	var menu = [{"id":"1","name":"主菜单","parentId":"0","url":"","icon":"","order":"1","isHeader":"1","childMenus":[
 					{"id":"21","name":"粉丝管理","parentId":"1","url":"","icon":"&#xe604;","order":"1","isHeader":"0","childMenus":[
 						{"id":"211","name":"粉丝信息","parentId":"21","url":"toUserInfo","icon":"","order":"1","isHeader":"0","childMenus":""},
-						{"id":"212","name":"分组管理","parentId":"21","url":"test2","icon":"","order":"1","isHeader":"0","childMenus":""}
+						{"id":"212","name":"分组管理","parentId":"21","url":"toGroup","icon":"","order":"1","isHeader":"0","childMenus":""}
 					]},
 					{"id":"23","name":"消息管理","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
 						{"id":"231","name":"消息列表","parentId":"23","url":"toTextMessage","icon":"","order":"1","isHeader":"0","childMenus":""},

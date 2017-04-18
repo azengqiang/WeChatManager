@@ -48,4 +48,28 @@ public class UserInfoServiceImpl implements IUserInfoService {
         PageHelper.startPage(pageNumber, pageSize);
         return  mapper.selectAll();
     }
+    @Override
+    public void updateGroupByOpenId(UserInfo userInfo){
+        mapper.updateGroupByOpenId(userInfo);
+    }
+
+    @Override
+    public void updateRemarkByOpenId(UserInfo userInfo) {
+        mapper.updateRemarkByOpenId(userInfo);
+    }
+
+    @Override
+    public List<UserInfo> selectByGroup(Integer pageSize, Integer pageNumber, UserInfo userInfo) {
+        pageNumber = pageNumber == null ? 1 : pageNumber;
+        pageSize = pageSize == null ? 5 : pageSize;
+        PageHelper.startPage(pageNumber, pageSize);
+        return mapper.selectByGroup(userInfo);
+    }
+
+    @Override
+    public List<UserInfo> getSelectByGroupSize(UserInfo userInfo) {
+        List<UserInfo> userInfos= mapper.selectByGroup(userInfo);
+        return userInfos;
+    }
+
 }

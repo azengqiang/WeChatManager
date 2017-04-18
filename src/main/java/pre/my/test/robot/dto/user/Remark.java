@@ -7,6 +7,11 @@ public class Remark {
     private String openid;
     private String remark;
 
+    public Remark(String openid, String remark) {
+        this.openid = openid;
+        this.remark = remark;
+    }
+
     public String getRemark() {
         return remark;
     }
