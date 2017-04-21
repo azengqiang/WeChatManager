@@ -73,4 +73,8 @@ public class UserInfoServiceImpl implements IUserInfoService {
         return userInfos;
     }
 
+    @Override
+    public void delete(UserInfo userInfo) {
+        mapper.delete(userInfo);
+    }
 }

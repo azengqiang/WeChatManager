@@ -14,14 +14,12 @@
     </resultMap>
 
     <select id="selectUserInfoByOpenid" parameterType="String" resultMap="BaseResultMap">
-        select *
-        from rb_material
+        select * from rb_material
         where media_id = #{mediaId}
     </select>
 
     <select id="selectAll" resultMap="BaseResultMap">
-        select *
-        from rb_material
+        select * from rb_material
     </select>
 
     <!-- useGeneratedKeys设置为"true"表明要MyBatis获取由数据库自动生成的主键；

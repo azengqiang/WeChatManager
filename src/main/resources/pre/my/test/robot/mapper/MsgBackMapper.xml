@@ -13,8 +13,7 @@
     </resultMap>
 
     <select id="selectCount" resultType="Integer">
-        SELECT COUNT(*)
-        from rb_message
+        SELECT COUNT(*) from rb_message
     </select>
 
     <select id="selectAllMsgBack" resultMap="BaseResultMap">

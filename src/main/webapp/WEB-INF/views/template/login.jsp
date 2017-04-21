@@ -19,7 +19,7 @@
   <body class="login-bg">
     <div class="login-box">
         <header>
-            <h1>框架后台管理系统</h1>
+            <h1>SWPU911管理系统</h1>
         </header>
         <div class="login-main">
 			<form action="index" class="layui-form" method="post">

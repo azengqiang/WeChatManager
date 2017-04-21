@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pre.my.test.robot.mapper.AutoResponseMapper">
+    <resultMap id="BaseResultMap" type="pre.my.test.robot.dto.autoresponse.AutoResponseMessage">
+        <id column="autoresponse_msg_id" property="autoResponseMsgId"/>
+        <result column="keyword_msg" property="keywordMsg"/>
+        <result column="response_msg" property="responseMsg"/>
+        <result column="creation_date" property="creationDate"/>
+    </resultMap>
+
+    <select id="select" resultMap="BaseResultMap"
+            parameterType="pre.my.test.robot.dto.autoresponse.AutoResponseMessage">
+        select * from rb_autoresponse ra
+        <where>
+            <if test="keywordMsg !=null ">
+                and ra.keyword_msg = #{keywordMsg}
+            </if>
+            <if test="responseMsg !=null ">
+                and ra.response_msg = #{responseMsg}
+            </if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="pre.my.test.robot.dto.autoresponse.AutoResponseMessage"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into rb_autoresponse(keyword_msg,response_msg,creation_date)
+        values(#{keywordMsg},#{responseMsg},CURRENT_TIMESTAMP)
+    </insert>
+
+    <delete id="delete" parameterType="pre.my.test.robot.dto.autoresponse.AutoResponseMessage">
+        delete from rb_autoresponse
+        where keyword_msg=#{keywordMsg}
+    </delete>
+</mapper>

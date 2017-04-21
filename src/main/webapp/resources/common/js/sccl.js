@@ -411,7 +411,8 @@ $(function(){
 						{"id":"222","name":"查看菜单","parentId":"22","url":"toLookMenu","icon":"","order":"1","isHeader":"0","childMenus":""}
 					]},
 					{"id":"26","name":"自动回复","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
-						{"id":"261","name":"自动回复","parentId":"26","url":"","icon":"","order":"1","isHeader":"0","childMenus":""},
+						{"id":"261","name":"关注回复设置","parentId":"26","url":"toSetSubscribeResponse","icon":"","order":"1","isHeader":"0","childMenus":""},
+						{"id":"262","name":"关键词回复设置","parentId":"26","url":"toSetKeywordResponse","icon":"","order":"1","isHeader":"0","childMenus":""},
 					]},
 					{"id":"25","name":"数据分析","parentId":"1","url":"","icon":"&#xe604;","order":"1","isHeader":"0","childMenus":[
 						{"id":"251","name":"用户分析","parentId":"25","url":"toUserAnalysis","icon":"","order":"1","isHeader":"0","childMenus":""},

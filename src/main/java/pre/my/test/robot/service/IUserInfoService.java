@@ -53,4 +53,6 @@ public interface IUserInfoService {
     List<UserInfo> select(Integer pageSize, Integer pageNumber, UserInfo userInfo);
 
     List<UserInfo> getSelectSize(UserInfo userInfo);
+
+    void delete(UserInfo userInfo);
 }

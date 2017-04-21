@@ -19,17 +19,11 @@
     </resultMap>
 
     <select id="selectUserInfoByOpenid" parameterType="String" resultMap="BaseResultMap">
-        select * from rb_user u
-        <where>
-            <if test="openid!=null">
-                and openid = #{openid}
-            </if>
-        </where>
+        select * from rb_user where openid = #{openid}
     </select>
 
     <select id="selectAll" resultMap="BaseResultMap">
-        select *
-        from rb_user
+        select * from rb_user
     </select>
 
     <select id="select" parameterType="pre.my.test.robot.dto.user.UserInfo" resultMap="BaseResultMap">
@@ -63,7 +57,7 @@
         where openid=#{openid}
     </update>
 
-    <!--<delete id="deleteUser" parameterType="int">
-        delete from user where id=#{id}
-    </delete>-->
+    <delete id="delete" parameterType="pre.my.test.robot.dto.user.UserInfo">
+        delete from rb_user where openid=#{openid}
+    </delete>
 </mapper>
