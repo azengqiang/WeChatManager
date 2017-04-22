@@ -233,7 +233,7 @@ public class Constants {
     /**
      * 项目地址，暂时为本地localhost:8080的映射地址
      */
-    public static final String PROJECT_URL = "http://13f60685.tunnel.qydev.com";
+    public static final String PROJECT_URL = "http://1ff8d474.tunnel.qydev.com";
     /**
      * 网页授权，获取code
      */

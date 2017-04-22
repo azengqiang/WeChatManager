@@ -146,7 +146,7 @@ public class UserController {
     public String toGroup(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //从微信获取用户分组 存入数据库
       /*  List<Group> groups = GroupUtil.queryAll(AccessTokenUtil.getValidAccessToken().getToken());*/
-      /*  for(Group group:groups){
+       /* for(Group group:groups){
             Group group1 = new Group(group.getId(),group.getName(),group.getCount());
             groupService.save(group1);
         }*/

@@ -38,7 +38,7 @@ public class EventMessageHandle {
             userInfoService.save(userInfo);
             //设置用户关注后公众号推送消息
             String responseMessage = "欢迎关注swpu911公众号！";
-            List<AutoResponseMessage> autoResponseMessages = service.select(new AutoResponseMessage("关注回复语", null));
+            List<AutoResponseMessage> autoResponseMessages = service.select(new AutoResponseMessage(null,"关注回复语", null));
             if (autoResponseMessages != null && autoResponseMessages.size() != 0) {
                 responseMessage = autoResponseMessages.get(0).getResponseMsg();
             }

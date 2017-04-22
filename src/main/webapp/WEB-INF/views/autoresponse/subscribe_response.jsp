@@ -24,6 +24,27 @@
             </a>
         </li>
     </ul>
+    <div class="modal fade" id="deleteSubscribeResponse">
+        <div class="modal-dialog">
+            <div class="modal-content message_align">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">提示信息</h4>
+                </div>
+                <div class="modal-body">
+                    <p>您确认要删除吗？</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="url"/>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <a class="btn btn-success" data-dismiss="modal" onclick="deleteSubscribeResponseMsg()">确定</a>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
     <div id="myTabContent" class="tab-content" style="margin-top: 20px;">
         <form class="form-horizontal" method="POST" action="setSubscribeResponse">
             <div class="tab-pane fade in active" id="home">
@@ -35,7 +56,7 @@
             </div>
             <div style="margin-top: 20px;">
                 <button type="submit" class="btn btn-primary">保存设置</button>
-                <button type="button" class="btn btn-default" onclick="deleteSubscribeResponseMsg()" id="delete">删除设置
+                <button type="button" class="btn btn-default"data-toggle="modal" data-target="#deleteSubscribeResponse" id="delete">删除设置
                 </button>
             </div>
         </form>
@@ -57,7 +78,7 @@
             data: deleteSubscribeResponseMsgData,
             contentType: "application/json",
             success: function (data) {
-
+                window.location.reload();
             }
         });
     }

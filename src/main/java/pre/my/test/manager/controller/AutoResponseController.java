@@ -33,7 +33,7 @@ public class AutoResponseController {
     @RequestMapping(value = "/toSetSubscribeResponse", method = GET)
     public String toSetSubscribeResponse(HttpServletRequest request, HttpServletResponse response) {
 
-        List<AutoResponseMessage> autoResponseMessages = service.select(new AutoResponseMessage("关注回复语", null));
+        List<AutoResponseMessage> autoResponseMessages = service.select(new AutoResponseMessage(null,"关注回复语", null));
         if (autoResponseMessages != null && autoResponseMessages.size() != 0) {
             logger.debug("关注回复语: " + autoResponseMessages.get(0).getResponseMsg());
             request.setAttribute("subscribeResponseMsg", autoResponseMessages.get(0));
@@ -55,11 +55,11 @@ public class AutoResponseController {
         String subscribeResponseMsg = (String) request.getParameter("subscribeResponseMsg");
         logger.debug("关注回复语设置: " + subscribeResponseMsg);
 
-        List<AutoResponseMessage> autoResponseMessages = service.select(new AutoResponseMessage("关注回复语", null));
+        List<AutoResponseMessage> autoResponseMessages = service.select(new AutoResponseMessage("关注回复","关注回复语", null));
         if (autoResponseMessages != null && autoResponseMessages.size() != 0) {
             service.delete(autoResponseMessages.get(0));
         }
-        service.save(new AutoResponseMessage("关注回复语", subscribeResponseMsg));
+        service.save(new AutoResponseMessage("关注回复","关注回复语", subscribeResponseMsg));
 
         return "redirect:toSetSubscribeResponse";
     }
@@ -67,7 +67,7 @@ public class AutoResponseController {
     @RequestMapping(value = "/deleteSubscribeResponse", method = POST)
     public String deleteSubscribeResponse(HttpServletRequest request, HttpServletResponse response,@RequestBody AutoResponseMessage autoResponseMessage){
 
-        service.delete(new AutoResponseMessage("关注回复语", null));
+        service.delete(new AutoResponseMessage(null,"关注回复语", null));
         logger.debug("成功删除关注回复语设置: " + autoResponseMessage.getResponseMsg());
 
         return "redirect:toSetSubscribeResponse";

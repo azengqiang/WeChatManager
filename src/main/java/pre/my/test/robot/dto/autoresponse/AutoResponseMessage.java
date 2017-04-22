@@ -14,6 +14,7 @@ public class AutoResponseMessage {
     @Id
     @GeneratedValue()
     private Long autoResponseMsgId;
+    private String ruleName;
     /**
      * 关键词
      */
@@ -22,9 +23,11 @@ public class AutoResponseMessage {
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date creationDate;
 
-    public AutoResponseMessage(){}
+    public AutoResponseMessage() {
+    }
 
-    public AutoResponseMessage(String keywordMsg, String responseMsg) {
+    public AutoResponseMessage(String ruleName, String keywordMsg, String responseMsg) {
+        this.ruleName = ruleName;
         this.keywordMsg = keywordMsg;
         this.responseMsg = responseMsg;
     }
@@ -35,6 +38,14 @@ public class AutoResponseMessage {
 
     public void setAutoResponseMsgId(Long autoResponseMsgId) {
         this.autoResponseMsgId = autoResponseMsgId;
+    }
+
+    public String getRuleName() {
+        return ruleName;
+    }
+
+    public void setRuleName(String ruleName) {
+        this.ruleName = ruleName;
     }
 
     public String getKeywordMsg() {

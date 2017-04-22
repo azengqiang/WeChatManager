@@ -5,6 +5,7 @@
 <mapper namespace="pre.my.test.robot.mapper.AutoResponseMapper">
     <resultMap id="BaseResultMap" type="pre.my.test.robot.dto.autoresponse.AutoResponseMessage">
         <id column="autoresponse_msg_id" property="autoResponseMsgId"/>
+        <result column="rule_name" property="ruleName"/>
         <result column="keyword_msg" property="keywordMsg"/>
         <result column="response_msg" property="responseMsg"/>
         <result column="creation_date" property="creationDate"/>
@@ -14,6 +15,9 @@
             parameterType="pre.my.test.robot.dto.autoresponse.AutoResponseMessage">
         select * from rb_autoresponse ra
         <where>
+            <if test="ruleName !=null ">
+                and ra.rule_name = #{ruleName}
+            </if>
             <if test="keywordMsg !=null ">
                 and ra.keyword_msg = #{keywordMsg}
             </if>
@@ -25,8 +29,8 @@
 
     <insert id="save" parameterType="pre.my.test.robot.dto.autoresponse.AutoResponseMessage"
             useGeneratedKeys="true" keyProperty="id">
-        insert into rb_autoresponse(keyword_msg,response_msg,creation_date)
-        values(#{keywordMsg},#{responseMsg},CURRENT_TIMESTAMP)
+        insert into rb_autoresponse(rule_name,keyword_msg,response_msg,creation_date)
+        values(#{ruleName},#{keywordMsg},#{responseMsg},CURRENT_TIMESTAMP)
     </insert>
 
     <delete id="delete" parameterType="pre.my.test.robot.dto.autoresponse.AutoResponseMessage">

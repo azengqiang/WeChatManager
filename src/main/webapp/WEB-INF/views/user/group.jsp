@@ -315,7 +315,7 @@
         <div class="row" style="margin-left: 5px;">
 
             <div class="form-group">
-                <div class="col-sm-3" id="tree">
+                <div class="col-sm-3" id="tree" style="width: 270px;">
 
                 </div>
                 <div class="col-sm-9">
@@ -415,6 +415,7 @@
     }
 
     var deleteGroup = function () {
+        debugger;
         var group = new Array();
         for (var i = 0; i < deleteNodes.length; i++) {
             var p = {};
