@@ -1,13 +1,16 @@
 package pre.my.test.robot.handle;
 
+import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pre.my.test.robot.dto.autoresponse.AutoResponseMessage;
+import pre.my.test.robot.dto.location.RimLocation;
 import pre.my.test.robot.dto.user.Location;
 import pre.my.test.robot.dto.user.UserInfo;
-import pre.my.test.robot.service.AutoResponseService;
+import pre.my.test.robot.service.IAutoResponseService;
+import pre.my.test.robot.service.IRimLocationService;
 import pre.my.test.robot.service.IUserInfoService;
 import pre.my.test.robot.util.*;
 
@@ -24,8 +27,11 @@ public class EventMessageHandle {
     @Autowired
     private IUserInfoService userInfoService;
     @Autowired
-    private AutoResponseService service;
-
+    private IAutoResponseService service;
+    @Autowired
+    private IRimLocationService rimLocationService;
+    private String lon;
+    private String lat;
 
     //事件处理
     public String eventMessageHandle(String fromUserName, String toUserName, String content, String createTime, Map<String, String> requestMap) throws IOException {
@@ -38,7 +44,7 @@ public class EventMessageHandle {
             userInfoService.save(userInfo);
             //设置用户关注后公众号推送消息
             String responseMessage = "欢迎关注swpu911公众号！";
-            List<AutoResponseMessage> autoResponseMessages = service.select(new AutoResponseMessage(null,"关注回复语", null));
+            List<AutoResponseMessage> autoResponseMessages = service.select(new AutoResponseMessage(null, "关注回复语", null));
             if (autoResponseMessages != null && autoResponseMessages.size() != 0) {
                 responseMessage = autoResponseMessages.get(0).getResponseMsg();
             }
@@ -49,7 +55,7 @@ public class EventMessageHandle {
             if (userInfo != null) {
                 userInfoService.delete(userInfo);
             }
-            logger.debug(userInfo.getNickname()+"取消了关注");
+            logger.debug(userInfo.getNickname() + "取消了关注");
         } else if (eventType.equals(Constants.EVENT_TYPE_CLICK)) {// 自定义菜单点击事件
             if (eventKey.equals("11")) {
                 String csyb = "欢迎使用城市邮编功能！\n请编辑城市名+邮编发送至公众号，即可查询相应城市邮编\n如：内江邮编";
@@ -64,6 +70,34 @@ public class EventMessageHandle {
                 return MessageUtil.initTextMessage(fromUserName, toUserName, zyhy);
             } else if (eventKey.equals("21")) {
                 return MessageUtil.initTextMessage(fromUserName, toUserName, TuringAPIUtil.getTuringResult("你好"));
+            } else if (eventKey.equals("31")) {
+               /* TuringLocation turingLocation = new TuringLocation();
+                String address = TuringAPIUtil.changeAddr(lon, lat);
+                turingLocation.setLoc(address);
+                turingLocation.setInfo("附近的餐厅");
+                turingLocation.setUserid("1");
+                turingLocation.setLon(lon);
+                turingLocation.setLat(lat);
+                return MessageUtil.initTextMessage(fromUserName, toUserName, TuringAPIUtil.getTuringRestaurantResult(turingLocation));*/
+                String mstj = "请发送您的位置，我们会为您推荐附近的餐厅，祝您吃的愉快！！";
+                RimLocation rimLocation = new RimLocation();
+                rimLocation.setOpenid(fromUserName);
+                rimLocation.setRimType("restaurant");
+                rimLocationService.save(rimLocation);
+                return MessageUtil.initTextMessage(fromUserName, toUserName, mstj);
+            } else if (eventKey.equals("32")) {
+               /* TuringLocation turingLocation = new TuringLocation();
+                String address = TuringAPIUtil.changeAddr(lon, lat);
+                turingLocation.setLoc(address);
+                turingLocation.setInfo("附近的酒店");
+                turingLocation.setUserid("1");
+                return MessageUtil.initTextMessage(fromUserName, toUserName, TuringAPIUtil.getTuringRestaurantResult(turingLocation));*/
+                String mstj = "请发送您的位置，我们会为您推荐附近的酒店，祝您旅途愉快！！";
+                RimLocation rimLocation = new RimLocation();
+                rimLocation.setOpenid(fromUserName);
+                rimLocation.setRimType("hotel");
+                rimLocationService.save(rimLocation);
+                return MessageUtil.initTextMessage(fromUserName, toUserName, mstj);
             }
 
         } else if (eventType.equals(Constants.EVENT_TYPE_VIEW)) {
@@ -74,10 +108,17 @@ public class EventMessageHandle {
             location.setFromUserName(fromUserName);
             location.setCreateTime(createTime);
             location.setLocation("纬度 " + requestMap.get("Latitude") + " 经度 " + requestMap.get("Longitude") + " 精度 " + requestMap.get("Precision"));
-            //logger.debug(JSONObject.toJSON(location).toString());
+            logger.debug(JSONObject.toJSON(location).toString());
+            lon = requestMap.get("Longitude");
+            lat = requestMap.get("Latitude");
             // return MessageUtil.initTextMessage(fromUserName, toUserName, "您好：\n" + fromUserName + "\n您所在的位置是：" + "\n纬度 " + requestMap.get("Latitude") + "\n经度 " + requestMap.get("Longitude") + "\n精度 " + requestMap.get("Precision"));
         }
         return respEventMessage;
     }
 
 }
+
+
+
+
+

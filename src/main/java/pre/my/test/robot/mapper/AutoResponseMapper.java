@@ -1,7 +1,6 @@
 package pre.my.test.robot.mapper;
 
 import pre.my.test.robot.dto.autoresponse.AutoResponseMessage;
-import pre.my.test.robot.service.AutoResponseService;
 
 import java.util.List;
 
@@ -13,5 +12,9 @@ public interface AutoResponseMapper {
 
     void delete(AutoResponseMessage autoResponseMessage);
 
+    void update(AutoResponseMessage autoResponseMessage);
+
     List<AutoResponseMessage> select(AutoResponseMessage autoResponseMessage);
+
+    List<AutoResponseMessage> selectAll();
 }

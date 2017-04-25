@@ -11,6 +11,11 @@
         <result column="creation_date" property="creationDate"/>
     </resultMap>
 
+
+    <select id="selectAll" resultMap="BaseResultMap">
+          select * from rb_autoresponse
+    </select>
+
     <select id="select" resultMap="BaseResultMap"
             parameterType="pre.my.test.robot.dto.autoresponse.AutoResponseMessage">
         select * from rb_autoresponse ra
@@ -35,6 +40,12 @@
 
     <delete id="delete" parameterType="pre.my.test.robot.dto.autoresponse.AutoResponseMessage">
         delete from rb_autoresponse
-        where keyword_msg=#{keywordMsg}
+        where autoresponse_msg_id=#{autoResponseMsgId}
     </delete>
+
+    <update id="update" parameterType="pre.my.test.robot.dto.autoresponse.AutoResponseMessage">
+        update rb_autoresponse
+        set rule_name=#{ruleName},keyword_msg=#{keywordMsg},response_msg=#{responseMsg}
+        where autoresponse_msg_id=#{autoResponseMsgId}
+    </update>
 </mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pre.my.test.robot.mapper.RimLocationMapper">
+    <resultMap id="BaseResultMap" type="pre.my.test.robot.dto.location.RimLocation">
+        <id column="id" property="id"/>
+        <result column="openid" property="openid"/>
+        <result column="address" property="address"/>
+        <result column="rimType" property="rimType"/>
+        <result column="callBack" property="callBack"/>
+        <result column="creationDate" property="creationDate"/>
+    </resultMap>
+
+    <select id="select" parameterType="pre.my.test.robot.dto.location.RimLocation" resultMap="BaseResultMap">
+        select * from rb_location rl
+        where rl.callBack IS NULL and rl.openid = #{openid}
+        order by rl.creationDate desc
+    </select>
+
+    <insert id="save" parameterType="pre.my.test.robot.dto.location.RimLocation"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into rb_location(openid,address,rimType,callBack,creationDate)
+        values(#{openid},#{address},#{rimType},#{callBack},CURRENT_TIMESTAMP)
+    </insert>
+
+    <update id="update" parameterType="pre.my.test.robot.dto.location.RimLocation">
+        update rb_location
+        set address=#{address},callBack=#{callBack}
+        where id=#{id}
+    </update>
+
+    <!-- <delete id="deleteUser" parameterType="int">
+         delete from user where id=#{id}
+     </delete>-->
+</mapper>

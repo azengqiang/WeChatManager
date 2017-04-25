@@ -8,10 +8,16 @@ import java.util.List;
 /**
  * Author:qiang.zeng on 2017/4/21.
  */
-public interface AutoResponseService {
+public interface IAutoResponseService {
     void save(AutoResponseMessage autoResponseMessage);
 
     void delete(AutoResponseMessage autoResponseMessage);
 
+    void update(AutoResponseMessage autoResponseMessage);
+
     List<AutoResponseMessage> select(AutoResponseMessage autoResponseMessage);
+
+    List<AutoResponseMessage> selectAll(Integer pageSize, Integer pageNumber);
+
+    List<AutoResponseMessage> selectAll();
 }

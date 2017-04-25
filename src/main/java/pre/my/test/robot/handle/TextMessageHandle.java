@@ -5,9 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pre.my.test.robot.dto.AccessToken;
+import pre.my.test.robot.dto.autoresponse.AutoResponseMessage;
 import pre.my.test.robot.dto.user.Group;
 import pre.my.test.robot.dto.user.MsgBack;
 import pre.my.test.robot.dto.user.UserInfo;
+import pre.my.test.robot.service.IAutoResponseService;
 import pre.my.test.robot.service.IMsgBackService;
 import pre.my.test.robot.service.IUserInfoService;
 import pre.my.test.robot.util.AccessTokenUtil;
@@ -28,11 +30,24 @@ public class TextMessageHandle {
     private IUserInfoService userInfoService;
     @Autowired
     private IMsgBackService msgBackService;
+    @Autowired
+    private IAutoResponseService autoResponseService;
+
 
     //文本消息处理
     public String textMessageHandle(String fromUserName, String toUserName, String content) throws IOException {
+        List<AutoResponseMessage> autoResponseMessages = autoResponseService.selectAll();
+        for (AutoResponseMessage autoResponseMessage : autoResponseMessages) {
+            String keyword = autoResponseMessage.getKeywordMsg();
+            String[] keywords = keyword.split("，");
+            for(String key:keywords){
+                if (content.contains(key)) {
+                    return MessageUtil.initTextMessage(fromUserName, toUserName, autoResponseMessage.getResponseMsg());
+                }
+            }
+        }
         if (content.equals("1")) {
-
+            TuringAPIUtil.changeAddr("121.151558","31.169786");
         } else if (content.equals("2")) {
             return MessageUtil.initNewsMessage(fromUserName, toUserName);
         } else if (content.equals("3")) {
@@ -62,7 +77,7 @@ public class TextMessageHandle {
             String mediaId = "3lIPHNZnAliHoT6AO9ZJEGZo9nUCFZt8M6w-7ixY2kFok9UCHyP80RcJgG0VDUil";
             return MessageUtil.initImageMessage(fromUserName, toUserName, mediaId);
         }*/ else {
-            UserInfo userInfo = userInfoService.selectUserInfoByOpenid(fromUserName);
+            /*UserInfo userInfo = userInfoService.selectUserInfoByOpenid(fromUserName);
             String resultContent = TuringAPIUtil.getTuringResult(content);
             logger.debug("回复内容字节：" + String.valueOf(resultContent.getBytes("utf-8").length));
             logger.debug(userInfo.getNickname() + "输入内容：" + content);
@@ -72,7 +87,7 @@ public class TextMessageHandle {
             msgBack.setUserContent(content);
             msgBack.setRobotContent(resultContent);
             msgBackService.save(msgBack);
-            return MessageUtil.initTextMessage(fromUserName, toUserName, resultContent);
+            return MessageUtil.initTextMessage(fromUserName, toUserName, resultContent);*/
         }
 
         return MessageUtil.initTextMessage(fromUserName, toUserName, "您发送的内容是：" + content);
