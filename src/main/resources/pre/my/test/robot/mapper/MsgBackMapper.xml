@@ -19,7 +19,7 @@
     <select id="selectAllMsgBack" resultMap="BaseResultMap">
         select m.msgid,u.nickname,m.user_content,m.robot_content,m.creation_date
         from rb_message m
-        join rb_user u on u.userid = m.userid
+        join rb_userinfo u on u.userid = m.userid
     </select>
 
     <insert id="save" parameterType="pre.my.test.robot.dto.user.MsgBack"

@@ -5,7 +5,7 @@ import javax.persistence.Table;
 /**
  * Author:qiang.zeng on 2017/2/6.
  */
-@Table(name = "rb_user")
+@Table(name = "rb_userinfo")
 public class UserInfo extends BaseUser{
 
     /**

@@ -19,15 +19,15 @@
     </resultMap>
 
     <select id="selectUserInfoByOpenid" parameterType="String" resultMap="BaseResultMap">
-        select * from rb_user where openid = #{openid}
+        select * from rb_userinfo where openid = #{openid}
     </select>
 
     <select id="selectAll" resultMap="BaseResultMap">
-        select * from rb_user
+        select * from rb_userinfo
     </select>
 
     <select id="select" parameterType="pre.my.test.robot.dto.user.UserInfo" resultMap="BaseResultMap">
-        select * from rb_user
+        select * from rb_userinfo
         <where>
             <if test="groupid !=null ">
                 and groupid = #{groupid}
@@ -42,22 +42,22 @@
   useGeneratedKeys设置为"true"表明要MyBatis获取由数据库自动生成的主键；keyProperty="id"指定把获取到的主键值注入到User的id属性-->
     <insert id="save" parameterType="pre.my.test.robot.dto.user.UserInfo"
             useGeneratedKeys="true" keyProperty="id">
-        insert into rb_user(subscribe,openid,nickname,sex,address,lang,headimgurl,subscribe_time,unionid,remark,groupid)
+        insert into rb_userinfo(subscribe,openid,nickname,sex,address,lang,headimgurl,subscribe_time,unionid,remark,groupid)
         values(#{subscribe},#{openid},#{nickname},#{sex},#{address},#{lang},#{headimgurl},#{subscribe_time},#{unionid},#{remark},#{groupid})
     </insert>
 
     <update id="updateGroupByOpenId" parameterType="pre.my.test.robot.dto.user.UserInfo">
-        update rb_user
+        update rb_userinfo
         set groupid=#{groupid}
         where openid=#{openid}
     </update>
     <update id="updateRemarkByOpenId" parameterType="pre.my.test.robot.dto.user.UserInfo">
-        update rb_user
+        update rb_userinfo
         set remark=#{remark}
         where openid=#{openid}
     </update>
 
     <delete id="delete" parameterType="pre.my.test.robot.dto.user.UserInfo">
-        delete from rb_user where openid=#{openid}
+        delete from rb_userinfo where openid=#{openid}
     </delete>
 </mapper>
