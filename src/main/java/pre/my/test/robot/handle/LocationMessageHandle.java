@@ -27,12 +27,12 @@ public class LocationMessageHandle {
         String location_X = requestMap.get("Location_X");
         String location_Y = requestMap.get("Location_Y");
         String scale = requestMap.get("Scale");
-        LocationMessage locationMessage = new LocationMessage();
+      /*  LocationMessage locationMessage = new LocationMessage();
         locationMessage.setLabel(label);
         //纬度 31.169786 经度 121.151558
         locationMessage.setLocation_X(location_X);
         locationMessage.setLocation_Y(location_Y);
-        locationMessage.setScale(scale);
+        locationMessage.setScale(scale);*/
 
         RimLocation rimLocation = new RimLocation();
         rimLocation.setOpenid(fromUserName);
@@ -53,7 +53,7 @@ public class LocationMessageHandle {
             turingLocation.setLoc(label);
             turingLocation.setUserid("1");
         }
-        String callback = TuringAPIUtil.getTuringRestaurantResult(turingLocation);
+        String callback = TuringAPIUtil.getTuringLocationResult(turingLocation);
         rl.setAddress(label);
         rl.setCallBack(callback);
         rimLocationService.update(rl);

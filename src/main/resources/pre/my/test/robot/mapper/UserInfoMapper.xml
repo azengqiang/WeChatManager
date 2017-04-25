@@ -56,6 +56,15 @@
         set remark=#{remark}
         where openid=#{openid}
     </update>
+    <update id="update" parameterType="pre.my.test.robot.dto.user.UserInfo">
+        update rb_userinfo ru
+        <set>
+            <if test="subscribe!=null">
+                ru.subscribe = #{subscribe},
+            </if>
+        </set>
+        where openid=#{openid}
+    </update>
 
     <delete id="delete" parameterType="pre.my.test.robot.dto.user.UserInfo">
         delete from rb_userinfo where openid=#{openid}

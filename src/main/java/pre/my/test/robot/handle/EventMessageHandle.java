@@ -8,9 +8,11 @@ import org.springframework.stereotype.Component;
 import pre.my.test.robot.dto.autoresponse.AutoResponseMessage;
 import pre.my.test.robot.dto.location.RimLocation;
 import pre.my.test.robot.dto.user.Location;
+import pre.my.test.robot.dto.user.SubscribeDetail;
 import pre.my.test.robot.dto.user.UserInfo;
 import pre.my.test.robot.service.IAutoResponseService;
 import pre.my.test.robot.service.IRimLocationService;
+import pre.my.test.robot.service.ISubscribeDetailService;
 import pre.my.test.robot.service.IUserInfoService;
 import pre.my.test.robot.util.*;
 
@@ -27,9 +29,11 @@ public class EventMessageHandle {
     @Autowired
     private IUserInfoService userInfoService;
     @Autowired
-    private IAutoResponseService service;
+    private IAutoResponseService autoResponseService;
     @Autowired
     private IRimLocationService rimLocationService;
+    @Autowired
+    private ISubscribeDetailService subscribeDetailService;
     private String lon;
     private String lat;
 
@@ -39,23 +43,38 @@ public class EventMessageHandle {
         String eventKey = requestMap.get("EventKey");//自定义事件
         String respEventMessage = "";
         if (eventType.equals(Constants.EVENT_TYPE_SUBSCRIBE)) {// 订阅
-            //每次订阅 将关注用户的信息存入数据库当中
-            UserInfo userInfo = UserManagerUtil.getUserInfo(AccessTokenUtil.getValidAccessToken().getToken(), fromUserName);
-            userInfoService.save(userInfo);
+            //每次订阅 首先查数据库是否有这个人 有，修改关注状态为1，否则，将关注用户的信息存入数据库当中
+            UserInfo existUserInfo = userInfoService.selectUserInfoByOpenid(fromUserName);
+            if (existUserInfo != null) {
+                existUserInfo.setSubscribe("1");
+                userInfoService.update(existUserInfo);
+                logger.debug(existUserInfo.getNickname() + "重新关注");
+            } else {
+                UserInfo newUserInfo = UserManagerUtil.getUserInfo(AccessTokenUtil.getValidAccessToken().getToken(), fromUserName);
+                userInfoService.save(newUserInfo);
+                logger.debug(newUserInfo.getNickname(), "新关注");
+            }
+            SubscribeDetail subscribeDetail = new SubscribeDetail();
+            subscribeDetail.setOpenid(fromUserName);
+            subscribeDetail.setAction("subscribe");
+            subscribeDetailService.save(subscribeDetail);
             //设置用户关注后公众号推送消息
             String responseMessage = "欢迎关注swpu911公众号！";
-            List<AutoResponseMessage> autoResponseMessages = service.select(new AutoResponseMessage(null, "关注回复语", null));
+            List<AutoResponseMessage> autoResponseMessages = autoResponseService.select(new AutoResponseMessage(null, "关注回复语", null));
             if (autoResponseMessages != null && autoResponseMessages.size() != 0) {
                 responseMessage = autoResponseMessages.get(0).getResponseMsg();
             }
             respEventMessage = MessageUtil.initTextMessage(fromUserName, toUserName, responseMessage);
 
         } else if (eventType.equals(Constants.EVENT_TYPE_UNSUBSCRIBE)) {// 取消订阅
-            UserInfo userInfo = userInfoService.selectUserInfoByOpenid(fromUserName);
-            if (userInfo != null) {
-                userInfoService.delete(userInfo);
-            }
-            logger.debug(userInfo.getNickname() + "取消了关注");
+            UserInfo existUserInfo = userInfoService.selectUserInfoByOpenid(fromUserName);
+            existUserInfo.setSubscribe("0");
+            userInfoService.update(existUserInfo);
+            logger.debug(existUserInfo.getNickname() + "取消关注");
+            SubscribeDetail subscribeDetail = new SubscribeDetail();
+            subscribeDetail.setOpenid(fromUserName);
+            subscribeDetail.setAction("unSubscribe");
+            subscribeDetailService.save(subscribeDetail);
         } else if (eventType.equals(Constants.EVENT_TYPE_CLICK)) {// 自定义菜单点击事件
             if (eventKey.equals("11")) {
                 String csyb = "欢迎使用城市邮编功能！\n请编辑城市名+邮编发送至公众号，即可查询相应城市邮编\n如：内江邮编";
@@ -69,7 +88,7 @@ public class EventMessageHandle {
                 String zyhy = "欢迎使用中英互译功能！\n请编***单词发送至公众号，即可进行单词中英互译\n如：内江单词，friend翻译";
                 return MessageUtil.initTextMessage(fromUserName, toUserName, zyhy);
             } else if (eventKey.equals("21")) {
-                return MessageUtil.initTextMessage(fromUserName, toUserName, TuringAPIUtil.getTuringResult("你好"));
+                return MessageUtil.initTextMessage(fromUserName, toUserName, TuringAPIUtil.getTuringResult("hello"));
             } else if (eventKey.equals("31")) {
                /* TuringLocation turingLocation = new TuringLocation();
                 String address = TuringAPIUtil.changeAddr(lon, lat);

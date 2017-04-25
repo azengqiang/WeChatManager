@@ -21,4 +21,6 @@ public interface UserInfoMapper {
     List<UserInfo> select(UserInfo userInfo);
 
     void delete(UserInfo userInfo);
+
+    void update(UserInfo userInfo);
 }

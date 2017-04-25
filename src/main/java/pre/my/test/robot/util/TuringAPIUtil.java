@@ -49,7 +49,7 @@ public class TuringAPIUtil {
         return address;
     }
 
-    public static String getTuringRestaurantResult(TuringLocation turingLocation) throws IOException {
+    public static String getTuringLocationResult(TuringLocation turingLocation) throws IOException {
 
         /** 此处为图灵api接口，参数key需要自己去注册申请 */
         String apiUrl = "http://www.tuling123.com/openapi/api";

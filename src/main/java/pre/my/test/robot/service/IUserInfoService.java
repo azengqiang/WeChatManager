@@ -55,4 +55,6 @@ public interface IUserInfoService {
     List<UserInfo> getSelectSize(UserInfo userInfo);
 
     void delete(UserInfo userInfo);
+
+    void update(UserInfo userInfo);
 }

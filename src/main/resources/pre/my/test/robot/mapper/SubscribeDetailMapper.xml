@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pre.my.test.robot.mapper.SubscribeDetailMapper">
+    <resultMap id="BaseResultMap" type="pre.my.test.robot.dto.user.SubscribeDetail">
+        <id column="id" property="id"/>
+        <result column="openid" property="openid"/>
+        <result column="action" property="action"/>
+        <result column="creationDate" property="creationDate"/>
+    </resultMap>
+
+    <select id="select" parameterType="pre.my.test.robot.dto.user.SubscribeDetail" resultMap="BaseResultMap">
+        select * from rb_subscribe
+        <where>
+            <if test="action !=null ">
+                and action = #{action}
+            </if>
+            <if test="creationDate !=null ">
+                and  date(creationDate)  <![CDATA[ <= ]]> CURDATE() and date(creationDate) <![CDATA[ > ]]> DATE_SUB(CURDATE(),INTERVAL -1 MINUTE )
+            </if>
+        </where>
+    </select>
+
+
+    <!--执行增加操作的SQL语句。id和parameterType分别与IUserInfoService接口中的save方法的名字和参数类型一致。
+  useGeneratedKeys设置为"true"表明要MyBatis获取由数据库自动生成的主键；keyProperty="id"指定把获取到的主键值注入到User的id属性-->
+    <insert id="save" parameterType="pre.my.test.robot.dto.user.SubscribeDetail"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into rb_subscribe(openid,action,creationDate)
+        values(#{openid},#{action},CURRENT_TIMESTAMP)
+    </insert>
+
+    <update id="update" parameterType="pre.my.test.robot.dto.user.SubscribeDetail">
+        update rb_subscribe rs
+        <set>
+            <if test="action!=null">
+                rs.action = #{action},
+            </if>
+        </set>
+        where openid=#{openid}
+    </update>
+
+    <delete id="delete" parameterType="pre.my.test.robot.dto.user.SubscribeDetail">
+        delete from rb_subscribe where openid=#{openid}
+    </delete>
+</mapper>

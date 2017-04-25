@@ -42,7 +42,14 @@ public class TextMessageHandle {
             String[] keywords = keyword.split("，");
             for(String key:keywords){
                 if (content.contains(key)) {
-                    return MessageUtil.initTextMessage(fromUserName, toUserName, autoResponseMessage.getResponseMsg());
+                    UserInfo userInfo = userInfoService.selectUserInfoByOpenid(fromUserName);
+                    String resultContent = MessageUtil.initTextMessage(fromUserName, toUserName, autoResponseMessage.getResponseMsg());
+                    MsgBack msgBack = new MsgBack();
+                    msgBack.setUserid(userInfo.getUserid());
+                    msgBack.setUserContent(content);
+                    msgBack.setRobotContent(autoResponseMessage.getResponseMsg());
+                    msgBackService.save(msgBack);
+                    return resultContent;
                 }
             }
         }
@@ -77,7 +84,7 @@ public class TextMessageHandle {
             String mediaId = "3lIPHNZnAliHoT6AO9ZJEGZo9nUCFZt8M6w-7ixY2kFok9UCHyP80RcJgG0VDUil";
             return MessageUtil.initImageMessage(fromUserName, toUserName, mediaId);
         }*/ else {
-            /*UserInfo userInfo = userInfoService.selectUserInfoByOpenid(fromUserName);
+            UserInfo userInfo = userInfoService.selectUserInfoByOpenid(fromUserName);
             String resultContent = TuringAPIUtil.getTuringResult(content);
             logger.debug("回复内容字节：" + String.valueOf(resultContent.getBytes("utf-8").length));
             logger.debug(userInfo.getNickname() + "输入内容：" + content);
@@ -87,7 +94,7 @@ public class TextMessageHandle {
             msgBack.setUserContent(content);
             msgBack.setRobotContent(resultContent);
             msgBackService.save(msgBack);
-            return MessageUtil.initTextMessage(fromUserName, toUserName, resultContent);*/
+            return MessageUtil.initTextMessage(fromUserName, toUserName, resultContent);
         }
 
         return MessageUtil.initTextMessage(fromUserName, toUserName, "您发送的内容是：" + content);
