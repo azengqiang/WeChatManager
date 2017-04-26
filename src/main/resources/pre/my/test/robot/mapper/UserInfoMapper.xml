@@ -62,6 +62,9 @@
             <if test="subscribe!=null">
                 ru.subscribe = #{subscribe},
             </if>
+            <if test="groupid!=null">
+                ru.groupid = #{groupid},
+            </if>
         </set>
         where openid=#{openid}
     </update>

@@ -7,13 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pre.my.test.robot.dto.autoresponse.AutoResponseMessage;
 import pre.my.test.robot.dto.location.RimLocation;
+import pre.my.test.robot.dto.user.Group;
 import pre.my.test.robot.dto.user.Location;
 import pre.my.test.robot.dto.user.SubscribeDetail;
 import pre.my.test.robot.dto.user.UserInfo;
-import pre.my.test.robot.service.IAutoResponseService;
-import pre.my.test.robot.service.IRimLocationService;
-import pre.my.test.robot.service.ISubscribeDetailService;
-import pre.my.test.robot.service.IUserInfoService;
+import pre.my.test.robot.service.*;
 import pre.my.test.robot.util.*;
 
 import java.io.IOException;
@@ -34,6 +32,8 @@ public class EventMessageHandle {
     private IRimLocationService rimLocationService;
     @Autowired
     private ISubscribeDetailService subscribeDetailService;
+    @Autowired
+    private IGroupService groupService;
     private String lon;
     private String lat;
 
@@ -47,6 +47,7 @@ public class EventMessageHandle {
             UserInfo existUserInfo = userInfoService.selectUserInfoByOpenid(fromUserName);
             if (existUserInfo != null) {
                 existUserInfo.setSubscribe("1");
+                existUserInfo.setGroupid("0");
                 userInfoService.update(existUserInfo);
                 logger.debug(existUserInfo.getNickname() + "重新关注");
             } else {
@@ -54,6 +55,7 @@ public class EventMessageHandle {
                 userInfoService.save(newUserInfo);
                 logger.debug(newUserInfo.getNickname(), "新关注");
             }
+
             SubscribeDetail subscribeDetail = new SubscribeDetail();
             subscribeDetail.setOpenid(fromUserName);
             subscribeDetail.setAction("subscribe");
@@ -64,12 +66,18 @@ public class EventMessageHandle {
             if (autoResponseMessages != null && autoResponseMessages.size() != 0) {
                 responseMessage = autoResponseMessages.get(0).getResponseMsg();
             }
+            Group originGroup = groupService.select(new Group("0", null, null));
+            String originCount = String.valueOf(Integer.valueOf(originGroup.getCount())+1);
+            originGroup.setCount(originCount);
+            groupService.updateCount(originGroup);
             respEventMessage = MessageUtil.initTextMessage(fromUserName, toUserName, responseMessage);
 
         } else if (eventType.equals(Constants.EVENT_TYPE_UNSUBSCRIBE)) {// 取消订阅
             UserInfo existUserInfo = userInfoService.selectUserInfoByOpenid(fromUserName);
             existUserInfo.setSubscribe("0");
+            existUserInfo.setGroupid("-1");
             userInfoService.update(existUserInfo);
+            resizeGroup();
             logger.debug(existUserInfo.getNickname() + "取消关注");
             SubscribeDetail subscribeDetail = new SubscribeDetail();
             subscribeDetail.setOpenid(fromUserName);
@@ -134,7 +142,13 @@ public class EventMessageHandle {
         }
         return respEventMessage;
     }
-
+    private void resizeGroup() throws IOException {
+        List<Group> groups = GroupUtil.queryAll(AccessTokenUtil.getValidAccessToken().getToken());
+        for (Group group : groups) {
+            groupService.updateCount(group);
+        }
+        logger.debug("分组数量发送变化");
+    }
 }
 
 

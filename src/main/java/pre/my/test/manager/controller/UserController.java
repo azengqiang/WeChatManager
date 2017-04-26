@@ -145,7 +145,7 @@ public class UserController {
     @RequestMapping(value = "/toGroup", method = RequestMethod.GET)
     public String toGroup(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //从微信获取用户分组 存入数据库
-      /*  List<Group> groups = GroupUtil.queryAll(AccessTokenUtil.getValidAccessToken().getToken());*/
+       //List<Group> groups = GroupUtil.queryAll(AccessTokenUtil.getValidAccessToken().getToken());
        /* for(Group group:groups){
             Group group1 = new Group(group.getId(),group.getName(),group.getCount());
             groupService.save(group1);
@@ -215,6 +215,7 @@ public class UserController {
                 logger.debug("分组(" + group.getName() + ")删除失败");
             }
         }
+        resizeGroup();
         return "redirect:toGroup";
     }
 
@@ -265,7 +266,7 @@ public class UserController {
             userInfo.setOpenid(groupOpenId);
             userInfoService.updateGroupByOpenId(userInfo);
             //分组(数量)更新
-            //原分组数量减一
+           /* //原分组数量减一
             Group originGroup = groupService.select(new Group(null, originUserGroupName, null));
             String originCount = String.valueOf(Integer.valueOf(originGroup.getCount()) - 1);
             originGroup.setCount(originCount);
@@ -274,12 +275,21 @@ public class UserController {
             Group nowGroup = groupService.select(new Group(newGroupId, null, null));
             String nowCount = String.valueOf(Integer.valueOf(nowGroup.getCount()) + 1);
             nowGroup.setCount(nowCount);
-            groupService.updateCount(nowGroup);
+            groupService.updateCount(nowGroup);*/
+            resizeGroup();
             logger.debug("移动分组成功");
         } else {
             logger.debug("移动分组失败");
         }
         return "redirect:toGroup";
+    }
+
+    private void resizeGroup() throws IOException {
+        List<Group> groups = GroupUtil.queryAll(AccessTokenUtil.getValidAccessToken().getToken());
+        for (Group group : groups) {
+            groupService.updateCount(group);
+        }
+        logger.debug("分组数量发送变化");
     }
 
     @RequestMapping(value = "/updateRemark", method = RequestMethod.POST)
