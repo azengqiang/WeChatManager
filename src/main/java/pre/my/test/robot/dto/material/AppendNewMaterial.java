@@ -1,7 +1,5 @@
 package pre.my.test.robot.dto.material;
 
-import pre.my.test.robot.dto.material.detail.BaseNews;
-
 /**
  * Author:qiang.zeng on 2017/3/31.
  */

@@ -234,7 +234,8 @@ public class Constants {
      * 项目地址，暂时为本地localhost:8080的映射地址
      */
     //public static final String PROJECT_URL = "http://13f60685.tunnel.qydev.com";
-    public static final String PROJECT_URL = "http://700ecc2.tunnel.qydev.com";
+    // public static final String PROJECT_URL = "http://370b5d2c.tunnel.qydev.com";
+    public static final String PROJECT_URL = "http://a6b2814.tunnel.qydev.com";
     //public static final String PROJECT_URL = "http://1ff8d474.tunnel.qydev.com";
     /**
      * 网页授权，获取code
@@ -244,4 +245,19 @@ public class Constants {
     public static final String WEB_PAGE_USER_INFO_URL = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
     public static final String WEB_PAGE_SCOPE_BASE = "snsapi_base";
     public static final String WEB_PAGE_SCOPE_USER_INFO = "snsapi_userinfo";
+
+    /**
+     * 分组群发 post
+     */
+    public static final String MASS_GROUP_URL = "https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token=ACCESS_TOKEN";
+    /**
+     * openid列表群发 post
+     */
+    public static final String MASS_USER_URL = "https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=ACCESS_TOKEN";
+
+
+    public static final String MASS_MAG_TYPE_TEXT = "text";
+    public static final String MASS_MAG_TYPE_IMAGE = "image";
+    public static final String MASS_MAG_TYPE_MPNNEWS = "mpnews";
+
 }

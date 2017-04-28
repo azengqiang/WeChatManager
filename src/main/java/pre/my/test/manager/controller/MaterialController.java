@@ -1,19 +1,18 @@
 package pre.my.test.manager.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import pre.my.test.robot.dto.mass.MImage;
 import pre.my.test.robot.dto.material.Material;
 import pre.my.test.robot.dto.material.MaterialBatchGetParam;
 import pre.my.test.robot.dto.material.MaterialCount;
-import pre.my.test.robot.dto.material.detail.Materials;
+import pre.my.test.robot.dto.material.Materials;
 import pre.my.test.robot.service.IMaterialService;
 import pre.my.test.robot.util.AccessTokenUtil;
 import pre.my.test.robot.util.HttpConnectUtil;
@@ -22,6 +21,7 @@ import pre.my.test.robot.util.MaterialUtil;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -35,9 +35,15 @@ public class MaterialController {
     private IMaterialService materialService;
 
     @RequestMapping(value = "toMaterialPic", method = RequestMethod.GET)
-    public String toMaterialPic() {
+    public String toMaterialPic(HttpServletRequest request) {
+        List<Material> pictures = materialService.selectAll();
+        request.setAttribute("pictures", pictures);
+        return "material/picture";
+    }
 
-        return "material/material";
+    @RequestMapping(value = "toMaterialNews", method = RequestMethod.GET)
+    public String toMaterialNews() {
+        return "material/news";
     }
 
     @RequestMapping(value = "/getMaterialCount", method = RequestMethod.POST)
@@ -67,6 +73,9 @@ public class MaterialController {
     @RequestMapping(value = "/fileUploadLocal", method = RequestMethod.POST)
     public String fileUpload(@RequestParam(value = "file", required = false) MultipartFile file,
                              HttpServletRequest request) throws IOException {
+        if (null == file) {
+            return "redirect:toMaterialPic";
+        }
         //获得物理路径webapp所在路径
         String pathRoot = request.getSession().getServletContext().getRealPath("");
         String path = "";
@@ -83,14 +92,38 @@ public class MaterialController {
             file.transferTo(new File(pathRoot + path));
         }
         request.setAttribute("imagesPath", path);
-        logger.debug("local absolute path:{}", pathRoot + path);
+        logger.debug("local path:{}", path);
         Material material = HttpConnectUtil.upload(pathRoot + path, AccessTokenUtil.getValidAccessToken().getToken(), "image");
         if (material != null) {
             material.setName(fileName);
-            material.setPath(pathRoot + path);
+            material.setPath(path);
             materialService.save(material);
             logger.debug("fileName:{} mediaId:{}", fileName, material.getMediaId());
         }
-        return "template/success";
+        //  return "template/success";
+        return "redirect:toMaterialPic";
+    }
+
+    @RequestMapping(value = "deleteMaterial", method = RequestMethod.POST)
+    @ResponseBody
+    public String deleteMaterial(HttpServletRequest request, @RequestBody List<Material> materials) throws IOException {
+        for (Material material : materials) {
+            MImage mImage= new MImage();
+            mImage.setMedia_id( material.getMediaId());
+            JSONObject jsonObject = MaterialUtil.deleteMaterial(AccessTokenUtil.getValidAccessToken().getToken(), JSON.toJSONString(mImage));
+            if(0==jsonObject.getInteger("errcode")){
+                Material material1 = materialService.selectMaterialByMediaId(material.getMediaId());
+                if(material1!=null){
+                    logger.debug("本地删除图片{}", material1.getName());
+                    materialService.delete(material);
+                }else{
+                    logger.debug("查无此图片");
+                }
+            }else{
+                logger.debug("微信删除图片失败");
+            }
+
+        }
+        return "redirect:toMaterialPic";
     }
 }

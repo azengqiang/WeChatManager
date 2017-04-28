@@ -404,7 +404,8 @@ $(function(){
 						{"id":"232","name":"图文消息","parentId":"23","url":"toGraphicMessage","icon":"","order":"1","isHeader":"0","childMenus":""}
 					]},
 					{"id":"24","name":"素材管理","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
-						{"id":"241","name":"素材管理","parentId":"24","url":"toMaterialPic","icon":"","order":"1","isHeader":"0","childMenus":""},
+						{"id":"241","name":"图片管理","parentId":"24","url":"toMaterialPic","icon":"","order":"1","isHeader":"0","childMenus":""},
+						{"id":"242","name":"图文管理","parentId":"24","url":"toMaterialNews","icon":"","order":"1","isHeader":"0","childMenus":""},
 					]},
 					{"id":"22","name":"自定义菜单","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
 						{"id":"221","name":"创建菜单","parentId":"22","url":"toCreateMenu","icon":"","order":"1","isHeader":"0","childMenus":""},

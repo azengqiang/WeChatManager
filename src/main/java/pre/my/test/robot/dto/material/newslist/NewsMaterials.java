@@ -1,9 +1,11 @@
-package pre.my.test.robot.dto.material.detail;
+package pre.my.test.robot.dto.material.newslist;
+
+import pre.my.test.robot.dto.material.Materials;
 
 /**
  * Author:qiang.zeng on 2017/3/28.
  */
-public class NewsMaterials extends  Materials {
+public class NewsMaterials extends Materials {
 
     private NewsItems[] item;
 

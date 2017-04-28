@@ -31,4 +31,14 @@ public class MaterialServiceImpl implements IMaterialService {
     public List<Material> selectAll() {
         return materialMapper.selectAll();
     }
+
+    @Override
+    public void delete(Material material) {
+        materialMapper.delete(material);
+    }
+
+    @Override
+    public void update(Material material) {
+        materialMapper.update(material);
+    }
 }

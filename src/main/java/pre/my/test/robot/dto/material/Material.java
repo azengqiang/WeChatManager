@@ -4,11 +4,13 @@ import com.alibaba.fastjson.annotation.JSONField;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * Author:qiang.zeng on 2017/3/27.
  */
+@Table(name = "rb_material")
 public class Material {
     /**
      * 主键id

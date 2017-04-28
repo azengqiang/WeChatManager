@@ -2,10 +2,10 @@ package pre.my.test.manager.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pre.my.test.robot.dto.menu.*;
@@ -151,7 +151,7 @@ public class MenuController {
             if (Constants.MENU_TYPE_VIEW.equals(menuType)) {
                 ViewButton viewButton = new ViewButton();
                 viewButton.setName(menuName);
-                if (StringUtils.isNotEmpty(menuValue)) {
+                if (!StringUtils.isEmpty(menuValue)) {
                     viewButton.setType(menuType);
                     viewButton.setUrl(menuValue);
                 }
@@ -159,7 +159,7 @@ public class MenuController {
             } else if (Constants.MENU_TYPE_CLICK.equals(menuType)) {
                 ClickButton clickButton = new ClickButton();
                 clickButton.setName(menuName);
-                if (StringUtils.isNotEmpty(menuValue)) {
+                if (!StringUtils.isEmpty(menuValue)) {
                     clickButton.setType(menuType);
                     clickButton.setKey(menuValue);
                 }

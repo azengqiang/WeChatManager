@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pre.my.test.robot.mapper.MenuAnalysisMapper">
+    <resultMap id="BaseResultMap" type="pre.my.test.robot.dto.menu.MenuAnalysis">
+        <id column="id" property="id"/>
+        <result column="openid" property="openid"/>
+        <result column="value" property="value"/>
+        <result column="creationDate" property="creationDate"/>
+    </resultMap>
+
+
+    <select id="select" resultMap="BaseResultMap"
+            parameterType="pre.my.test.robot.dto.menu.MenuAnalysis">
+        select * from rb_menu rm
+        <where>
+            <if test="openid !=null ">
+                and rm.openid = #{openid}
+            </if>
+            <if test="value !=null ">
+                and rm.value = #{value}
+            </if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="pre.my.test.robot.dto.autoresponse.AutoResponseMessage"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into rb_menu(openid,value,creationDate)
+        values(#{openid},#{value},CURRENT_TIMESTAMP)
+    </insert>
+
+</mapper>

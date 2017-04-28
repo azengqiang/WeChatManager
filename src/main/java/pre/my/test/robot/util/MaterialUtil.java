@@ -8,9 +8,9 @@ import pre.my.test.robot.dto.material.AppendNewMaterial;
 import pre.my.test.robot.dto.material.Material;
 import pre.my.test.robot.dto.material.MaterialBatchGetParam;
 import pre.my.test.robot.dto.material.MaterialCount;
-import pre.my.test.robot.dto.material.detail.Materials;
-import pre.my.test.robot.dto.material.detail.NewsMaterials;
-import pre.my.test.robot.dto.material.detail.OtherMaterials;
+import pre.my.test.robot.dto.material.Materials;
+import pre.my.test.robot.dto.material.newslist.NewsMaterials;
+import pre.my.test.robot.dto.material.otherList.OtherMaterials;
 
 import java.io.IOException;
 
@@ -61,4 +61,18 @@ public class MaterialUtil {
             return otherMaterials;
         }
     }
+
+    public static JSONObject deleteMaterial(String token, String mediaId) {
+        String url = Constants.MATERIAL_DELETE_URL.replace("ACCESS_TOKEN", token);
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = HttpConnectUtil.doPostStr(url, mediaId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        logger.debug(jsonObject.toJSONString());
+        return jsonObject;
+    }
+
+
 }

@@ -13,7 +13,7 @@
         <result column="creation_date" property="creationDate"/>
     </resultMap>
 
-    <select id="selectUserInfoByOpenid" parameterType="String" resultMap="BaseResultMap">
+    <select id="selectMaterialByMediaId" parameterType="String" resultMap="BaseResultMap">
         select * from rb_material
         where media_id = #{mediaId}
     </select>
@@ -26,15 +26,25 @@
      keyProperty="id"指定把获取到的主键值注入到User的id属性-->
     <insert id="save" parameterType="pre.my.test.robot.dto.material.Material"
             useGeneratedKeys="true" keyProperty="id">
-        insert into rb_material(media_id,name,path,url,media_type,,creation_date)
+        insert into rb_material(media_id,name,path,url,media_type,creation_date)
         values(#{mediaId},#{name},#{path},#{url},#{mediaType},CURRENT_TIMESTAMP)
     </insert>
 
-    <!--<update id="updateUserInfo" parameterType="User" >
-        update user set userName=#{userName},userAge=#{userAge},userAddress=#{userAddress} where id=#{id}
+    <update id="update" parameterType="pre.my.test.robot.dto.material.Material">
+        /*update user
+        set userName=#{userName},userAge=#{userAge},userAddress=#{userAddress}
+        where id=#{id}*/
     </update>
 
-    <delete id="deleteUser" parameterType="int">
-        delete from user where id=#{id}
-    </delete>-->
+    <delete id="delete" parameterType="pre.my.test.robot.dto.material.Material">
+        delete from rb_material
+        <where>
+            <if test="mediaId !=null ">
+                and media_id = #{mediaId}
+            </if>
+            <if test="name !=null ">
+                and name = #{name}
+            </if>
+        </where>
+    </delete>
 </mapper>

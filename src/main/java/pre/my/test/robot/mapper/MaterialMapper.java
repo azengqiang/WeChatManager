@@ -13,4 +13,8 @@ public interface MaterialMapper {
     Material selectMaterialByMediaId(String meidaId);
 
     List<Material> selectAll();
+
+    void delete(Material material);
+
+    void update(Material material);
 }

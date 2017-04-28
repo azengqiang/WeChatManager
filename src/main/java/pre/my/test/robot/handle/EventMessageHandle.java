@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pre.my.test.robot.dto.autoresponse.AutoResponseMessage;
 import pre.my.test.robot.dto.location.RimLocation;
+import pre.my.test.robot.dto.menu.MenuAnalysis;
 import pre.my.test.robot.dto.user.Group;
 import pre.my.test.robot.dto.user.Location;
 import pre.my.test.robot.dto.user.SubscribeDetail;
@@ -34,6 +35,8 @@ public class EventMessageHandle {
     private ISubscribeDetailService subscribeDetailService;
     @Autowired
     private IGroupService groupService;
+    @Autowired
+    private IMenuAnalysisService menuAnalysisService;
     private String lon;
     private String lat;
 
@@ -67,7 +70,7 @@ public class EventMessageHandle {
                 responseMessage = autoResponseMessages.get(0).getResponseMsg();
             }
             Group originGroup = groupService.select(new Group("0", null, null));
-            String originCount = String.valueOf(Integer.valueOf(originGroup.getCount())+1);
+            String originCount = String.valueOf(Integer.valueOf(originGroup.getCount()) + 1);
             originGroup.setCount(originCount);
             groupService.updateCount(originGroup);
             respEventMessage = MessageUtil.initTextMessage(fromUserName, toUserName, responseMessage);
@@ -84,6 +87,11 @@ public class EventMessageHandle {
             subscribeDetail.setAction("unSubscribe");
             subscribeDetailService.save(subscribeDetail);
         } else if (eventType.equals(Constants.EVENT_TYPE_CLICK)) {// 自定义菜单点击事件
+            MenuAnalysis menuAnalysis = new MenuAnalysis();
+            menuAnalysis.setOpenid(fromUserName);
+            menuAnalysis.setValue(eventKey);
+            menuAnalysisService.save(menuAnalysis);
+            logger.debug("自定义菜单({})点击事件" + eventKey);
             if (eventKey.equals("11")) {
                 String csyb = "欢迎使用城市邮编功能！\n请编辑城市名+邮编发送至公众号，即可查询相应城市邮编\n如：内江邮编";
                 return MessageUtil.initTextMessage(fromUserName, toUserName, csyb);
@@ -97,6 +105,10 @@ public class EventMessageHandle {
                 return MessageUtil.initTextMessage(fromUserName, toUserName, zyhy);
             } else if (eventKey.equals("21")) {
                 return MessageUtil.initTextMessage(fromUserName, toUserName, TuringAPIUtil.getTuringResult("hello"));
+            } else if (eventKey.equals("22")) {
+                return MessageUtil.initTextMessage(fromUserName, toUserName, TuringAPIUtil.getTuringResult("讲个故事"));
+            } else if (eventKey.equals("23")) {
+                return MessageUtil.initTextMessage(fromUserName, toUserName, TuringAPIUtil.getTuringResult("讲个笑话"));
             } else if (eventKey.equals("31")) {
                /* TuringLocation turingLocation = new TuringLocation();
                 String address = TuringAPIUtil.changeAddr(lon, lat);
@@ -106,7 +118,7 @@ public class EventMessageHandle {
                 turingLocation.setLon(lon);
                 turingLocation.setLat(lat);
                 return MessageUtil.initTextMessage(fromUserName, toUserName, TuringAPIUtil.getTuringRestaurantResult(turingLocation));*/
-                String mstj = "请发送您的位置，我们会为您推荐附近的餐厅，祝您吃的愉快！！";
+                String mstj = "请使用微信发送您的位置，最好包含省市区等信息，\n我们会为您推荐附近的餐厅，祝您吃的愉快！！";
                 RimLocation rimLocation = new RimLocation();
                 rimLocation.setOpenid(fromUserName);
                 rimLocation.setRimType("restaurant");
@@ -142,6 +154,7 @@ public class EventMessageHandle {
         }
         return respEventMessage;
     }
+
     private void resizeGroup() throws IOException {
         List<Group> groups = GroupUtil.queryAll(AccessTokenUtil.getValidAccessToken().getToken());
         for (Group group : groups) {

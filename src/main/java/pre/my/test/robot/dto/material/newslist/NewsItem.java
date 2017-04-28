@@ -1,4 +1,6 @@
-package pre.my.test.robot.dto.material.detail;
+package pre.my.test.robot.dto.material.newslist;
+
+import pre.my.test.robot.dto.material.BaseNews;
 
 /**
  * Author:qiang.zeng on 2017/3/28.

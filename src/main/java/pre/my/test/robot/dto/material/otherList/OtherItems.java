@@ -1,4 +1,4 @@
-package pre.my.test.robot.dto.material.detail;
+package pre.my.test.robot.dto.material.otherList;
 
 /**
  * Author:qiang.zeng on 2017/3/28.
