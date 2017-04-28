@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pre.my.test.robot.mapper.NewsMaterialMapper">
+    <resultMap id="BaseResultMap" type="pre.my.test.robot.dto.material.NewsMaterial">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="thumb_media_id" property="thumb_media_id"/>
+        <result column="author" property="author"/>
+        <result column="digest" property="digest"/>
+        <result column="show_cover_pic" property="show_cover_pic"/>
+        <result column="content" property="content"/>
+        <result column="content_source_url" property="content_source_url"/>
+        <result column="newsMediaId" property="newsMediaId"/>
+        <result column="creationDate" property="creationDate"/>
+    </resultMap>
+
+
+
+    <select id="select" resultMap="BaseResultMap" parameterType="pre.my.test.robot.dto.material.NewsMaterial">
+        select * from rb_material_news
+    </select>
+
+    <insert id="save" parameterType="pre.my.test.robot.dto.material.NewsMaterial"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into
+        rb_material_news(title,thumb_media_id,author,digest,show_cover_pic,content,content_source_url,newsMediaId,creationDate)
+        values(#{title},#{thumb_media_id},#{author},#{digest},#{show_cover_pic},#{content},#{content_source_url},#{newsMediaId},CURRENT_TIMESTAMP)
+    </insert>
+
+    <update id="update" parameterType="pre.my.test.robot.dto.material.NewsMaterial">
+        update rb_material_news
+        <set>
+            <if test="title !=null ">
+                title = #{title},
+            </if>
+            <if test="thumb_media_id !=null ">
+                thumb_media_id = #{thumb_media_id},
+            </if>
+            <if test="author !=null ">
+                author = #{author},
+            </if>
+            <if test="digest !=null ">
+                digest = #{digest},
+            </if>
+            <if test="show_cover_pic !=null ">
+                show_cover_pic = #{show_cover_pic},
+            </if>
+            <if test="content !=null ">
+                content = #{content},
+            </if>
+            <if test="content_source_url !=null ">
+                content_source_url = #{content_source_url},
+            </if>
+        </set>
+        where newsMediaId=#{newsMediaId}
+    </update>
+
+    <delete id="delete" parameterType="pre.my.test.robot.dto.material.NewsMaterial">
+        delete from rb_material_news
+        <where>
+            <if test="id !=null ">
+                and id = #{id}
+            </if>
+            <if test="newsMediaId !=null ">
+                and newsMediaId = #{newsMediaId}
+            </if>
+        </where>
+    </delete>
+</mapper>

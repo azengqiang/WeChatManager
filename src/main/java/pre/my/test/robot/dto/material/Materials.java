@@ -4,7 +4,13 @@ package pre.my.test.robot.dto.material;
  * Author:qiang.zeng on 2017/3/30.
  */
 public class Materials {
+    /**
+     * 	该类型的素材的总数
+     */
     private String total_count;
+    /**
+     * 	本次调用获取的素材的数量
+     */
     private String item_count;
 
     public String getTotal_count() {

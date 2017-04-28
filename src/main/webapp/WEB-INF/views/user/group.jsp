@@ -32,10 +32,11 @@
                 url: url,
                 striped: true,
                 pagination: true,
-                pageSize: 3,
+                pageSize: 5,
                 pageNumber: 1,
-                pageList: [3, 5, 10],
+                pageList: [5, 10,15,20],
                 search: true,
+                showRefresh: true,  //显示刷新按钮
                 sidePagination: "server",
                 height: 600,
                 queryParamsType: "undefined",
@@ -57,9 +58,10 @@
                 }, {
                     title: "用户信息",
                     formatter: function (value, row, index) {
+                        var subscribe = (row.subscribe=='0')?'未关注':'已关注';
                         var info = '<div><div style="float:left;" ><img class="img-rounded" alt="140x140" style="width: 50px; height: 50px;" ' + 'src="' + row.headimgurl + '"></img></div>'
                                 + '<div style="float:left;margin-left: 30px;"><span>昵称: ' + row.nickname + '</span><br>' + '<span>地址: ' + row.address + '</span><br>' + '<span>备注: ' + row.remark + '</span></div>'
-                                + '<div style="float:left;margin-left: 30px;"><span>性别: ' + row.sex + '</span><br>' + '<span>关注时间: ' + row.subscribe_time + '</span></div></div>';
+                                + '<div style="float:left;margin-left: 60px;"><span>性别: ' + row.sex + '</span><br>' + '<span>关注时间: ' + row.subscribe_time + '</span><br>' + '<span>关注状态: ' + subscribe + '</span></div></div>';
                         return info;
                     }
 
@@ -325,28 +327,7 @@
                                readonly>
                     </div>
                     <br>
-
                     <div>
-                        <%--<div>
-                            <img class="img-rounded" alt="140x140" src="http://wx.qlogo.cn/mmopen/IAonQoLvporEiar2Qn4L1icwyMVicHTETbXth5ZbmDRwWSTPaNHnhmd4u5TibEzW9tWTS0fuqQjWa7unib7Uo5AxZlw/"
-                                 data-holder-rendered="true" style="width: 50px; height: 50px;">
-                            <span>用户名</span>
-                            <span>备注名</span>
-                            <span>地址</span>
-                        </div>--%>
-                        <%--<div>
-                            <div style="float:left">
-                                <img class="img-rounded" alt="140x140" style="width: 50px; height: 50px;"src="http://wx.qlogo.cn/mmopen/eDYCANL3rOuCOYsOlZdDSsep3Rh22SibyFD4ZJoGWNdoagcqfcicLx63VtGgz9QQfzEfHf8gtwNkgvKicZQb4mNMpjyVMp0Sq5S/0">
-                                </img>
-                            </div>
-                            <div style="float:left;margin-left: 30px;">
-                                <span>row.nickname</span>
-                                <br>
-                                <span>row.address</span>
-                                <br>
-                                <span>row.remark</span>
-                            </div>
-                        </div>--%>
                         <table id="table" data-toggle="table"/>
                     </div>
 

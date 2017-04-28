@@ -25,7 +25,7 @@
       <ol class="breadcrumb">
           <li><a href="#">主菜单</a></li>
           <li><a href="#">素材管理</a></li>
-          <li class="active">素材管理</li>
+          <li class="active">图片管理</li>
       </ol>
       <ul id="myTab" class="nav nav-tabs">
           <li class="active">
@@ -86,7 +86,7 @@
                   <div>
                       <input type="file" multiple="multiple" name="file" accept="image/bmp,image/png,image/jpeg,image/jpg,image/gif">
                       <br>
-                      <input type="submit" value="上传图片" name="submit" />
+                      <input type="submit" value="上传图片" name="submit" class="btn btn-primary" />
                   </div>
               </form>
               <button class="btn btn-primary btn-md" onclick="deleteValidate()" style="margin-top: 10px;">删除图片</button>
@@ -114,6 +114,7 @@
 
 <script type="text/javascript">
     var picChoose=[];
+    //图片复选框设置
     $(function(){
         var s = $("input[name='check']");
         s.each(function(i) {;
@@ -127,6 +128,7 @@
             });
         });
     })
+    //删除验证，是否选中了图片
     var deleteValidate= function(){
         if(0==picChoose.length){
             $("#hintMessage").val("请选择您要删除的图片");
@@ -135,6 +137,7 @@
             $("#deletePic").modal();
         }
     }
+    //删除图片素材
     var deletePic = function(){
         var picChooseData = new Array();
         for(var i=0;i<picChoose.length;i++){
@@ -145,7 +148,7 @@
 
         $.ajax({
             type: "post",
-            url: "${base.contextPath}/admin/deleteMaterial",
+            url: "${base.contextPath}/admin/deletePicture",
             data: JSON.stringify(picChooseData),
             contentType: "application/json",
             success: function (data) {
@@ -153,23 +156,6 @@
             }
         });
 
-    }
-
-
-    var getMaterialCount =  function (){
-        $.ajax({
-            type: "POST",
-            url: "${base.contextPath}/admin/getMaterialCount",
-            dataType: "json",
-            contentType: 'application/json',
-            success: function (data) {
-                if (data["success"] == true) {
-
-                } else {
-
-                }
-            }
-        });
     }
 </script>
 </body>

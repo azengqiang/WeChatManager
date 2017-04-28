@@ -16,8 +16,8 @@ import pre.my.test.demo.service.IAccountService;
 @RunWith(SpringJUnit4ClassRunner.class)     //表示继承了SpringJUnit4ClassRunner类
 @ContextConfiguration(locations = {"classpath:spring/applicationContext.xml"})
 
-public class TestMybatis {
-    private static final Logger logger= LoggerFactory.getLogger(TestMybatis.class);
+public class SpringTest {
+    private static final Logger logger= LoggerFactory.getLogger(SpringTest.class);
 
     @Autowired
     private IAccountService accountService;

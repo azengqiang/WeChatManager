@@ -91,7 +91,7 @@ public class EventMessageHandle {
             menuAnalysis.setOpenid(fromUserName);
             menuAnalysis.setValue(eventKey);
             menuAnalysisService.save(menuAnalysis);
-            logger.debug("自定义菜单({})点击事件" + eventKey);
+            logger.debug("自定义菜单({})点击事件",eventKey);
             if (eventKey.equals("11")) {
                 String csyb = "欢迎使用城市邮编功能！\n请编辑城市名+邮编发送至公众号，即可查询相应城市邮编\n如：内江邮编";
                 return MessageUtil.initTextMessage(fromUserName, toUserName, csyb);
@@ -118,7 +118,7 @@ public class EventMessageHandle {
                 turingLocation.setLon(lon);
                 turingLocation.setLat(lat);
                 return MessageUtil.initTextMessage(fromUserName, toUserName, TuringAPIUtil.getTuringRestaurantResult(turingLocation));*/
-                String mstj = "请使用微信发送您的位置，最好包含省市区等信息，\n我们会为您推荐附近的餐厅，祝您吃的愉快！！";
+                String mstj = "请使用微信发送您的位置，\n最好包含省市区等信息，\n我们会为您推荐附近的餐厅，祝您吃的愉快！！";
                 RimLocation rimLocation = new RimLocation();
                 rimLocation.setOpenid(fromUserName);
                 rimLocation.setRimType("restaurant");
@@ -131,7 +131,7 @@ public class EventMessageHandle {
                 turingLocation.setInfo("附近的酒店");
                 turingLocation.setUserid("1");
                 return MessageUtil.initTextMessage(fromUserName, toUserName, TuringAPIUtil.getTuringRestaurantResult(turingLocation));*/
-                String mstj = "请发送您的位置，我们会为您推荐附近的酒店，祝您旅途愉快！！";
+                String mstj = "请使用微信发送您的位置，\n最好包含省市区等信息，\n我们会为您推荐附近的酒店，祝您旅途愉快！！";
                 RimLocation rimLocation = new RimLocation();
                 rimLocation.setOpenid(fromUserName);
                 rimLocation.setRimType("hotel");
