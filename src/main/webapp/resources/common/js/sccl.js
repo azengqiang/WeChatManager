@@ -401,7 +401,7 @@ $(function(){
 					]},
 					{"id":"23","name":"消息管理","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
 						{"id":"231","name":"消息列表","parentId":"23","url":"toTextMessage","icon":"","order":"1","isHeader":"0","childMenus":""},
-						{"id":"232","name":"图文消息","parentId":"23","url":"toGraphicMessage","icon":"","order":"1","isHeader":"0","childMenus":""},
+						/*{"id":"232","name":"图文消息","parentId":"23","url":"toGraphicMessage","icon":"","order":"1","isHeader":"0","childMenus":""},*/
 					]},
 					{"id":"24","name":"素材管理","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
 						{"id":"241","name":"图片管理","parentId":"24","url":"toMaterialPic","icon":"","order":"1","isHeader":"0","childMenus":""},
@@ -418,7 +418,7 @@ $(function(){
 					]},
 					{"id":"25","name":"数据分析","parentId":"1","url":"","icon":"&#xe604;","order":"1","isHeader":"0","childMenus":[
 						{"id":"251","name":"用户分析","parentId":"25","url":"toUserAnalysis","icon":"","order":"1","isHeader":"0","childMenus":""},
-						{"id":"252","name":"图文分析","parentId":"25","url":"toGraphicAnalysis","icon":"","order":"1","isHeader":"0","childMenus":""},
+						/*{"id":"252","name":"图文分析","parentId":"25","url":"toGraphicAnalysis","icon":"","order":"1","isHeader":"0","childMenus":""},*/
 						{"id":"253","name":"菜单分析","parentId":"25","url":"toMenuAnalysis","icon":"","order":"1","isHeader":"0","childMenus":""},
 						{"id":"254","name":"消息分析","parentId":"25","url":"toMessageAnalysis","icon":"","order":"1","isHeader":"0","childMenus":""},
 					]},

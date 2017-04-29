@@ -41,7 +41,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
        <typeAliases>
-              <typeAlias alias="User" type="pre.my.test.demo.dto.User"/>
+              <typeAlias alias="User" type="pre.my.test.robot.dto..user.User"/>
        </typeAliases>
 
        <environments default="development">

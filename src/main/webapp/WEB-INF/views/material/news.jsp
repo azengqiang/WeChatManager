@@ -29,6 +29,8 @@
                 showToggle:true,//显示card还是table
                 sidePagination: "server",
                 height: 600,
+                clickToSelect:true,
+                searchText:'',
                 queryParamsType: "undefined",
                 editabe: true,
                 columns: [{
@@ -84,7 +86,7 @@
                     align: "center",
                     width: "100px",
                     formatter: function (value, row, index) {
-                        var operate = '<a onclick="updateNews()">修改备注</a>';
+                        var operate = '<a onclick="updateNews()">修改</a>';
                         return operate;
                     }
                 },
@@ -141,7 +143,6 @@
             <div style="margin-top: 5px;">
                 <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#addNews">添加图文素材</button>
                 <button class="btn btn-primary btn-md" onclick="deleteValidate()">删除图文素材</button>
-                <button class="btn btn-primary btn-md" onclick="updateValidate()">修改图文素材</button>
             </div>
             <div>
                 <table id="table" data-toggle="table"/>
@@ -229,6 +230,28 @@
         </div>
     </div>
     <!-- 信息删除确认结束 -->
+    <!--提示框开始 -->
+    <div class="modal fade" id="hintDialog" tabindex="-1" role="dialog" aria-labelledby="hintLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="hintLabel">警告</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text " name="hintMessage" id="hintMessage" class="form-control" readonly
+                           style="background-color:transparent;outline:none;border:none;">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+    </div>
+    <!--提示框结束 -->
 </div>
 <script type="text/javascript">
 
@@ -260,27 +283,34 @@
         });
     }
     var deleteValidate = function () {
-        var nodeId;
-        var deleteNodeIds = $('#tree').treeview('getChecked', nodeId);
-        if (deleteNodeIds == null || deleteNodeIds.length == 0) {
-            $("#hintMessage").val("请至少选择一个分组");
+       var deleteNews =  $('#table').bootstrapTable('getSelections');
+        if(null==deleteNews || 0==deleteNews.length){
+            $("#hintMessage").val("请选择您要删除的图片素材");
             $("#hintDialog").modal();
-        } else {
-            deleteNodes.splice(0, deleteNodes.length);
-            for (var i = 0; i < deleteNodeIds.length; i++) {
-                if ("全部分组" == deleteNodeIds[i].text) {
-                    continue;
-                }
-                if ("未分组" == deleteNodeIds[i].text || "黑名单" == deleteNodeIds[i].text || "星标组" == deleteNodeIds[i].text) {
-                    $("#hintMessage").val("包含微信默认分组，默认分组不可删除");
-                    $("#hintDialog").modal();
-                    deleteNodes = [];
-                    return;
-                }
-                deleteNodes.push(deleteNodeIds[i].text);
-            }
-            $("#deleteGroup").modal();
+        }else{
+            $("#deleteNews").modal();
         }
+    }
+    var deleteNews = function (){
+        var deleteNewsList=[];
+        var deleteNews =  $('#table').bootstrapTable('getSelections');
+        for(var i=0;i<deleteNews.length;i++){
+            var news={};
+            news.newsMediaId =   deleteNews[i].newsMediaId;
+            deleteNewsList.push(news);
+        }
+        var deleteNewsData = JSON.stringify(deleteNewsList);
+        debugger;
+        $.ajax({
+            type: "post",
+            url: "${base.contextPath}/admin/deleteNews",
+            data: deleteNewsData,
+            contentType: "application/json",
+            success: function (data) {
+                debugger;
+                window.location.reload();
+            }
+        });
     }
 
 </script>

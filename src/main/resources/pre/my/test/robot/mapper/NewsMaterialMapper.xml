@@ -17,9 +17,20 @@
     </resultMap>
 
 
-
     <select id="select" resultMap="BaseResultMap" parameterType="pre.my.test.robot.dto.material.NewsMaterial">
         select * from rb_material_news
+    </select>
+
+    <select id="selectBy" resultMap="BaseResultMap" parameterType="pre.my.test.robot.dto.material.NewsMaterial">
+        select * from rb_material_news
+        <where>
+            <if test="id !=null ">
+                and id = #{id}
+            </if>
+            <if test="newsMediaId !=null ">
+                and newsMediaId = #{newsMediaId}
+            </if>
+        </where>
     </select>
 
     <insert id="save" parameterType="pre.my.test.robot.dto.material.NewsMaterial"

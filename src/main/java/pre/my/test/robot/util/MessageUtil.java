@@ -139,7 +139,7 @@ public class MessageUtil {
         News news = new News();
         news.setTitle("西南石油大学简介");
         news.setDescription("swpu是石油界的黄埔军校");
-        news.setPicUrl(Constants.PROJECT_URL + "/resources/img/swpu.png");
+        news.setPicUrl(Constants.PROJECT_URL + "/resources/images/2.png");
        /* news.setUrl("http://www.swpu.edu.cn/");*/
         news.setUrl(Constants.PROJECT_URL + "/demo/hello?id=1");
         newses.add(news);
@@ -147,7 +147,7 @@ public class MessageUtil {
         News news2 = new News();
         news2.setTitle("911惊魂");
         news2.setDescription("点击查看");
-        news2.setPicUrl(Constants.PROJECT_URL + "/resources/img/swpu911.jpg");
+        news2.setPicUrl(Constants.PROJECT_URL + "/resources/images/swpu911.jpg");
         news2.setUrl("http://www.ziyuanmao.com/#/home");
         newses.add(news2);
 

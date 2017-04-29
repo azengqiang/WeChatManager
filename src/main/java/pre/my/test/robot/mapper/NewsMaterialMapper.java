@@ -9,7 +9,12 @@ import java.util.List;
  */
 public interface NewsMaterialMapper {
     void save(NewsMaterial newsMaterial);
+
     void update(NewsMaterial newsMaterial);
+
     void delete(NewsMaterial newsMaterial);
+
     List<NewsMaterial> select(NewsMaterial newsMaterial);
+
+    NewsMaterial selectBy(NewsMaterial newsMaterial);
 }

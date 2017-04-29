@@ -41,7 +41,12 @@ public class NewsMaterialServiceImpl implements INewsMaterialService {
     }
 
     @Override
+    public NewsMaterial selectBy(NewsMaterial newsMaterial) {
+        return mapper.selectBy(newsMaterial);
+    }
+
+    @Override
     public List<NewsMaterial> getSelectSize(NewsMaterial newsMaterial) {
-        return  mapper.select(newsMaterial);
+        return mapper.select(newsMaterial);
     }
 }

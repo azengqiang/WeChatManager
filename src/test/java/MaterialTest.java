@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import pre.my.test.demo.service.IAccountService;
 import pre.my.test.robot.dto.material.AppendNewsMaterial;
 import pre.my.test.robot.dto.material.BaseNews;
 import pre.my.test.robot.dto.material.NewsMaterial;

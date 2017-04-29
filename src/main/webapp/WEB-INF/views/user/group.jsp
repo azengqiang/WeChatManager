@@ -36,6 +36,7 @@
                 pageNumber: 1,
                 pageList: [5, 10,15,20],
                 search: true,
+                searchText:"",
                 showRefresh: true,  //显示刷新按钮
                 sidePagination: "server",
                 height: 600,

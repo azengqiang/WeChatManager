@@ -3,12 +3,9 @@ package pre.my.test.robot.controller;
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pre.my.test.demo.controller.AccountController;
-import pre.my.test.demo.service.IAccountService;
 import pre.my.test.robot.dto.user.WebPageUserInfo;
 import pre.my.test.robot.util.Constants;
 import pre.my.test.robot.util.WebPageUtil;
@@ -25,9 +22,7 @@ import java.net.URLEncoder;
 @Controller
 @RequestMapping(value = "/demo")
 public class AccessController {
-    @Autowired
-    private IAccountService accountService;
-    private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
+    private static final Logger logger = LoggerFactory.getLogger(AccessController.class);
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String toIndex(HttpServletRequest request, HttpServletResponse response) throws IOException {

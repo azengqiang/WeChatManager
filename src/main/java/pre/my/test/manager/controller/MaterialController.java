@@ -59,7 +59,28 @@ public class MaterialController {
         return "material/list";
     }
 
-
+    @RequestMapping(value = "deleteNews", method = RequestMethod.POST)
+    public String deleteNews(HttpServletRequest request, @RequestBody List<NewsMaterial> newsMaterialList) throws IOException {
+        for (NewsMaterial newsMaterial : newsMaterialList) {
+            MImage mImage = new MImage();
+            mImage.setMedia_id(newsMaterial.getNewsMediaId());
+            JSONObject jsonObject = MaterialUtil.deleteMaterial(AccessTokenUtil.getValidAccessToken().getToken(), JSON.toJSONString(mImage));
+            if (0 == jsonObject.getInteger("errcode")) {
+                NewsMaterial temp = new NewsMaterial();
+                temp.setNewsMediaId(newsMaterial.getNewsMediaId());
+                NewsMaterial exitNewsMaterial = newsMaterialService.selectBy(temp);
+                if (exitNewsMaterial != null) {
+                    logger.debug("本地删除图文素材{}", exitNewsMaterial.getTitle());
+                    newsMaterialService.delete(newsMaterial);
+                } else {
+                    logger.debug("查无此图文素材");
+                }
+            } else {
+                logger.debug("微信删除图文素材失败");
+            }
+        }
+        return "redirect:toMaterialNews";
+    }
     @RequestMapping(value = "/addNews", method = RequestMethod.POST)
     public String getMaterials(HttpServletRequest request, @RequestBody List<BaseNews> baseNewsList) throws IOException {
         BaseNews[] baseNewsArr = baseNewsList.toArray(new BaseNews[baseNewsList.size()]);
@@ -129,11 +150,16 @@ public class MaterialController {
      * @throws IOException
      */
     @RequestMapping(value = "/getMaterials", method = RequestMethod.POST)
-    public String getMaterials(HttpServletRequest request, @RequestBody MaterialBatchGetParam param) throws IOException {
+    public void getMaterials(HttpServletRequest request,HttpServletResponse response,@RequestBody MaterialBatchGetParam param) throws IOException {
         Materials materials = MaterialUtil.getMaterialList(AccessTokenUtil.getValidAccessToken().getToken(), param);
         logger.debug(JSONObject.toJSONString(materials));
-        request.setAttribute("materials", JSONObject.toJSONString(materials));
-        return "material/list";
+       /* request.setAttribute("materials", JSONObject.toJSONString(materials));
+        return "material/list";*/
+        response.setCharacterEncoding("UTF-8"); //设置编码格式
+        response.setContentType("text/html");   //设置数据格式
+        PrintWriter out = response.getWriter(); //获取写入对象
+        out.print(JSONObject.toJSON(materials));
+        out.flush();
     }
 
     /**
@@ -144,14 +170,17 @@ public class MaterialController {
      * @throws IOException
      */
     @RequestMapping(value = "/getMaterialCount", method = RequestMethod.POST)
-    public String getMaterialCount(HttpServletRequest request) throws IOException {
+    public void getMaterialCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
         MaterialCount materialCount = MaterialUtil.getMaterialCount(AccessTokenUtil.getValidAccessToken().getToken());
-        if (materialCount != null) {
-            logger.debug("image: {},news: {},video: {},voice: {}", materialCount.getImage_count(), materialCount.getNews_count(),
+        logger.debug("image: {},news: {},video: {},voice: {}", materialCount.getImage_count(), materialCount.getNews_count(),
                     materialCount.getVideo_count(), materialCount.getVoice_count());
-            request.setAttribute("materialCount", materialCount);
-        }
-        return "material/list";
+       /* request.setAttribute("materialCount", materialCount);
+        return "material/list";*/
+        response.setCharacterEncoding("UTF-8"); //设置编码格式
+        response.setContentType("text/html");   //设置数据格式
+        PrintWriter out = response.getWriter(); //获取写入对象
+        out.print(JSONObject.toJSON(materialCount));
+        out.flush();
     }
 
     @RequestMapping(value = "/fileUploadLocal", method = RequestMethod.POST)
@@ -189,22 +218,22 @@ public class MaterialController {
     }
 
     @RequestMapping(value = "deletePicture", method = RequestMethod.POST)
-    @ResponseBody
+    //@ResponseBody
     public String deletePicture(HttpServletRequest request, @RequestBody List<Material> materials) throws IOException {
         for (Material material : materials) {
             MImage mImage = new MImage();
             mImage.setMedia_id(material.getMediaId());
             JSONObject jsonObject = MaterialUtil.deleteMaterial(AccessTokenUtil.getValidAccessToken().getToken(), JSON.toJSONString(mImage));
             if (0 == jsonObject.getInteger("errcode")) {
-                Material material1 = materialService.selectMaterialByMediaId(material.getMediaId());
-                if (material1 != null) {
-                    logger.debug("本地删除图片{}", material1.getName());
+                Material exitMaterial = materialService.selectMaterialByMediaId(material.getMediaId());
+                if (exitMaterial != null) {
+                    logger.debug("本地删除图片素材{}", exitMaterial.getName());
                     materialService.delete(material);
                 } else {
-                    logger.debug("查无此图片");
+                    logger.debug("查无此图片素材");
                 }
             } else {
-                logger.debug("微信删除图片失败");
+                logger.debug("微信删除图片素材失败");
             }
         }
         return "redirect:toMaterialPic";

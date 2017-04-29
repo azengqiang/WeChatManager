@@ -10,6 +10,17 @@
                         http://www.springframework.org/schema/mvc
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
     <context:component-scan base-package="pre.my.test.*.controller"/>
+    <!-- 登录拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 拦截路径 -->
+            <mvc:mapping path="/admin/*"/>
+            <!-- 排除的拦截路径 -->
+            <mvc:exclude-mapping path="/admin/login"/>
+            <mvc:exclude-mapping path="/admin/doLogin"/>
+            <bean class="pre.my.test.robot.interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
     <mvc:annotation-driven >
        <!-- <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">

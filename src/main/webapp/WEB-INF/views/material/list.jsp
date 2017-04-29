@@ -32,10 +32,10 @@
                 <div class="form-group">
                     <div class="col-sm-3" style="width: 200px;">
                         <input onclick="getMaterialCount()" id="materialCount" name="count"  type="button" class="btn btn-primary" value="获取素材总数"/>
-                        <br><br><span class=".text-success">音频数量：${materialCount.voice_count}</span>
-                        <br><br><span class=".text-success">视频数量：${materialCount.video_count}</span>
-                        <br><br><span class=".text-success">图片数量：${materialCount.image_count}</span>
-                        <br><br><span class=".text-success">图文数量：${materialCount.news_count}</span>
+                        <br><br><span class=".text-success" id="voice">音频数量：暂无数据</span>
+                        <br><br><span class=".text-success" id="video">视频数量：暂无数据</span>
+                        <br><br><span class=".text-success" id="image">图片数量：暂无数据</span>
+                        <br><br><span class=".text-success" id="news">图文数量：暂无数据</span>
                     </div>
                     <div class="col-sm-9">
                         <div style="width: 300px;">
@@ -74,10 +74,14 @@
             url: "${base.contextPath}/admin/getMaterialCount",
             dataType: "json",
             success: function (data) {
-                if (data["success"] == true) {
-
+                debugger;
+                if (data.voice_count!=null) {
+                    $("#voice").val(data.voice_count);
+                    $("#video").val(data.video_count);
+                    $("#image").val(data.image_count);
+                    $("#news").val(data.news_count);
                 } else {
-
+                        alert("获取数据失败")
                 }
             }
         });
@@ -94,11 +98,10 @@
             data: JSON.stringify(param),
             contentType: "application/json",
             success: function (data) {
-                debugger;
                 if (data["success"] == true) {
 
                 } else {
-
+                    alert("获取数据失败")
                 }
             }
         });

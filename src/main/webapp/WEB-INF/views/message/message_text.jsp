@@ -21,7 +21,7 @@
                 url: "<c:url value='/admin/lookMessage'/>",
                 striped: true,
                 pagination: true,
-                pageSize: 5,
+                pageSize: 10,
                 pageNumber:1,
                 pageList: [5, 10, 15],
                 search: true,
