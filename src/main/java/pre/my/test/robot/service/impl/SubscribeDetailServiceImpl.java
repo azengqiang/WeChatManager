@@ -11,6 +11,8 @@ import pre.my.test.robot.dto.user.SubscribeDetail;
 import pre.my.test.robot.mapper.SubscribeDetailMapper;
 import pre.my.test.robot.service.ISubscribeDetailService;
 
+import java.util.List;
+
 @Service
 public class SubscribeDetailServiceImpl implements ISubscribeDetailService {
     @Autowired
@@ -33,7 +35,7 @@ public class SubscribeDetailServiceImpl implements ISubscribeDetailService {
     }
 
     @Override
-    public void select(SubscribeDetail subscribeDetail) {
-        mapper.select(subscribeDetail);
+    public List<SubscribeDetail> select(SubscribeDetail subscribeDetail) {
+       return mapper.select(subscribeDetail);
     }
 }

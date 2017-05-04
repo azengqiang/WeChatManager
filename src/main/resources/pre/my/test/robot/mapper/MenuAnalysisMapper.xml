@@ -13,7 +13,7 @@
 
     <select id="select" resultMap="BaseResultMap"
             parameterType="pre.my.test.robot.dto.menu.MenuAnalysis">
-        select * from rb_menu rm
+        select * from rb_menu_analysis rm
         <where>
             <if test="openid !=null ">
                 and rm.openid = #{openid}
@@ -24,9 +24,9 @@
         </where>
     </select>
 
-    <insert id="save" parameterType="pre.my.test.robot.dto.autoresponse.AutoResponseMessage"
+    <insert id="save" parameterType="pre.my.test.robot.dto.menu.MenuAnalysis"
             useGeneratedKeys="true" keyProperty="id">
-        insert into rb_menu(openid,value,creationDate)
+        insert into rb_menu_analysis(openid,value,creationDate)
         values(#{openid},#{value},CURRENT_TIMESTAMP)
     </insert>
 

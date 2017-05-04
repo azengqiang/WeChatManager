@@ -359,7 +359,7 @@ function getSkinByCookie(){
 	var v = getCookie("scclui-skin");
 	var hrefStr=$("#layout-skin").attr("href");
 	if(v == null || v == ""){
-		v="qingxin";
+		v="molv";
 	}
 	if(hrefStr != undefined){
 		var hrefRes=hrefStr.substring(0,hrefStr.lastIndexOf('skin/'))+'skin/'+v+'/skin.css';

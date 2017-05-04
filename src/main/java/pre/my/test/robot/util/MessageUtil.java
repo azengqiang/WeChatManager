@@ -147,7 +147,8 @@ public class MessageUtil {
         News news2 = new News();
         news2.setTitle("911惊魂");
         news2.setDescription("点击查看");
-        news2.setPicUrl(Constants.PROJECT_URL + "/resources/images/swpu911.jpg");
+       // D:\demo\LearnString\target\LearnSpring
+        news2.setPicUrl(Constants.PROJECT_URL + "/resources/images/8.png");
         news2.setUrl("http://www.ziyuanmao.com/#/home");
         newses.add(news2);
 

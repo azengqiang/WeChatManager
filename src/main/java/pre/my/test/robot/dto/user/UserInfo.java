@@ -1,6 +1,9 @@
 package pre.my.test.robot.dto.user;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * Author:qiang.zeng on 2017/2/6.
@@ -31,7 +34,8 @@ public class UserInfo extends BaseUser{
      * 用户所在分组名称
      */
     private String groupName;
-
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private Date creationDate;
     public UserInfo(){}
 
     public UserInfo(String groupid, String remark,String openId) {
@@ -86,5 +90,13 @@ public class UserInfo extends BaseUser{
 
     public void setGroupName(String groupName) {
         this.groupName = groupName;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 }

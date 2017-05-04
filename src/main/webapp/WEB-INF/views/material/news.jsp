@@ -81,7 +81,7 @@
                     field: 'creationDate',
                     title: "创建时间",
                     width: "80px",
-                },{
+                },/*{
                     title: "操作",
                     align: "center",
                     width: "100px",
@@ -89,7 +89,7 @@
                         var operate = '<a onclick="updateNews()">修改</a>';
                         return operate;
                     }
-                },
+                },*/
                 ],
                 queryParams: function queryParams(params) {
                     var param = {

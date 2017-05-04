@@ -4,19 +4,19 @@ package pre.my.test.robot.dto.material.newslist;
  * Author:qiang.zeng on 2017/3/28.
  */
 public class NewsItems {
-    private String meida_id;
+    private String media_id;
     private NewsContent content;
     /**
      * 这篇图文消息素材的最后更新时间
      */
     private String update_time;
 
-    public String getMeida_id() {
-        return meida_id;
+    public String getMedia_id() {
+        return media_id;
     }
 
-    public void setMeida_id(String meida_id) {
-        this.meida_id = meida_id;
+    public void setMedia_id(String media_id) {
+        this.media_id = media_id;
     }
 
     public NewsContent getContent() {

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pre.my.test.robot.mapper.MenuDetailMapper">
+    <resultMap id="BaseResultMap" type="pre.my.test.robot.dto.menu.MenuDetail">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="value" property="value"/>
+        <result column="type" property="type"/>
+        <result column="superiorName" property="superiorName"/>
+    </resultMap>
+
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from rb_menu_detail order by id ASC
+    </select>
+
+    <insert id="save" parameterType="pre.my.test.robot.dto.menu.MenuDetail"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into rb_menu_detail(name,value,type,superiorName)
+        values(#{name},#{value},#{type},#{superiorName})
+    </insert>
+
+    <delete id="deleteAll">
+        delete from rb_menu_detail
+    </delete>
+</mapper>

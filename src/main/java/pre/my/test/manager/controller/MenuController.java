@@ -4,11 +4,13 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pre.my.test.robot.dto.menu.*;
+import pre.my.test.robot.service.IMenuDetailService;
 import pre.my.test.robot.util.AccessTokenUtil;
 import pre.my.test.robot.util.Constants;
 import pre.my.test.robot.util.MenuUtil;
@@ -29,6 +31,8 @@ import java.util.List;
 public class MenuController {
 
     private static final Logger logger = LoggerFactory.getLogger(MenuController.class);
+    @Autowired
+    private IMenuDetailService service;
 
     List<Button> firstMenus = new ArrayList<>();
 
@@ -41,10 +45,11 @@ public class MenuController {
 
     @RequestMapping(value = "/toLookMenu", method = RequestMethod.GET)
     public String toLookMenu(HttpServletRequest request) throws IOException {
-        JSONObject jsonObject = MenuUtil.queryMenu(AccessTokenUtil.getValidAccessToken().getToken());
+     /*   JSONObject jsonObject = MenuUtil.queryMenu(AccessTokenUtil.getValidAccessToken().getToken());
         JSONArray menu = jsonObject.getJSONObject("menu").getJSONArray("button");
         List<MenuDetail> menuDetails = new ArrayList<>();
-        getMenuDetails(menu, menuDetails);
+        getMenuDetails(menu, menuDetails);*/
+        List<MenuDetail> menuDetails = service.selectAll();
         request.setAttribute("menuDetails", menuDetails);
         return "menu/menu_look";
     }
@@ -182,6 +187,17 @@ public class MenuController {
             } else {
                 logger.debug("菜单创建成功");
                 request.setAttribute("hint_menuInfo", "菜单创建成功，请进入微信公众号查看");
+                //获取菜单内容
+                JSONObject jsonObject = MenuUtil.queryMenu(AccessTokenUtil.getValidAccessToken().getToken());
+                JSONArray newMenu = jsonObject.getJSONObject("menu").getJSONArray("button");
+                List<MenuDetail> menuDetails = new ArrayList<>();
+                getMenuDetails(newMenu, menuDetails);
+                service.deleteAll();
+                logger.debug("数据库刪除原菜单");
+                for(MenuDetail  menuDetail:menuDetails){
+                    service.save(menuDetail);
+                }
+                logger.debug("数据库保存新菜单");
             }
         }
         return "menu/menu_create";

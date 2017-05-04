@@ -7,6 +7,8 @@ import pre.my.test.robot.mapper.MaterialMapper;
 import pre.my.test.robot.mapper.MenuAnalysisMapper;
 import pre.my.test.robot.service.IMenuAnalysisService;
 
+import java.util.List;
+
 /**
  * Author:qiang.zeng on 2017/4/27.
  */
@@ -16,8 +18,8 @@ public class MenuAnalysisServiceImpl implements IMenuAnalysisService {
     private MenuAnalysisMapper mapper;
 
     @Override
-    public void select(MenuAnalysis menuAnalysis) {
-        mapper.select(menuAnalysis);
+    public List<MenuAnalysis> select(MenuAnalysis menuAnalysis) {
+        return mapper.select(menuAnalysis);
     }
 
     @Override

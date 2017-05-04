@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * Author:qiang.zeng on 2017/4/27.
  */
-@Table(name = "rb_menu")
+@Table(name = "rb_menu_analysis")
 public class MenuAnalysis {
     @Id
     @GeneratedValue()

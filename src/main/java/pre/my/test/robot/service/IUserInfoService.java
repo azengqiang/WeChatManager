@@ -1,5 +1,6 @@
 package pre.my.test.robot.service;
 
+import pre.my.test.robot.dto.user.SubscribeDetail;
 import pre.my.test.robot.dto.user.UserInfo;
 
 import java.util.List;
@@ -57,4 +58,6 @@ public interface IUserInfoService {
     void delete(UserInfo userInfo);
 
     void update(UserInfo userInfo);
+
+    List<UserInfo> selectSubscribeNum(SubscribeDetail subscribeDetail);
 }

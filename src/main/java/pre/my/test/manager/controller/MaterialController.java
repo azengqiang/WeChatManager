@@ -1,6 +1,7 @@
 package pre.my.test.manager.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pre.my.test.robot.dto.mass.MImage;
 import pre.my.test.robot.dto.material.*;
+import pre.my.test.robot.dto.material.newslist.NewsMaterials;
+import pre.my.test.robot.dto.material.otherList.OtherMaterials;
 import pre.my.test.robot.dto.user.UserInfo;
 import pre.my.test.robot.service.IMaterialService;
 import pre.my.test.robot.service.INewsMaterialService;
@@ -149,17 +152,36 @@ public class MaterialController {
      * @return
      * @throws IOException
      */
-    @RequestMapping(value = "/getMaterials", method = RequestMethod.POST)
-    public void getMaterials(HttpServletRequest request,HttpServletResponse response,@RequestBody MaterialBatchGetParam param) throws IOException {
+    @RequestMapping(value = "/getMaterials", method = RequestMethod.GET)
+    public void getMaterials(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        //设置参数
+        String type = request.getParameter("type");
+        String offset = request.getParameter("offset");
+        String count = request.getParameter("count");
+        MaterialBatchGetParam param = new MaterialBatchGetParam();
+        param.setType(type);
+        param.setOffset(offset);
+        param.setCount(count);
+        //从微信获取数据
         Materials materials = MaterialUtil.getMaterialList(AccessTokenUtil.getValidAccessToken().getToken(), param);
-        logger.debug(JSONObject.toJSONString(materials));
-       /* request.setAttribute("materials", JSONObject.toJSONString(materials));
-        return "material/list";*/
+
         response.setCharacterEncoding("UTF-8"); //设置编码格式
         response.setContentType("text/html");   //设置数据格式
         PrintWriter out = response.getWriter(); //获取写入对象
-        out.print(JSONObject.toJSON(materials));
+        if(materials!=null){
+            logger.debug(JSONObject.toJSONString(materials));
+            JSONObject jsonObject =  (JSONObject)JSONObject.toJSON(materials);
+            if (Constants.MEDIA_TYPE_NEWS.equals(param.getType())) {
+                NewsMaterials newsMaterials = JSON.parseObject(jsonObject.toJSONString(), NewsMaterials.class);
+                out.print(JSONObject.toJSON(newsMaterials.getItem()));
+            } else {
+                OtherMaterials otherMaterials = JSON.parseObject(jsonObject.toJSONString(), OtherMaterials.class);
+                out.print(JSONObject.toJSON(otherMaterials.getItem()));
+            }
+        }
+        //out.print(JSONObject.toJSON(otherMaterials.getItem()));
         out.flush();
+       // return "material/list";
     }
 
     /**
@@ -186,7 +208,7 @@ public class MaterialController {
     @RequestMapping(value = "/fileUploadLocal", method = RequestMethod.POST)
     public String fileUpload(@RequestParam(value = "file", required = false) MultipartFile file,
                              HttpServletRequest request) throws IOException {
-        if (null == file) {
+        if (null == file || 0== file.getSize()) {
             return "redirect:toMaterialPic";
         }
         //获得物理路径webapp所在路径

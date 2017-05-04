@@ -1,10 +1,9 @@
 package pre.my.test.robot.service.impl;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pre.my.test.robot.dto.user.SubscribeDetail;
 import pre.my.test.robot.dto.user.UserInfo;
 import pre.my.test.robot.mapper.UserInfoMapper;
 import pre.my.test.robot.service.IUserInfoService;
@@ -81,6 +80,11 @@ public class UserInfoServiceImpl implements IUserInfoService {
     @Override
     public void update(UserInfo userInfo) {
         mapper.update(userInfo);
+    }
+
+    @Override
+    public List<UserInfo> selectSubscribeNum(SubscribeDetail subscribeDetail) {
+        return mapper.selectSubscribeNum(subscribeDetail);
     }
 
 

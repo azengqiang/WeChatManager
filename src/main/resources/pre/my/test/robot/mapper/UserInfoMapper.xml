@@ -16,7 +16,21 @@
         <result column="unionid" property="unionid"/>
         <result column="remark" property="remark"/>
         <result column="groupid" property="groupid"/>
+        <result column="creationDate" property="creationDate"/>
     </resultMap>
+
+    <select id="selectSubscribeNum" parameterType="pre.my.test.robot.dto.user.SubscribeDetail" resultMap="BaseResultMap">
+        select * from rb_userinfo
+        <where>
+            <if test="endDate !=null">
+                and subscribe='1'
+            </if>
+            <if test="endDate !=null and endDate != ''">
+                and  creationDate  <![CDATA[ <= ]]> #{endDate}
+            </if>
+        </where>
+        order by creationDate asc
+    </select>
 
     <select id="selectUserInfoByOpenid" parameterType="String" resultMap="BaseResultMap">
         select * from rb_userinfo where openid = #{openid}
@@ -42,8 +56,8 @@
   useGeneratedKeys设置为"true"表明要MyBatis获取由数据库自动生成的主键；keyProperty="id"指定把获取到的主键值注入到User的id属性-->
     <insert id="save" parameterType="pre.my.test.robot.dto.user.UserInfo"
             useGeneratedKeys="true" keyProperty="id">
-        insert into rb_userinfo(subscribe,openid,nickname,sex,address,lang,headimgurl,subscribe_time,unionid,remark,groupid)
-        values(#{subscribe},#{openid},#{nickname},#{sex},#{address},#{lang},#{headimgurl},#{subscribe_time},#{unionid},#{remark},#{groupid})
+        insert into rb_userinfo(subscribe,openid,nickname,sex,address,lang,headimgurl,subscribe_time,unionid,remark,groupid,creationDate)
+        values(#{subscribe},#{openid},#{nickname},#{sex},#{address},#{lang},#{headimgurl},#{subscribe_time},#{unionid},#{remark},#{groupid},CURRENT_TIMESTAMP)
     </insert>
 
     <update id="updateGroupByOpenId" parameterType="pre.my.test.robot.dto.user.UserInfo">
@@ -64,6 +78,9 @@
             </if>
             <if test="groupid!=null">
                 ru.groupid = #{groupid},
+            </if>
+            <if test="creationDate!=null">
+                ru.creationDate =CURRENT_TIMESTAMP,
             </if>
         </set>
         where openid=#{openid}

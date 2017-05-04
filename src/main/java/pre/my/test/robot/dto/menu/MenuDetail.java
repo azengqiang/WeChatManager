@@ -1,11 +1,18 @@
 package pre.my.test.robot.dto.menu;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
  * Author:qiang.zeng on 2017/4/10.
  */
+@Table(name = "rb_menu_detail")
 public class MenuDetail implements Serializable {
+    @Id
+    @GeneratedValue()
+    private Long id;
     /**
      * 菜单名称
      */
