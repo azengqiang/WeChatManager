@@ -10,10 +10,10 @@
     <script type="text/javascript" src="../../resources/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form class="form-horizontal" role="form" action="menuSubmit"  method="post" style="margin-top: 20px;width: 50%">
+<form class="form-horizontal" role="form" action="menuSubmit"  method="post" style="margin-top: 20px;width: 70%">
     <div class="form-group" >
         <label for="firstMenu" class="col-sm-2 control-label">父级菜单</label>
-        <div class="col-sm-10">
+        <div class="col-sm-5">
             <select class="form-control" id="firstMenu" name="firstMenu">
                 <option></option>
             <c:forEach items="${firstMenus}" var="firstMenu">
@@ -32,7 +32,7 @@
     </div>
     <div class="form-group" >
         <label for="menuType" class="col-sm-2 control-label">菜单类型</label>
-        <div class="col-sm-10">
+        <div class="col-sm-5">
             <select class="form-control" id="menuType" name="menuType">
                 <option>click</option>
                 <option>view</option>
@@ -40,7 +40,7 @@
         </div>
     </div>
     <div class="form-group" >
-        <label for="menuValue" class="col-sm-2 control-label">键值或者url地址</label>
+        <label for="menuValue" class="col-sm-2 control-label">属性值</label>
         <div class="col-sm-5">
             <input type="text" class="form-control" id="menuValue"
                    placeholder="请输入菜单键值或url地址" name="menuValue">

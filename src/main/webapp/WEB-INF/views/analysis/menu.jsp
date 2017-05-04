@@ -25,8 +25,20 @@
 <div class="main_hd">
   <h2>菜单分析</h2>
 </div>
-
-<div class="wrp_overview">
+<div>
+  <div class="form-group col-sm-4">
+    <label for="startDate" class="col-sm-4 control-label">开始时间</label>
+    <input id="startDate"size="16" type="text"  onfocus="changeEndDate()"value="" class="form_datetime col-sm-8">
+  </div>
+  <div class="form-group col-sm-4">
+    <label for="endDate" class="col-sm-4 control-label">结束时间</label>
+    <input id="endDate"size="16" type="text"  onfocus="changeStartDate()" value="" class="form_datetime col-sm-8">
+  </div>
+  <div class="form-group col-sm-4">
+    <button type="button" class="btn btn-success" onclick="query()">查询</button>
+  </div>
+</div>
+<div class="wrp_overview" style="margin-top: 50px;">
   <div class="info_box" id="">
     <div class="inner">
       <div class="info_hd append_ask">
@@ -37,14 +49,12 @@
             <i class="dropdown_arrow out"></i>
             <i class="dropdown_arrow in"></i>
             <dl class="help-change-list" id="pop_items_info">
-              <dt>新关注人数</dt>
-              <dd>新关注的用户数</dd>
-              <dt>取消关注人数</dt>
-              <dd>取消关注的用户数</dd>
-              <dt>净增关注人数</dt>
-              <dd>净增长的关注用户数</dd>
-              <dt>累积关注人数</dt>
-              <dd>当前关注的用户总数</dd>
+              <dt>菜单点击次数</dt>
+              <dd>菜单被用户点击的次数</dd>
+              <dt>菜单点击人数</dt>
+              <dd>点击菜单的去重用户数</dd>
+              <dt>人均点击次数</dt>
+              <dd>菜单点击次数 / 菜单点击的去重用户数</dd>
               <%--  <dt>日、周、月</dt>
                 <dd>分别计算昨日数据相比1天、7天、30天前的变化情况</dd>--%>
               <%-- <dt>请注意</dt>
@@ -66,7 +76,7 @@
                 <div class="ui_trendgrid_item">
                   <div class="ui_trendgrid_chart"></div>
                   <dl>
-                    <dt><b>新关注人数</b></dt>
+                    <dt><b>菜单点击次数</b></dt>
                     <dd class="ui_trendgrid_number">
                       <strong>
                         <input id="subscribeNum" style="border-style:none;background: #FFF;text-align: center" value="0">
@@ -83,7 +93,7 @@
                 <div class="ui_trendgrid_item">
                   <div class="ui_trendgrid_chart"></div>
                   <dl>
-                    <dt><b>取消关注人数</b></dt>
+                    <dt><b>菜单点击人数</b></dt>
                     <dd class="ui_trendgrid_number">
                       <input id="unSubscribeNum" style="border-style:none;background: #FFF;text-align: center" value="0">
                       <em class="ui_trendgrid_unit"></em>
@@ -98,7 +108,7 @@
                 <div class="ui_trendgrid_item">
                   <div class="ui_trendgrid_chart"></div>
                   <dl>
-                    <dt><b>净增关注人数</b></dt>
+                    <dt><b>人均点击次数</b></dt>
                     <dd class="ui_trendgrid_number">
                       <input id="netSubscribeNum" style="border-style:none;background: #FFF;text-align: center" value="0">
                       <em class="ui_trendgrid_unit"></em>
@@ -106,21 +116,6 @@
                     <%-- <dd>日 &nbsp;&nbsp;&nbsp;--</dd>
                      <dd>周 &nbsp;&nbsp;&nbsp;-- </dd>
                      <dd>月 &nbsp;&nbsp;&nbsp;-- </dd>--%>
-                  </dl>
-                </div>
-              </td>
-              <td class="last">
-                <div class="ui_trendgrid_item">
-                  <div class="ui_trendgrid_chart"></div>
-                  <dl>
-                    <dt><b>累积关注人数</b></dt>
-                    <dd class="ui_trendgrid_number">
-                      <input  id="totalSubscribeNum" style="border-style:none;background: #FFF;text-align: center" value="0">
-                      <em class="ui_trendgrid_unit"></em>
-                    </dd>
-                    <%--   <dd>日 <i class="icon_up" title="上升"></i>0%</dd>
-                       <dd>周 <i class="icon_up" title="上升"></i>0% </dd>
-                       <dd>月 <i class="icon_up" title="上升"></i>0% </dd>--%>
                   </dl>
                 </div>
               </td>
@@ -132,19 +127,7 @@
     </div>
   </div>
 </div>
-<div>
-  <div class="form-group col-sm-4">
-    <label for="startDate" class="col-sm-4 control-label">开始时间</label>
-    <input id="startDate"size="16" type="text"  onfocus="changeEndDate()"value="" class="form_datetime col-sm-8">
-  </div>
-  <div class="form-group col-sm-4">
-    <label for="endDate" class="col-sm-4 control-label">结束时间</label>
-    <input id="endDate"size="16" type="text"  onfocus="changeStartDate()" value="" class="form_datetime col-sm-8">
-  </div>
-  <div class="form-group col-sm-4">
-    <button type="button" class="btn btn-success" onclick="query()">查询</button>
-  </div>
-</div>
+
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -181,6 +164,7 @@
       }
     });
   }
+  //开始日期不能大于结束日期 结束日期不能小于开始日期
   var changeStartDate = function(){
     var startDate =  $("#startDate").val();
     if(startDate!=null && startDate!=undefined && startDate!=''){
@@ -193,7 +177,7 @@
       $('#startDate').datetimepicker('setEndDate', endDate);
     }
   }
-
+  //鼠标经过提示
   $("#js_ask_keys").mouseover(function(){
     $('#js_ask_keys_content').css('display','block');
   });
@@ -201,7 +185,7 @@
   $("#js_ask_keys").mouseout(function(){
     $('#js_ask_keys_content').css('display','none');
   });
-
+  //查询日期初始化
   $("#startDate").datetimepicker({
     format: "yyyy-mm-dd hh:ii:ss",
     endData: $("#endDate").val(),

@@ -45,7 +45,7 @@ public class MenuController {
 
     @RequestMapping(value = "/toLookMenu", method = RequestMethod.GET)
     public String toLookMenu(HttpServletRequest request) throws IOException {
-     /*   JSONObject jsonObject = MenuUtil.queryMenu(AccessTokenUtil.getValidAccessToken().getToken());
+      /*  JSONObject jsonObject = MenuUtil.queryMenu(AccessTokenUtil.getValidAccessToken().getToken());
         JSONArray menu = jsonObject.getJSONObject("menu").getJSONArray("button");
         List<MenuDetail> menuDetails = new ArrayList<>();
         getMenuDetails(menu, menuDetails);*/
@@ -54,6 +54,17 @@ public class MenuController {
         return "menu/menu_look";
     }
 
+    @RequestMapping(value = "/deleteMenu", method = RequestMethod.POST)
+    public String deleteMenu(HttpServletRequest request) throws IOException {
+        int result =  MenuUtil.deleteMenu(AccessTokenUtil.getValidAccessToken().getToken());
+        if(0==result){
+            logger.debug("删除自定义菜单成功");
+            service.deleteAll();
+        }else{
+            logger.debug("删除自定义菜单失败");
+        }
+        return "redirect:toLookMenu";
+    }
     private void getMenuDetails(JSONArray array, List<MenuDetail> menuDetails) {
         for (int btnIndex = 0; btnIndex < array.size(); btnIndex++) {
             JSONObject btn = (JSONObject) array.get(btnIndex);
