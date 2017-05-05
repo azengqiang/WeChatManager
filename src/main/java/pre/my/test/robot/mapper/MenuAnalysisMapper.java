@@ -10,4 +10,5 @@ import java.util.List;
 public interface MenuAnalysisMapper {
     List<MenuAnalysis> select(MenuAnalysis menuAnalysis);
     void save(MenuAnalysis menuAnalysis);
+    List<MenuAnalysis> selectUserNum(MenuAnalysis menuAnalysis);
 }

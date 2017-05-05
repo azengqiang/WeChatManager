@@ -26,4 +26,9 @@ public class MenuAnalysisServiceImpl implements IMenuAnalysisService {
     public void save(MenuAnalysis menuAnalysis) {
         mapper.save(menuAnalysis);
     }
+
+    @Override
+    public List<MenuAnalysis> selectUserNum(MenuAnalysis menuAnalysis) {
+        return mapper.selectUserNum(menuAnalysis);
+    }
 }

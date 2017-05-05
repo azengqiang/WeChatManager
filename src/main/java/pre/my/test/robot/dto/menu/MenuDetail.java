@@ -29,6 +29,18 @@ public class MenuDetail implements Serializable {
      * 上级菜单名称
      */
     private String superiorName;
+    /**
+     * 版本号，从1开始，每次创建新菜单，版本号加1,
+     */
+    private int versionNumber;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -60,5 +72,13 @@ public class MenuDetail implements Serializable {
 
     public void setSuperiorName(String superiorName) {
         this.superiorName = superiorName;
+    }
+
+    public int getVersionNumber() {
+        return versionNumber;
+    }
+
+    public void setVersionNumber(int versionNumber) {
+        this.versionNumber = versionNumber;
     }
 }

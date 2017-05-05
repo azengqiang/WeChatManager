@@ -19,7 +19,7 @@
         <result column="creationDate" property="creationDate"/>
     </resultMap>
 
-    <select id="selectSubscribeNum" parameterType="pre.my.test.robot.dto.user.SubscribeDetail" resultMap="BaseResultMap">
+    <select id="selectSubscribeNum" parameterType="pre.my.test.robot.dto.user.SubscribeAnalysis" resultMap="BaseResultMap">
         select * from rb_userinfo
         <where>
             <if test="endDate !=null">

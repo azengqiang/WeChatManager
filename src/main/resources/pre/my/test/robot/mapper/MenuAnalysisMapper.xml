@@ -6,28 +6,41 @@
     <resultMap id="BaseResultMap" type="pre.my.test.robot.dto.menu.MenuAnalysis">
         <id column="id" property="id"/>
         <result column="openid" property="openid"/>
+        <result column="versionNumber" property="versionNumber"/>
         <result column="value" property="value"/>
         <result column="creationDate" property="creationDate"/>
     </resultMap>
 
 
-    <select id="select" resultMap="BaseResultMap"
-            parameterType="pre.my.test.robot.dto.menu.MenuAnalysis">
-        select * from rb_menu_analysis rm
+    <select id="selectUserNum"  parameterType="pre.my.test.robot.dto.menu.MenuAnalysis" resultMap="BaseResultMap">
+        select * from rb_menu_analysis
         <where>
-            <if test="openid !=null ">
-                and rm.openid = #{openid}
+            <if test="startDate !=null and startDate != ''">
+                and  creationDate  <![CDATA[ >= ]]> #{startDate}
             </if>
-            <if test="value !=null ">
-                and rm.value = #{value}
+            <if test="endDate !=null and endDate != ''">
+                and  creationDate  <![CDATA[ <= ]]> #{endDate}
+            </if>
+        </where>
+        group by openid asc
+    </select>
+
+    <select id="select"  parameterType="pre.my.test.robot.dto.menu.MenuAnalysis" resultMap="BaseResultMap">
+        select * from rb_menu_analysis
+        <where>
+            <if test="startDate !=null and startDate != ''">
+                and  creationDate  <![CDATA[ >= ]]> #{startDate}
+            </if>
+            <if test="endDate !=null and endDate != ''">
+                and  creationDate  <![CDATA[ <= ]]> #{endDate}
             </if>
         </where>
     </select>
 
     <insert id="save" parameterType="pre.my.test.robot.dto.menu.MenuAnalysis"
             useGeneratedKeys="true" keyProperty="id">
-        insert into rb_menu_analysis(openid,value,creationDate)
-        values(#{openid},#{value},CURRENT_TIMESTAMP)
+        insert into rb_menu_analysis(openid,versionNumber,value,creationDate)
+        values(#{openid},#{versionNumber},#{value},CURRENT_TIMESTAMP)
     </insert>
 
 </mapper>

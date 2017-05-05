@@ -4,10 +4,9 @@ package pre.my.test.robot.service.impl;
  * Author:qiang.zeng on 2017/4/25.
  */
 
-import com.sun.org.apache.bcel.internal.generic.ISUB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pre.my.test.robot.dto.user.SubscribeDetail;
+import pre.my.test.robot.dto.user.SubscribeAnalysis;
 import pre.my.test.robot.mapper.SubscribeDetailMapper;
 import pre.my.test.robot.service.ISubscribeDetailService;
 
@@ -20,22 +19,22 @@ public class SubscribeDetailServiceImpl implements ISubscribeDetailService {
 
 
     @Override
-    public void delete(SubscribeDetail subscribeDetail) {
-        mapper.delete(subscribeDetail);
+    public void delete(SubscribeAnalysis subscribeAnalysis) {
+        mapper.delete(subscribeAnalysis);
     }
 
     @Override
-    public void save(SubscribeDetail subscribeDetail) {
-        mapper.save(subscribeDetail);
+    public void save(SubscribeAnalysis subscribeAnalysis) {
+        mapper.save(subscribeAnalysis);
     }
 
     @Override
-    public void update(SubscribeDetail subscribeDetail) {
-        mapper.update(subscribeDetail);
+    public void update(SubscribeAnalysis subscribeAnalysis) {
+        mapper.update(subscribeAnalysis);
     }
 
     @Override
-    public List<SubscribeDetail> select(SubscribeDetail subscribeDetail) {
-       return mapper.select(subscribeDetail);
+    public List<SubscribeAnalysis> select(SubscribeAnalysis subscribeAnalysis) {
+       return mapper.select(subscribeAnalysis);
     }
 }

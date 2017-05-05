@@ -198,14 +198,21 @@ public class MenuController {
             } else {
                 logger.debug("菜单创建成功");
                 request.setAttribute("hint_menuInfo", "菜单创建成功，请进入微信公众号查看");
-                //获取菜单内容
+                //从微信获取菜单内容
                 JSONObject jsonObject = MenuUtil.queryMenu(AccessTokenUtil.getValidAccessToken().getToken());
                 JSONArray newMenu = jsonObject.getJSONObject("menu").getJSONArray("button");
                 List<MenuDetail> menuDetails = new ArrayList<>();
                 getMenuDetails(newMenu, menuDetails);
-                service.deleteAll();
-                logger.debug("数据库刪除原菜单");
+                //service.deleteAll();
+                int versionNumber=1;
+                List<MenuDetail> originMenuDetails = service.selectAll();
+                if(originMenuDetails!=null && originMenuDetails.size()!=0){
+                    MenuDetail originMenuDetail= originMenuDetails.get(originMenuDetails.size() - 1);
+                    versionNumber =   originMenuDetail.getVersionNumber()+1;
+                    logger.debug("原菜单版本号:{} 现菜单版本号:{}", originMenuDetail.getVersionNumber(),versionNumber);
+                }
                 for(MenuDetail  menuDetail:menuDetails){
+                    menuDetail.setVersionNumber(versionNumber);
                     service.save(menuDetail);
                 }
                 logger.debug("数据库保存新菜单");

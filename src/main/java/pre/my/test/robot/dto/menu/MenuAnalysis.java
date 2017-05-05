@@ -16,6 +16,7 @@ public class MenuAnalysis {
     @GeneratedValue()
     private Long id;
     private String openid;
+    private int versionNumber;
     private String value;
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date creationDate;
@@ -34,6 +35,14 @@ public class MenuAnalysis {
 
     public void setOpenid(String openid) {
         this.openid = openid;
+    }
+
+    public int getVersionNumber() {
+        return versionNumber;
+    }
+
+    public void setVersionNumber(int versionNumber) {
+        this.versionNumber = versionNumber;
     }
 
     public String getValue() {

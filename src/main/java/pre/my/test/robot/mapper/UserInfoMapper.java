@@ -1,6 +1,6 @@
 package pre.my.test.robot.mapper;
 
-import pre.my.test.robot.dto.user.SubscribeDetail;
+import pre.my.test.robot.dto.user.SubscribeAnalysis;
 import pre.my.test.robot.dto.user.UserInfo;
 
 import java.util.List;
@@ -25,5 +25,5 @@ public interface UserInfoMapper {
 
     void update(UserInfo userInfo);
 
-    List<UserInfo> selectSubscribeNum(SubscribeDetail subscribeDetail);
+    List<UserInfo> selectSubscribeNum(SubscribeAnalysis subscribeAnalysis);
 }

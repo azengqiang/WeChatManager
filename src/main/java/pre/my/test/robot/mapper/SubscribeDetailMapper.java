@@ -1,6 +1,6 @@
 package pre.my.test.robot.mapper;
 
-import pre.my.test.robot.dto.user.SubscribeDetail;
+import pre.my.test.robot.dto.user.SubscribeAnalysis;
 
 import java.util.List;
 
@@ -8,11 +8,11 @@ import java.util.List;
  * Author:qiang.zeng on 2017/4/25.
  */
 public interface SubscribeDetailMapper {
-    void delete(SubscribeDetail subscribeDetail);
+    void delete(SubscribeAnalysis subscribeAnalysis);
 
-    void save(SubscribeDetail subscribeDetail);
+    void save(SubscribeAnalysis subscribeAnalysis);
 
-    void update(SubscribeDetail subscribeDetail);
+    void update(SubscribeAnalysis subscribeAnalysis);
 
-    List<SubscribeDetail> select(SubscribeDetail subscribeDetail);
+    List<SubscribeAnalysis> select(SubscribeAnalysis subscribeAnalysis);
 }

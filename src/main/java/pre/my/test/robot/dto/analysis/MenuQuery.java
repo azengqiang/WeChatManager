@@ -1,13 +1,11 @@
-package pre.my.test.robot.dto.user;
+package pre.my.test.robot.dto.analysis;
 
-import com.alibaba.fastjson.annotation.JSONField;
-
-import java.util.Date;
+import pre.my.test.robot.dto.menu.MenuAnalysis;
 
 /**
- * Author:qiang.zeng on 2017/5/2.
+ * Author:qiang.zeng on 2017/5/4.
  */
-public class SubscribeQuery extends  SubscribeDetail{
+public class MenuQuery extends MenuAnalysis {
     private String startDate;
 
     private String endDate;

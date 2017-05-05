@@ -24,23 +24,35 @@
 
 <div class="main_hd">
     <h2>用户分析</h2>
-    <div class="title_tab" id="js_topTab">
+   <%-- <div class="title_tab" id="js_topTab">
         <ul class="tab_navs title_tab" data-index="0">
             <li data-index="0" class="tab_nav first js_top selected" data-id="user_stat">
               <a href="#">用户增长</a>
             </li>
-          <%--  <li data-index="1" class="tab_nav  js_top" data-id="user_attr">
+          &lt;%&ndash;  <li data-index="1" class="tab_nav  js_top" data-id="user_attr">
               <a href="/misc/useranalysis?">用户属性</a>
-            </li>--%>
+            </li>&ndash;%&gt;
         </ul>
+    </div>--%>
+</div>
+<div>
+    <div class="form-group col-sm-4">
+        <label for="startDate" class="col-sm-4 control-label">开始时间</label>
+        <input id="startDate"size="16" type="text"  onfocus="changeEndDate()"value="" class="form_datetime col-sm-8">
+    </div>
+    <div class="form-group col-sm-4">
+        <label for="endDate" class="col-sm-4 control-label">结束时间</label>
+        <input id="endDate"size="16" type="text"  onfocus="changeStartDate()" value="" class="form_datetime col-sm-8">
+    </div>
+    <div class="form-group col-sm-4">
+        <button type="button" class="btn btn-success" onclick="query()">查询</button>
     </div>
 </div>
-
-<div class="wrp_overview">
+<div class="wrp_overview" style="margin-top: 50px;">
     <div class="info_box" id="">
         <div class="inner">
             <div class="info_hd append_ask">
-            <h4 style="text-align: left;"><br>关键指标,不填写查询时间，默认是昨日</h4>
+            <h4 style="text-align: left;"><br>关键指标,不填写查询时间，默认是昨日时间到今日时间的一天数据</h4>
                 <div class="ext_info help">
                     <i id="js_ask_keys" class="icon_msg_mini ask"></i>
                     <div class="help_content" id="js_ask_keys_content" style="display: none">
@@ -142,26 +154,15 @@
         </div>
     </div>
 </div>
-<div>
-    <div class="form-group col-sm-4">
-        <label for="startDate" class="col-sm-4 control-label">开始时间</label>
-        <input id="startDate"size="16" type="text"  onfocus="changeEndDate()"value="" class="form_datetime col-sm-8">
-    </div>
-    <div class="form-group col-sm-4">
-        <label for="endDate" class="col-sm-4 control-label">结束时间</label>
-        <input id="endDate"size="16" type="text"  onfocus="changeStartDate()" value="" class="form_datetime col-sm-8">
-    </div>
-    <div class="form-group col-sm-4">
-        <button type="button" class="btn btn-success" onclick="query()">查询</button>
-    </div>
-</div>
 
 <script type="text/javascript">
     $(document).ready(function(){
+        var endDate = (new Date()).toLocaleString();
+        var startDate =  (new Date(Date.parse(endDate) - 86400000)).toLocaleString();
         debugger;
         $.ajax({
             type: "get",
-            url: "${base.contextPath}/admin/userAnalysis?startDate="+''+"&endDate="+'',
+            url: "${base.contextPath}/admin/userAnalysis?startDate="+startDate+"&endDate="+endDate,
             contentType: "application/json",
             success: function (data) {
                 var user = JSON.parse(data);

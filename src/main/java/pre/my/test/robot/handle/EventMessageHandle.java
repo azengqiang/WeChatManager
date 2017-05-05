@@ -8,9 +8,10 @@ import org.springframework.stereotype.Component;
 import pre.my.test.robot.dto.autoresponse.AutoResponseMessage;
 import pre.my.test.robot.dto.location.RimLocation;
 import pre.my.test.robot.dto.menu.MenuAnalysis;
+import pre.my.test.robot.dto.menu.MenuDetail;
 import pre.my.test.robot.dto.user.Group;
 import pre.my.test.robot.dto.user.Location;
-import pre.my.test.robot.dto.user.SubscribeDetail;
+import pre.my.test.robot.dto.user.SubscribeAnalysis;
 import pre.my.test.robot.dto.user.UserInfo;
 import pre.my.test.robot.service.*;
 import pre.my.test.robot.util.*;
@@ -37,6 +38,8 @@ public class EventMessageHandle {
     private IGroupService groupService;
     @Autowired
     private IMenuAnalysisService menuAnalysisService;
+    @Autowired
+    private IMenuDetailService menuDetailService;
     private String lon;
     private String lat;
 
@@ -59,10 +62,10 @@ public class EventMessageHandle {
                 logger.debug(newUserInfo.getNickname(), "新关注");
             }
 
-            SubscribeDetail subscribeDetail = new SubscribeDetail();
-            subscribeDetail.setOpenid(fromUserName);
-            subscribeDetail.setAction("subscribe");
-            subscribeDetailService.save(subscribeDetail);
+            SubscribeAnalysis subscribeAnalysis = new SubscribeAnalysis();
+            subscribeAnalysis.setOpenid(fromUserName);
+            subscribeAnalysis.setAction("subscribe");
+            subscribeDetailService.save(subscribeAnalysis);
             //设置用户关注后公众号推送消息
             String responseMessage = "欢迎关注swpu911公众号！";
             List<AutoResponseMessage> autoResponseMessages = autoResponseService.select(new AutoResponseMessage(null, "关注回复语", null));
@@ -82,13 +85,17 @@ public class EventMessageHandle {
             userInfoService.update(existUserInfo);
             resizeGroup();
             logger.debug(existUserInfo.getNickname() + "取消关注");
-            SubscribeDetail subscribeDetail = new SubscribeDetail();
-            subscribeDetail.setOpenid(fromUserName);
-            subscribeDetail.setAction("unSubscribe");
-            subscribeDetailService.save(subscribeDetail);
+            SubscribeAnalysis subscribeAnalysis = new SubscribeAnalysis();
+            subscribeAnalysis.setOpenid(fromUserName);
+            subscribeAnalysis.setAction("unSubscribe");
+            subscribeDetailService.save(subscribeAnalysis);
         } else if (eventType.equals(Constants.EVENT_TYPE_CLICK)) {// 自定义菜单点击事件
+            //保存菜单分析数据
+            List<MenuDetail> originMenuDetails = menuDetailService.selectAll();
+            int versionNumber =   originMenuDetails.get(originMenuDetails.size() - 1).getVersionNumber();
             MenuAnalysis menuAnalysis = new MenuAnalysis();
             menuAnalysis.setOpenid(fromUserName);
+            menuAnalysis.setVersionNumber(versionNumber);
             menuAnalysis.setValue(eventKey);
             menuAnalysisService.save(menuAnalysis);
             logger.debug("自定义菜单({})点击事件",eventKey);

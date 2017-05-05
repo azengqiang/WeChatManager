@@ -14,7 +14,7 @@ import java.util.Date;
  * Author:qiang.zeng on 2017/4/25.
  */
 @Table(name = "rb_subscribe")
-public class SubscribeDetail {
+public class SubscribeAnalysis {
     @Id
     @GeneratedValue()
     private Long id;
