@@ -401,7 +401,7 @@ $(function(){
 					]},
 					{"id":"23","name":"消息管理","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
 						{"id":"231","name":"消息列表","parentId":"23","url":"toTextMessage","icon":"","order":"1","isHeader":"0","childMenus":""},
-						/*{"id":"232","name":"图文消息","parentId":"23","url":"toGraphicMessage","icon":"","order":"1","isHeader":"0","childMenus":""},*/
+						{"id":"232","name":"分组群发","parentId":"23","url":"toMassMessage","icon":"","order":"1","isHeader":"0","childMenus":""},
 					]},
 					{"id":"24","name":"素材管理","parentId":"1","url":"","icon":"&#xe602;","order":"1","isHeader":"0","childMenus":[
 						{"id":"241","name":"图片管理","parentId":"24","url":"toMaterialPic","icon":"","order":"1","isHeader":"0","childMenus":""},

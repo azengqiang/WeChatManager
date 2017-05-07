@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pre.my.test.robot.dto.autoresponse.AutoResponseMessage;
-import pre.my.test.robot.dto.user.UserInfo;
 import pre.my.test.robot.service.IAutoResponseService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,12 +45,12 @@ public class AutoResponseController {
             request.setAttribute("subscribeResponseMsg", null);
             logger.debug("关注回复语: " + "暂时无关注回复语设置");
         }
-        return "autoresponse/subscribe_response";
+        return "autoresponse/subscribe";
     }
 
     @RequestMapping(value = "/toSetKeywordResponse", method = GET)
     public String toSetKeyResponse(HttpServletRequest request, HttpServletResponse response) {
-        return "autoresponse/keyword_response";
+        return "autoresponse/keyword";
     }
 
     @RequestMapping(value = "/setSubscribeResponse", method = POST)

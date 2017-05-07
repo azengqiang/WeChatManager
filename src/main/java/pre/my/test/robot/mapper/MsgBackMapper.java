@@ -13,4 +13,8 @@ public interface MsgBackMapper {
     int selectCount();
 
     List<MsgBack> selectAllMsgBack();
+
+    List<MsgBack>  select(MsgBack msgBack);
+
+    List<MsgBack>  selectUserNum(MsgBack msgBack);
 }

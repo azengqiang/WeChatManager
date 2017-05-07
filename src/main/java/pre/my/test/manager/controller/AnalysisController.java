@@ -7,13 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pre.my.test.robot.dto.analysis.MenuQuery;
-import pre.my.test.robot.dto.analysis.MenuQueryAnalysis;
-import pre.my.test.robot.dto.analysis.SubscribeQueryAnalysis;
+import pre.my.test.robot.dto.analysis.*;
 import pre.my.test.robot.dto.menu.MenuAnalysis;
+import pre.my.test.robot.dto.user.MsgBack;
 import pre.my.test.robot.dto.user.SubscribeAnalysis;
-import pre.my.test.robot.dto.analysis.SubscribeQuery;
 import pre.my.test.robot.service.IMenuAnalysisService;
+import pre.my.test.robot.service.IMsgBackService;
 import pre.my.test.robot.service.ISubscribeDetailService;
 import pre.my.test.robot.service.IUserInfoService;
 
@@ -37,6 +36,8 @@ public class AnalysisController {
     private ISubscribeDetailService subscribeDetailService;
     @Autowired
     private IMenuAnalysisService menuAnalysisService;
+    @Autowired
+    private IMsgBackService msgBackService;
 
     @RequestMapping(value = "toGraphicAnalysis", method = RequestMethod.GET)
     public String toGraphicAnalysis() {
@@ -61,6 +62,40 @@ public class AnalysisController {
 
         return "analysis/user";
     }
+
+    @RequestMapping(value = "messageAnalysis", method = RequestMethod.GET)
+    public void messageAnalysis(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String startDate = request.getParameter("startDate");
+        String endDate = request.getParameter("endDate");
+        logger.debug("消息分析 startDate：" + startDate + "  endDate: " + endDate);
+
+        MessageQuery messageQuery = new MessageQuery();
+        messageQuery.setStartDate(startDate);
+        messageQuery.setEndDate(endDate);
+        //获取消息发送次数
+        List<MsgBack> sendTimeList = msgBackService.select(messageQuery);
+        int sendTimeNum = sendTimeList.size();
+        //获取消息发送人数
+        List<MsgBack> sendUserList = msgBackService.selectUserNum(messageQuery);
+        int sendUserNum = sendUserList.size();
+        //设置消息分析参数
+        MessageQueryAnalysis messageQueryAnalysis = new MessageQueryAnalysis();
+        messageQueryAnalysis.setSendTimeNum(sendTimeNum);
+        messageQueryAnalysis.setSendUserNum(sendUserNum);
+        if(0==sendUserNum){
+            messageQueryAnalysis.setPerCapitaNum(0.0);
+        }else{
+            messageQueryAnalysis.setPerCapitaNum((sendTimeNum * 1.0) / sendUserNum);
+        }
+        //回调
+        response.setCharacterEncoding("UTF-8"); //设置编码格式
+        response.setContentType("text/html");   //设置数据格式
+        PrintWriter out = response.getWriter(); //获取写入对象
+        out.print(JSONObject.toJSON(messageQueryAnalysis));
+        out.flush();
+
+    }
+
     @RequestMapping(value = "menuAnalysis", method = RequestMethod.GET)
     public void menuAnalysis(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String startDate = request.getParameter("startDate");
@@ -78,9 +113,13 @@ public class AnalysisController {
         int userNum = userNumList.size();
         //设置菜单分析参数
         MenuQueryAnalysis menuQueryAnalysis = new MenuQueryAnalysis();
-        menuQueryAnalysis.setClickNum(String.valueOf(clickNum));
-        menuQueryAnalysis.setUserNum(String.valueOf(userNum));
-        menuQueryAnalysis.setPerCapitaNum(String.valueOf(((float)clickNum)/userNum));
+        menuQueryAnalysis.setClickNum(clickNum);
+        menuQueryAnalysis.setUserNum(userNum);
+        if(0==userNum){
+            menuQueryAnalysis.setPerCapitaNum(0.0);
+        }else {
+            menuQueryAnalysis.setPerCapitaNum((clickNum * 1.0) / userNum);
+        }
         //回调
         response.setCharacterEncoding("UTF-8"); //设置编码格式
         response.setContentType("text/html");   //设置数据格式
@@ -89,6 +128,7 @@ public class AnalysisController {
         out.flush();
 
     }
+
     @RequestMapping(value = "userAnalysis", method = RequestMethod.GET)
     public void userAnalysis(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
         String startDate = request.getParameter("startDate");
@@ -111,16 +151,16 @@ public class AnalysisController {
         //获取关注的总人数
         subscribeQuery.setStartDate("");
         subscribeQuery.setEndDate(endDate);
-        int totalUnSubscribe= subscribeDetailService.select(subscribeQuery).size();
+        int totalUnSubscribe = subscribeDetailService.select(subscribeQuery).size();
         subscribeQuery.setAction("subscribe");
         int totalSubscribe = subscribeDetailService.select(subscribeQuery).size();
-        int total = totalSubscribe-totalUnSubscribe;
+        int total = totalSubscribe - totalUnSubscribe;
         //设置用户分析参数
         SubscribeQueryAnalysis subscribeQueryAnalysis = new SubscribeQueryAnalysis();
-        subscribeQueryAnalysis.setSubscribeNum(String.valueOf(sub));
-        subscribeQueryAnalysis.setUnSubscribeNum(String.valueOf(unSub));
-        subscribeQueryAnalysis.setNetSubscribeNum(String.valueOf(sub - unSub));
-        subscribeQueryAnalysis.setTotalSubscribeNum(String.valueOf(total));
+        subscribeQueryAnalysis.setSubscribeNum(sub);
+        subscribeQueryAnalysis.setUnSubscribeNum(unSub);
+        subscribeQueryAnalysis.setNetSubscribeNum(sub - unSub);
+        subscribeQueryAnalysis.setTotalSubscribeNum(total);
         //回调
         response.setCharacterEncoding("UTF-8"); //设置编码格式
         response.setContentType("text/html");   //设置数据格式

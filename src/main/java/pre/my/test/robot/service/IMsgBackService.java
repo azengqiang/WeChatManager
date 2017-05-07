@@ -30,4 +30,8 @@ public interface IMsgBackService {
      * @return
      */
     List<MsgBack> selectAllMsgBack(Integer pageSize, Integer pageNumber);
+
+    List<MsgBack>  select(MsgBack msgBack);
+
+    List<MsgBack>  selectUserNum(MsgBack msgBack);
 }

@@ -42,7 +42,7 @@
   <div class="info_box" id="">
     <div class="inner">
       <div class="info_hd append_ask">
-        <h4 style="text-align: left;"><br>关键指标,不填写查询时间，默认是昨日时间到今日时间的一天数据</h4>
+        <h4 style="text-align: left;"><br>关键指标,默认昨日时间到今日时间的一天数据</h4>
         <div class="ext_info help">
           <i id="js_ask_keys" class="icon_msg_mini ask"></i>
           <div class="help_content" id="js_ask_keys_content" style="display: none">
@@ -79,7 +79,7 @@
                     <dt><b>菜单点击次数</b></dt>
                     <dd class="ui_trendgrid_number">
                       <strong>
-                        <input id="clickNum" style="border-style:none;background: #FFF;text-align: center" value="0">
+                        <input id="clickNum" style="border-style:none;background: #FFF;text-align: center" value="0" disabled>
                       </strong>
                       <em class="ui_trendgrid_unit"></em>
                     </dd>
@@ -95,7 +95,7 @@
                   <dl>
                     <dt><b>菜单点击人数</b></dt>
                     <dd class="ui_trendgrid_number">
-                      <input id="userNum" style="border-style:none;background: #FFF;text-align: center" value="0">
+                      <input id="userNum" style="border-style:none;background: #FFF;text-align: center" value="0" disabled>
                       <em class="ui_trendgrid_unit"></em>
                     </dd>
                     <%--  <dd>日 &nbsp;&nbsp;&nbsp;--</dd>
@@ -110,7 +110,7 @@
                   <dl>
                     <dt><b>人均点击次数</b></dt>
                     <dd class="ui_trendgrid_number">
-                      <input id="perCapitaNum" style="border-style:none;background: #FFF;text-align: center" value="0">
+                      <input id="perCapitaNum" style="border-style:none;background: #FFF;text-align: center" value="0" disabled>
                       <em class="ui_trendgrid_unit"></em>
                     </dd>
                     <%-- <dd>日 &nbsp;&nbsp;&nbsp;--</dd>

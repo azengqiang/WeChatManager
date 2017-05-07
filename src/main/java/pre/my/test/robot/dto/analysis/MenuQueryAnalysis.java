@@ -7,37 +7,37 @@ public class MenuQueryAnalysis {
     /**
      * 菜单点击次数:菜单被用户点击的次数
      */
-    private String clickNum;
+    private int clickNum;
     /**
      * 菜单点击人数:点击菜单的去重用户数;
      */
-    private String userNum;
+    private int userNum;
     /**
      * 人均点击次数:菜单点击次数 / 菜单点击的去重用户数
      */
-    private String perCapitaNum;
+    private double perCapitaNum;
 
-    public String getClickNum() {
+    public int getClickNum() {
         return clickNum;
     }
 
-    public void setClickNum(String clickNum) {
+    public void setClickNum(int clickNum) {
         this.clickNum = clickNum;
     }
 
-    public String getUserNum() {
+    public int getUserNum() {
         return userNum;
     }
 
-    public void setUserNum(String userNum) {
+    public void setUserNum(int userNum) {
         this.userNum = userNum;
     }
 
-    public String getPerCapitaNum() {
+    public double getPerCapitaNum() {
         return perCapitaNum;
     }
 
-    public void setPerCapitaNum(String perCapitaNum) {
+    public void setPerCapitaNum(double perCapitaNum) {
         this.perCapitaNum = perCapitaNum;
     }
 }

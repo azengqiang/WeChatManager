@@ -10,6 +10,22 @@
         <result column="creationDate" property="creationDate"/>
     </resultMap>
 
+    <select id="selectUserNum" parameterType="pre.my.test.robot.dto.user.SubscribeAnalysis" resultMap="BaseResultMap">
+        select * from rb_subscribe
+        <where>
+            <if test="action !=null ">
+                and action = #{action}
+            </if>
+            <if test="startDate !=null and startDate != ''">
+                and  creationDate  <![CDATA[ >= ]]> #{startDate}
+            </if>
+            <if test="endDate !=null and endDate != ''">
+                and  creationDate  <![CDATA[ <= ]]> #{endDate}
+            </if>
+        </where>
+        group by openid
+    </select>
+
     <select id="select" parameterType="pre.my.test.robot.dto.user.SubscribeAnalysis" resultMap="BaseResultMap">
         select * from rb_subscribe
         <where>

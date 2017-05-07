@@ -41,7 +41,7 @@ public class TextMessageHandle {
             String keyword = autoResponseMessage.getKeywordMsg();
             String[] keywords = keyword.split("，");
             for(String key:keywords){
-                if (content.contains(key)) {
+                if (content.contains(key) || content.equalsIgnoreCase(key)) {
                     UserInfo userInfo = userInfoService.selectUserInfoByOpenid(fromUserName);
                     String resultContent = MessageUtil.initTextMessage(fromUserName, toUserName, autoResponseMessage.getResponseMsg());
                     MsgBack msgBack = new MsgBack();

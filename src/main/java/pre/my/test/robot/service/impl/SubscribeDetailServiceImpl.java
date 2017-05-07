@@ -37,4 +37,9 @@ public class SubscribeDetailServiceImpl implements ISubscribeDetailService {
     public List<SubscribeAnalysis> select(SubscribeAnalysis subscribeAnalysis) {
        return mapper.select(subscribeAnalysis);
     }
+
+    @Override
+    public List<SubscribeAnalysis> selectUserNum(SubscribeAnalysis subscribeAnalysis) {
+        return mapper.selectUserNum(subscribeAnalysis);
+    }
 }

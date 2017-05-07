@@ -34,4 +34,14 @@ public class MsgBackServiceImpl implements IMsgBackService {
         PageHelper.startPage(pageNumber, pageSize);
         return mapper.selectAllMsgBack();
     }
+
+    @Override
+    public List<MsgBack> select(MsgBack msgBack) {
+        return mapper.select(msgBack);
+    }
+
+    @Override
+    public List<MsgBack> selectUserNum(MsgBack msgBack) {
+        return mapper.selectUserNum(msgBack);
+    }
 }

@@ -183,7 +183,7 @@
             url: url,
             striped: true,
             pagination: true,
-            pageSize: 5,
+            pageSize: 10,
             pageNumber: 1,
             pageList: [5, 10, 15, 20],
             sidePagination: "client",
@@ -279,7 +279,7 @@
             url: url,
             striped: true,
             pagination: true,
-            pageSize: 5,
+            pageSize: 10,
             pageNumber: 1,
             pageList: [5, 10, 15, 20],
             sidePagination: "client",
@@ -288,10 +288,6 @@
             queryParamsType: "undefined",
             editabe: true,
             columns: [{
-                field: 'id',
-                title: "序号",
-                width: "40px",
-            }, {
                 title: "媒体ID",
                 width: "120px",
                 formatter: function (value, row, index) {

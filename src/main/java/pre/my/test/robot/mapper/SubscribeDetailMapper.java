@@ -15,4 +15,6 @@ public interface SubscribeDetailMapper {
     void update(SubscribeAnalysis subscribeAnalysis);
 
     List<SubscribeAnalysis> select(SubscribeAnalysis subscribeAnalysis);
+
+    List<SubscribeAnalysis> selectUserNum(SubscribeAnalysis subscribeAnalysis);
 }

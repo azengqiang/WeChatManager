@@ -12,4 +12,5 @@ public interface ISubscribeDetailService {
     void save(SubscribeAnalysis subscribeAnalysis);
     void update(SubscribeAnalysis subscribeAnalysis);
     List<SubscribeAnalysis> select(SubscribeAnalysis subscribeAnalysis);
+    List<SubscribeAnalysis> selectUserNum(SubscribeAnalysis subscribeAnalysis);
 }

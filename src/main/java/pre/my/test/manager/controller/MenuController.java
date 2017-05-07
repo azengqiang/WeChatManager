@@ -40,7 +40,7 @@ public class MenuController {
     public String toCreateMenu(HttpServletRequest request) throws UnsupportedEncodingException {
         firstMenus.clear();
         request.setAttribute("hint_menuValue", "如果一级菜单包含子菜单，该项不能填写；否则，必须填写该项");
-        return "menu/menu_create";
+        return "menu/create";
     }
 
     @RequestMapping(value = "/toLookMenu", method = RequestMethod.GET)
@@ -51,7 +51,7 @@ public class MenuController {
         getMenuDetails(menu, menuDetails);*/
         List<MenuDetail> menuDetails = service.selectAll();
         request.setAttribute("menuDetails", menuDetails);
-        return "menu/menu_look";
+        return "menu/look";
     }
 
     @RequestMapping(value = "/deleteMenu", method = RequestMethod.POST)
@@ -122,7 +122,7 @@ public class MenuController {
             logger.debug(JSONObject.toJSON(menu).toString());
         }
         request.setAttribute("firstMenus", firstMenus);
-        return "menu/menu_create";
+        return "menu/create";
     }
 
     private void setSecondMenu(HttpServletRequest request, String firstMenu, String menuType, String menuName, String menuValue) {
@@ -218,7 +218,7 @@ public class MenuController {
                 logger.debug("数据库保存新菜单");
             }
         }
-        return "menu/menu_create";
+        return "menu/create";
     }
 
 

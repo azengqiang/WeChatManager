@@ -4,41 +4,40 @@ package pre.my.test.robot.dto.analysis;
  * Author:qiang.zeng on 2017/5/2.
  */
 public class SubscribeQueryAnalysis {
-    private String subscribeNum;
-    private String unSubscribeNum;
-    private String netSubscribeNum;
-    private String totalSubscribeNum;
+    private int subscribeNum;
+    private int unSubscribeNum;
+    private int netSubscribeNum;
+    private int totalSubscribeNum;
 
-    public String getSubscribeNum() {
-
+    public int getSubscribeNum() {
         return subscribeNum;
     }
 
-    public void setSubscribeNum(String subscribeNum) {
+    public void setSubscribeNum(int subscribeNum) {
         this.subscribeNum = subscribeNum;
     }
 
-    public String getUnSubscribeNum() {
+    public int getUnSubscribeNum() {
         return unSubscribeNum;
     }
 
-    public void setUnSubscribeNum(String unSubscribeNum) {
+    public void setUnSubscribeNum(int unSubscribeNum) {
         this.unSubscribeNum = unSubscribeNum;
     }
 
-    public String getNetSubscribeNum() {
+    public int getNetSubscribeNum() {
         return netSubscribeNum;
     }
 
-    public void setNetSubscribeNum(String netSubscribeNum) {
+    public void setNetSubscribeNum(int netSubscribeNum) {
         this.netSubscribeNum = netSubscribeNum;
     }
 
-    public String getTotalSubscribeNum() {
+    public int getTotalSubscribeNum() {
         return totalSubscribeNum;
     }
 
-    public void setTotalSubscribeNum(String totalSubscribeNum) {
+    public void setTotalSubscribeNum(int totalSubscribeNum) {
         this.totalSubscribeNum = totalSubscribeNum;
     }
 }

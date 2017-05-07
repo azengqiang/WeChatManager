@@ -22,21 +22,21 @@ public class MassTest {
     @org.junit.Test
     public void test() throws IOException {
         String massMsg = null;
-      /*  TextMass textMass = new TextMass();
+        TextMass textMass = new TextMass();
         textMass.setText(new MText("测试！！来自swpu911群发"));
         textMass.setFilter(new Filter(false, "0"));
         textMass.setMsgtype("text");
-         massMsg =  JSON.toJSONString(textMass);*/
+         massMsg =  JSON.toJSONString(textMass);
 
-    /*    ImageMass imageMass = new ImageMass();
+     /*  ImageMass imageMass = new ImageMass();
         Filter filter= new Filter();
         filter.setIs_to_all(true);
         filter.setGroup_id("0");
         imageMass.setFilter(filter);
         imageMass.setMsgtype(Constants.MASS_MAG_TYPE_IMAGE);
         imageMass.setImage(new MImage("IKj-yH_Yv8SQ-YBDmc-hILP8FcK3T4H8KUtCQRxr13A"));
-        massMsg =  JSON.toJSONString(imageMass);*/
-        massMsg = "{\"filter\":{\"group_id\":\"0\",\"is_to_all\":true},\"image\":{\"media_id\":\"IKj-yH_Yv8SQ-YBDmc-hILP8FcK3T4H8KUtCQRxr13A\"},\"msgtype\":\"image\"}";
+        massMsg =  JSON.toJSONString(imageMass);
+        massMsg = "{\"filter\":{\"group_id\":\"0\",\"is_to_all\":true},\"image\":{\"media_id\":\"IKj-yH_Yv8SQ-YBDmc-hIH-H33_UTNaUbC44P5anWZs\"},\"msgtype\":\"image\"}";*/
         logger.debug("massMsg: {}", massMsg);
         JSONObject jsonObject = MassUtil.groupMass(AccessTokenUtil.getValidAccessToken().getToken(), massMsg);
         if (jsonObject.getInteger("errcode") == 0) {
