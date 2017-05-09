@@ -4,101 +4,140 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title></title>
+    <title>消息管理</title>
     <script type="text/javascript" src="../../resources/bootstrap-3.3.7/js/jquery-3.1.1.min.js"></script>
     <link type="text/css" href="../../resources/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
     <script type="text/javascript" src="../../resources/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    <link type="text/css" href="../../resources/bootstrap-table-develop/bootstrap-table.css" rel="stylesheet"/>
-    <script type="text/javascript" src="../../resources/bootstrap-table-develop/bootstrap-table.js"></script>
-    <script type="text/javascript"
-            src="../../resources/bootstrap-table-develop/locale/bootstrap-table-zh-CN.js"></script>
-    <script type="text/javascript">
-        function initTable() {
-            $('#table').bootstrapTable('destroy');
+</head>
+<body>
+<div style="margin-left: 20px;">
 
-            $("#table").bootstrapTable({
-                method: "get",
-                url: "<c:url value='/admin/lookMessage'/>",
-                striped: true,
-                pagination: true,
-                pageSize: 10,
-                pageNumber:1,
-                pageList: [5, 10, 15],
-                search: true,
-                showColumns: true,
-                showRefresh: true,
-                showToggle:true,
-                sidePagination: "server",
-                height:600,
-                clickToSelect: true,
-                queryParamsType : "undefined",
-                editabe:true,
-                columns: [{
-                            field:"msgid",
-                            title:"序号",
-                            align:"center",
-                          /*  formatter: function (value, row, index) {
-                                var pageSize =   $("#table").bootstrapTable("getPageSize");
-                                var pageNumber =   $("#table").bootstrapTable("getPageNumber");
-                                return pageSize * (pageNumber - 1) + index + 1;
-                            }*/
-                        }, {
-                            field:"nickname",
-                            title:"用户名",
-                            align:"center"
-                        }, {
-                            field:"userContent",
-                            title:"用户发送内容",
-                            align:"center"
-                        }, {
-                            field:"robotContent",
-                            title:"机器人回复内容",
-                            align:"center"
-                        }, {
-                            field:"creationDate",
-                            title:"创建时间",
-                            align:"center"
-                        }
-                    ],
-                queryParams: function queryParams(params) {
-                    var param = {
-                        pageNumber: params.pageNumber,
-                        pageSize: params.pageSize
-                    };
-                    return param;
-                },
-                onLoadSuccess: function(){
+    <ol class="breadcrumb">
+        <li><a href="#">主菜单</a></li>
+        <li><a href="#">消息管理</a></li>
+        <li class="active">分组群发</li>
+    </ol>
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#home" data-toggle="tab">
+                新建群发消息
+            </a>
+        </li>
+    </ul>
+    <div class="modal fade" id="massValidate">
+        <div class="modal-dialog">
+            <div class="modal-content message_align">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">提示信息</h4>
+                </div>
+                <div class="modal-body">
+                    <p>您确认要发送吗？</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="url"/>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <a class="btn btn-success" data-dismiss="modal" onclick="mass()">确定</a>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div id="myTabContent" class="tab-content" style="margin-top: 20px;">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="col-sm-2">
+                        <span>选择分组</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="col-sm-2">
+                        <select class="form-control" id="massGroup" name="massGroup">
+                            <c:forEach items="${massGroups}" var="massGroup">
+                                <option value="${massGroup.id}">${massGroup.name}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade in active" id="home">
+                  <textarea id="massMessage" name="massMessage"
+                            maxlength="600" autofocus rows="15" cols="120" wrap="soft" placeholder="请输入群发内容"
+                            onkeydown="checkMaxInput(this,600)" onkeyup="checkMaxInput(this,600)"
+                            onfocus="checkMaxInput(this,600)"
+                            onblur="checkMaxInput(this,600)"></textarea>
+            </div>
+            <div style="margin-top: 20px;">
+                <button type="button" class="btn btn-primary" data-toggle="modal" style="width: 120px" data-target="#massValidate">发送 </button>
+
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var mass = function () {
+//大家好，我是swpu公众号的管理员，内江一中
+        var mass = {}
+        mass.openid =  $("#massGroup").val();
+        mass.remark =  $("#massMessage").val();
+        if(null==mass.openid || undefined==mass.openid){
+            alert("请输入群发内容");
+        }
+        var massData = JSON.stringify(mass);
+        debugger
+         $.ajax({
+             type: "post",
+             url: "${base.contextPath}/admin/massTextMessage",
+             data: massData,
+             contentType: "application/json",
+             success: function (data) {
+                window.location.reload();
+             }
+         });
+    }
 
 
-                },
-                onLoadError: function(){
-                }
-            });
+    //多行文本输入框剩余字数计算
+    function checkMaxInput(obj, maxLen) {
+        if (obj == null || obj == undefined || obj == "") {
+            return;
+        }
+        if (maxLen == null || maxLen == undefined || maxLen == "") {
+            maxLen = 600;
         }
 
-        $(document).ready(function () {
-            initTable();
-            $("#search").bind("click", initTable);
-        });
-    </script>
-    <style>
-        table {table-layout: fixed;word-break: break-all;word-wrap: break-word}
-    </style>
-</head>
+        var strResult;
+        var $obj = $(obj);
+        var newid = $obj.attr("id") + 'msg';
 
-<body>
-<div class="panel-body" style="padding-bottom:0px;">
-    <table id="table" data-toggle="table">
-       <%-- <thead>
-        <tr>
-            <th data-field="msgid">消息id</th>
-            <th data-field="nickname">用户名</th>
-            <th data-field="userContent">用户发送内容</th>
-            <th data-field="robotContent">机器人回复内容</th>
-            <th data-field="creationDate">创建时间</th>
-        </tr>
-        </thead>--%>
-    </table>
-</div>
+        if (obj.value.length > maxLen) { //如果输入的字数超过了限制
+            obj.value = obj.value.substring(0, maxLen); //就去掉多余的字
+            strResult = '<span id="' + newid + '" class=\'Max_msg\' ><br/>还可以输入(' + (maxLen - obj.value.length) + ')字</span>'; //计算并显示剩余字数
+        }
+        else {
+            strResult = '<span id="' + newid + '" class=\'Max_msg\' ><br/>还可以输入(' + (maxLen - obj.value.length) + ')字</span>'; //计算并显示剩余字数
+        }
+
+        var $msg = $("#" + newid);
+        if ($msg.length == 0) {
+            $obj.after(strResult);
+        }
+        else {
+            $msg.html(strResult);
+        }
+    }
+
+    //清空剩除字数提醒信息
+    /* function resetMaxmsg() {
+     $("span.Max_msg").remove();
+     }*/
+</script>
 </body>
-</html>  
+</html>

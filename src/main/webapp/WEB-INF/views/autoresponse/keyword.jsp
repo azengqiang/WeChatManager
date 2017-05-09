@@ -280,6 +280,9 @@
         rule.ruleName = $("#ruleName").val();
         rule.keywordMsg = $("#keyword").val();
         rule.responseMsg = $("#responseMsg").val();
+        if(null== rule.ruleName || undefined==rule.ruleName){
+            alert("");
+        }
         var addRuleData = JSON.stringify(rule);
         $.ajax({
             type: "post",

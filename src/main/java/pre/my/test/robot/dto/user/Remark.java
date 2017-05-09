@@ -6,7 +6,7 @@ package pre.my.test.robot.dto.user;
 public class Remark {
     private String openid;
     private String remark;
-
+    public Remark(){}
     public Remark(String openid, String remark) {
         this.openid = openid;
         this.remark = remark;
