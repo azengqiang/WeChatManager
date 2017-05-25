@@ -236,7 +236,8 @@ public class Constants {
     //public static final String PROJECT_URL = "http://13f60685.tunnel.qydev.com";
     // public static final String PROJECT_URL = "http://370b5d2c.tunnel.qydev.com";
     //public static final String PROJECT_URL = "http://neijiang.tunnel.qydev.com";
-    public static final String PROJECT_URL = "http://115.159.186.63";
+    public static final String PROJECT_URL = "http://379edabc.ngrok.io";
+    //public static final String PROJECT_URL = "http://115.159.186.63/LearnSpring";
     //public static final String PROJECT_URL = "http://1ff8d474.tunnel.qydev.com";
     /**
      * 网页授权，获取code

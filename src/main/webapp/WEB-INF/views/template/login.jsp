@@ -32,14 +32,14 @@
                 <i class="layui-icon"></i>
             </label>
             <input type="text" id="userName" name="userName"
-                   placeholder="这里输入登录名" class="layui-input">
+                   placeholder="这里输入登录名" class="layui-input"  style="color: black">
         </div>
         <div class="layui-form-item">
             <label class="login-icon">
                 <i class="layui-icon"></i>
             </label>
             <input type="password" id="password" name="password"
-                   placeholder="这里输入密码" class="layui-input">
+                   placeholder="这里输入密码" class="layui-input"  style="color: black">
         </div>
         <div class="layui-form-item">
             <div class="pull-left login-remember">
