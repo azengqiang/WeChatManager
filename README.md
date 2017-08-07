@@ -1,6 +1,5 @@
-## spring
-
-to learn something about spring springmvc mybatis
+## WeChatManager
+provide WeChatOfficialPlatform background manager
 
 ### 功能API：
 
