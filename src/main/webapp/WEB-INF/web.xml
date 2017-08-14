@@ -36,14 +36,14 @@
     <!-- Spring MVC servlet结束-->
 
     <!--spring security配置-->
-    <!--<filter>
+    <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>-->
+    </filter-mapping>
     <!--spring security配置结束-->
 
     <!--spring字符过滤器-->
