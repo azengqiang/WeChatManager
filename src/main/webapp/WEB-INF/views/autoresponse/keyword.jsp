@@ -264,7 +264,6 @@
             select[i].creationDate = newDate;
         }
         var deleteRuleData = JSON.stringify(select);
-        debugger;
         $.ajax({
             type: "post",
             url: "${base.contextPath}/admin/deleteKeyResponse",
