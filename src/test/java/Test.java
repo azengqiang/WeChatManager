@@ -1,6 +1,7 @@
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import pre.my.test.robot.dto.user.User;
 
 import java.net.InetAddress;
@@ -14,12 +15,34 @@ import java.util.jar.JarEntry;
  * Author:qiang.zeng@hand-china.com on 2017/1/12.
  */
 public class Test {
+
+    @org.junit.Test
+    public void test7() {
+        String params = "userName;status;userId;";
+        System.out.println( Arrays.asList(StringUtils.split(params,";")));
+    }
+
+    @org.junit.Test
+    public void test6(){
+        Long a = 1L;
+        Long b = 1L;
+
+        if(a==b){
+            System.out.println(a==b);
+        }
+        if(a.equals(b)){
+            System.out.println(a.equals(b));
+        }
+
+
+    }
+
     @org.junit.Test
     public void test5() {
         Map accessData = new HashMap();
         accessData.put("ad", "123");
-
-        System.out.println(JSONObject.toJSONString(accessData));
+        String ad = (String)accessData.get("aa");
+        System.out.println(ad);
 
        /* List<Map> btnMap = new ArrayList<>();
         List<Map> formMap = new ArrayList<>();
